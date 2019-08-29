@@ -1,0 +1,54 @@
+html,
+body {
+  margin: 0px;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Noto Sans TC", "微軟正黑體", "新細明體", arial, sans-serif;
+  /* color:rgb(112, 112, 112); */
+}
+
+form {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(112, 112, 112);
+}
+
+input,
+select,
+img {
+  vertical-align: middle;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: #f7ed97; */
+  height: 100px;
+}
+
+.logo {
+  width: 200px;
+  /* margin-left: 50px; */
+}
+
+.main-nav {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* margin-right: 50px; */
+}
+
+.main-nav a {
+  margin: 0px 20px;
+}

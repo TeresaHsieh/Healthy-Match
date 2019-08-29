@@ -1,0 +1,106 @@
+@import "./common.css";
+
+.home-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+}
+
+/* intro */
+.home-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-intro > h1 {
+  letter-spacing: 3px;
+}
+
+.home-intro > h3 {
+  font-weight: normal;
+}
+
+.start-button {
+  display: inline-block;
+  border-radius: 8px;
+  background: #f7ed97;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.start-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.start-button span:after {
+  content: "\00bb ";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.start-button:hover span {
+  padding-right: 25px;
+}
+
+.start-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* animation */
+
+/* body {
+  margin: 20px;
+} */
+/* 
+.marquee {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 30px;
+  position: absolute;
+  overflow: hidden;
+  animation: marquee 10s linear infinite;
+  display: flex;
+  flex-direction: row;
+}
+
+.marquee img {
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin: 0 30px;
+}
+
+@keyframes marquee {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
+} */

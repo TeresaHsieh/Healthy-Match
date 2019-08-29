@@ -1,0 +1,44 @@
+#loading {
+  width: 200px;
+}
+
+#root:not(:empty) + .marquee {
+  display: none;
+}
+
+.marquee {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 25%;
+}
+
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 30px;
+  position: absolute;
+  overflow: hidden;
+  animation: marquee 10s linear infinite;
+  display: flex;
+  flex-direction: row;
+}
+
+.marquee img {
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin: 0 30px;
+}
+
+@keyframes marquee {
+  from {
+    left: 20%;
+    top: 50%;
+  }
+  to {
+    left: 80%;
+    top: 50%;
+  }
+}

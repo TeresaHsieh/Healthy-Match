@@ -1,7 +1,7 @@
 import React from "react";
 
 // App Components
-import Header from "./Header";
+import Header from "../common/Header";
 
 const NotFound = () => (
     <div>
