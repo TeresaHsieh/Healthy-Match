@@ -9,19 +9,6 @@ import MatchStatus from "./pages/MatchStatus";
 import Member from "./pages/Member";
 import NotFound from "./pages/NotFound";
 
-// const App = () => (
-//   <BrowserRouter>
-//     <Switch>
-//       <Route exact path="/" component={Home} />
-//       <Route path="/daily-record" component={DailyRecord} />
-//       <Route path="/history" component={History} />
-//       <Route path="/match-status" component={MatchStatus} />
-//       <Route path="/member" component={Member} />
-//       <Route component={NotFound} />
-//     </Switch>
-//   </BrowserRouter>
-// );
-
 class App extends React.Component {
   constructor() {
     super();

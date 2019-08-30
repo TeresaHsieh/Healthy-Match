@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "firebase": "^6.4.1",
+    "firestore-export-import": "^0.2.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",

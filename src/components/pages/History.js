@@ -3,11 +3,15 @@ import React from "react";
 // App Components
 import Header from "../common/Header";
 
-const History = () => (
-    <div>
+class History extends React.Component {
+  render() {
+    return (
+      <div>
         <Header />
         <h2> History </h2>
-    </div>
-);
+      </div>
+    );
+  }
+}
 
 export default History;
