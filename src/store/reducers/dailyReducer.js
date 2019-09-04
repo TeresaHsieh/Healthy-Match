@@ -72,6 +72,9 @@ const dailyReducer = (state = initState, action) => {
         // recordServe: [...state.recordServe, action.emptyServe]
         // arr: state.arr.concat(action.newItem)
       };
+    case "ADD_RECORD_INPUT_ERR":
+      console.log("add input error", action.err);
+      return state;
     default:
       return state;
   }
