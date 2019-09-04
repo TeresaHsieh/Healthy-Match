@@ -7,6 +7,7 @@ import DailyRecord from "./pages/DailyRecord";
 import History from "./pages/History";
 import MatchStatus from "./pages/MatchStatus";
 import Member from "./pages/Member";
+import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 
 class App extends React.Component {
@@ -33,9 +34,13 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
+
+          {/* Home */}
+
           <Route path="/daily-record" component={DailyRecord} />
           <Route path="/history" component={History} />
           <Route path="/match-status" component={MatchStatus} />
+          <Route path="/news" component={News} />
           <Route path="/member" component={Member} />
           <Route component={NotFound} />
         </Switch>
@@ -45,7 +50,7 @@ class App extends React.Component {
 }
 
 function demoAsyncCall() {
-  return new Promise(resolve => setTimeout(() => resolve(), 5000));
+  return new Promise(resolve => setTimeout(() => resolve(), 100));
 }
 
 export default App;

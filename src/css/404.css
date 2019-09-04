@@ -1,0 +1,23 @@
+@import "./common.css";
+
+.main-404 {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-around;
+  left: 50%;
+  position: absolute;
+  top: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.code404 {
+  color: #f9e10a;
+  font-weight: bold;
+  font-size: 60px;
+  border-bottom: 3px;
+}
+
+.sad-match {
+  width: 450px;
+}

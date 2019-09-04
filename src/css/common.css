@@ -32,13 +32,14 @@ img {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  /* background-color: #f7ed97; */
   height: 100px;
+  /* position: fixed;
+  top: 0;
+  width: 100%; */
 }
 
 .logo {
   width: 200px;
-  /* margin-left: 50px; */
 }
 
 .main-nav {
@@ -46,9 +47,18 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  /* margin-right: 50px; */
 }
 
 .main-nav a {
   margin: 0px 20px;
+}
+
+.main-nav .active {
+  color: darkgray;
+}
+
+@media (max-width: 800px) {
+  .main-nav {
+    width: 70%;
+  }
 }

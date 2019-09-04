@@ -1,0 +1,122 @@
+@import "./common.css";
+
+/* main */
+.dailyrecord-main {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-around;
+  /* left: 50%;
+  position: absolute;
+  top: 70%;
+  transform: translate(-50%, -50%); */
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+/* intro */
+.hello-intro {
+  position: fixed;
+  top: 450px;
+  left: 30px;
+}
+
+.chef-match {
+  width: 300px;
+}
+
+/* form */
+.main-form {
+  width: 100%;
+  margin-left: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.meals {
+  font-size: 20px;
+}
+
+.meals-nav {
+  display: flex;
+  flex-direction: row;
+  margin-left: 300px;
+}
+
+.meals-nav a {
+  color: black;
+  margin-right: 30px;
+}
+
+.meals-nav .active {
+  color: #f9e10a;
+}
+
+.meal-navbar span {
+  margin-right: 100px;
+}
+
+.category {
+  margin-top: 35px;
+  width: 100%;
+}
+
+.rice,
+.vegetable,
+.meat,
+.fruit,
+.milk,
+.oil {
+  margin: 15px 0px;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-input {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-form input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: lightgray;
+  margin-top: 5px;
+}
+
+.food-name {
+  margin-right: 10px;
+  width: 300px;
+}
+
+.food-serve {
+  width: 200px;
+}
+
+.input-form span {
+  margin: 0px 10px;
+}
+
+.delete-button {
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+}
+
+.add-record {
+  display: inline-block;
+  border-radius: 8px;
+  background: #f7ed97;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+  margin: 10px;
+}

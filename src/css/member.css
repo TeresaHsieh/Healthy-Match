@@ -1,0 +1,108 @@
+@import "./common.css";
+
+.main-member {
+  width: 30%;
+  /* left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%); */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.sign-up-log-in {
+  align-self: center;
+  padding: 0;
+}
+
+.sign-up-log-in a {
+  font-size: 20px;
+  margin-right: 100px;
+  color: black;
+  padding: 30px;
+}
+/* 
+.lightbox {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  opacity: 1;
+} */
+
+/* log-in */
+.log-in {
+  padding: 30px;
+}
+.log-in input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: lightgray;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.user-email,
+.user-code {
+  margin: 20px 0px;
+}
+
+/* sign-up */
+.sign-up {
+  padding: 30px;
+}
+
+.sign-up input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: lightgray;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.sign-up div {
+  margin: 20px 0px;
+}
+
+/* log-out */
+.log-out {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid #f9e10a;
+  border-radius: 5px;
+  width: 500px;
+  box-shadow: 0px 0px 0px 10px #f7ed97;
+  margin: 0 auto;
+}
+
+.bye-match {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.exit-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.login-button,
+.register,
+.exit-buttons button {
+  display: inline-block;
+  border-radius: 8px;
+  background: #f7ed97;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+  margin: 10px;
+}

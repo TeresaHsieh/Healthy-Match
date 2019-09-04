@@ -1,0 +1,5 @@
+// records
+
+export const UPDATE_DAILY_RECORDS_NAME = "daily/UPDATE_DAILY_RECORDS_NAME";
+export const UPDATE_DAILY_RECORDS_SERVE = "daily/UPDATE_DAILY_RECORDS_SERVE";
+export const ADD_RECORD_INPUT = "daily/ADD_RECORD_INPUT";

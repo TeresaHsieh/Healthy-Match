@@ -8,7 +8,7 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 70%;
 }
 
 /* intro */
@@ -19,11 +19,20 @@
 }
 
 .home-intro > h1 {
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  font-size: 60px;
+  margin-top: 10px;
 }
 
 .home-intro > h3 {
   font-weight: normal;
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+.home-intro > p {
+  color: grey;
+  font-size: 20px;
 }
 
 .start-button {
@@ -38,6 +47,7 @@
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 .start-button span {
@@ -63,6 +73,69 @@
 .start-button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.main-match {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+@media (max-width: 1475px) {
+  .home-main {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1290px) {
+  .home-intro > h1 {
+    font-size: 50px;
+  }
+
+  .home-intro > h3 {
+    font-size: 25px;
+  }
+
+  .home-intro > p {
+    font-size: 20px;
+  }
+
+  .start-button {
+    padding: 10px;
+    width: 150px;
+  }
+
+  .main-match {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 1010px) {
+  .home-intro > h1 {
+    font-size: 40px;
+  }
+
+  .home-intro > p {
+    font-size: 15px;
+  }
+
+  .main-match {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 815px) {
+  .home-intro > h1 {
+    font-size: 30px;
+  }
+
+  .home-intro > p {
+    font-size: 15px;
+  }
+
+  .main-match {
+    max-width: 300px;
+  }
 }
 
 /* animation */

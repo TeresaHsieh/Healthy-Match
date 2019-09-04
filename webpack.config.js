@@ -9,7 +9,7 @@ module.exports = {
     filename: "main.js"
   },
   devServer: {
-    contentBase: "./dist",
+    contentBase: "./dist"
   },
   module: {
     rules: [
@@ -19,9 +19,17 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [{ loader: 'url-loader', options: { limit: 8192, }, },],
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [{ loader: "url-loader", options: { limit: 8192 } }]
       },
+      {
+        test: /\.svg/,
+        use: [{ loader: "file-loader", options: { emitFile: false } }]
+      },
+      {
+        test: /\.svg/,
+        use: ["raw-loader"]
+      }
     ]
   }
 };

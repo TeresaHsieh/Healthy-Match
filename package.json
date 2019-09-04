@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "firebase": "^6.4.1",
+    "firebase-tools": "^7.3.0",
     "firestore-export-import": "^0.2.7",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
@@ -22,6 +24,7 @@
     "react-spring": "^8.0.27",
     "redux": "^4.0.4",
     "redux-firestore": "^0.8.0",
+    "redux-thunk": "^2.3.0",
     "webpack-cli": "^3.3.7"
   },
   "devDependencies": {
@@ -40,6 +43,7 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^4.2.0",
+    "raw-loader": "^3.1.0",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.0.4",
     "url-loader": "^2.1.0",
