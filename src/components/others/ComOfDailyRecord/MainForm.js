@@ -35,11 +35,13 @@ class MainForm extends React.Component {
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
     let obj = {};
     let foodName = e.target.value;
-    obj[meal] = [{ foodName: foodName }];
     // when no state in Redux store, add first data
     if (this.props.recordName == undefined) {
+      // obj[meal] = [{ foodName: foodName }];
+      obj = [{ foodName: foodName }];
       this.props.updateDailyRecordName(obj);
     } else {
+      obj = { foodName: foodName };
       this.props.addRecordInputName(obj);
     }
   };
@@ -49,11 +51,13 @@ class MainForm extends React.Component {
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
     let obj = {};
     let foodServe = e.target.value;
-    obj[meal] = [{ foodServe: foodServe }];
+
     // when no state in Redux store, add first data
     if (this.props.recordServe == undefined) {
+      obj = [{ foodServe: foodServe }];
       this.props.updateDailyRecordServe(obj);
     } else {
+      obj = { foodServe: foodServe };
       this.props.addRecordInputServe(obj);
     }
   };
@@ -72,13 +76,13 @@ class MainForm extends React.Component {
           <input
             placeholder="輸入食物名稱"
             className="food-name"
-            onChange={this.inputNameChange}
+            onBlur={this.inputNameChange}
             id={i}
           ></input>
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
-            onChange={this.inputServeChange}
+            onBlur={this.inputServeChange}
             id={"-" + i}
           ></input>
           <img src={Delete} className="delete-button"></img>
@@ -105,13 +109,13 @@ class MainForm extends React.Component {
           <input
             placeholder="輸入食物名稱"
             className="food-name"
-            onChange={this.inputNameChange}
+            onBlur={this.inputNameChange}
             id="0"
           ></input>
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
-            onChange={this.inputServeChange}
+            onBlur={this.inputServeChange}
             id="-0"
           ></input>
           <img src={Delete} className="delete-button"></img>

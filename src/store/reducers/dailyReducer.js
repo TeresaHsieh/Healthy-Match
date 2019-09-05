@@ -33,19 +33,21 @@ const dailyReducer = (state = initState, action) => {
     case "ADD_RECORD_INPUT_NAME":
       return {
         ...state,
-        recordName: state.recordName[meal].concat(action.nextInputName)
+        recordName: state.recordName.concat(action.nextInputName)
+        // recordName: state.recordName[meal].concat(action.nextInputName)
+        // recordName: state.recordName[meal].splice(0, 0, action.nextInputName)
       };
     case "ADD_RECORD_INPUT_SERVE":
       return {
         ...state,
-        recordServe: state.recordServe[meal].concat(action.nextInputServe)
+        recordServe: state.recordServe.concat(action.nextInputServe)
       };
 
     case "SEND_DATA_TO_FIREBASE":
       return {
         ...state,
-        recordName: state.recordName[meal],
-        recordServe: state.recordServe[meal]
+        recordName: state.recordName,
+        recordServe: state.recordServe
       };
     case "ADD_RECORD_INPUT_ERR":
       console.log("add input error", action.err);
