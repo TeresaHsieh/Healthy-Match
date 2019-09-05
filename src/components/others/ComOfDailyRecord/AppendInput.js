@@ -1,4 +1,5 @@
 import React from "react";
+import Delete from "../../../imgs/delete.png";
 
 class AppendInput extends React.Component {
   render() {
@@ -15,10 +16,6 @@ class AppendInput extends React.Component {
           onChange={this.inputClassChange}
         ></input>
         <img src={Delete} className="delete-button"></img>
-        <p className="add-input" onClick={this.addInput}>
-          {" "}
-          新增欄位{" "}
-        </p>
       </form>
     );
   }

@@ -1,15 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-// import AppendInput from "../ComOfDailyRecord/AppendInput";
+import AppendInput from "../ComOfDailyRecord/AppendInput";
 
 // App Components
-import { addRecordInput } from "../../../store/actions/dailyAction";
+import { addRecordInputName } from "../../../store/actions/dailyAction";
+import { addRecordInputServe } from "../../../store/actions/dailyAction";
 import { sendDataToFirebase } from "../../../store/actions/dailyAction";
 import { updateDailyRecordName } from "../../../store/actions/dailyAction";
 import { updateDailyRecordServe } from "../../../store/actions/dailyAction";
 import Delete from "../../../imgs/delete.png";
 
 class MainForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      addInputComponent: 0
+    };
+  }
   // submit state to the firebase
   // addMealData = () => {
   // return {
@@ -24,42 +31,71 @@ class MainForm extends React.Component {
 
   // change input, change data (state)
   inputNameChange = e => {
+    console.log(e.target.id);
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
-
     let obj = {};
     let foodName = e.target.value;
     obj[meal] = [{ foodName: foodName }];
-    this.props.updateDailyRecordName(obj);
+    // when no state in Redux store, add first data
+    if (this.props.recordName == undefined) {
+      this.props.updateDailyRecordName(obj);
+    } else {
+      this.props.addRecordInputName(obj);
+    }
   };
 
-  inputClassChange = e => {
+  inputServeChange = e => {
+    console.log(e.target.id);
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
-
     let obj = {};
     let foodServe = e.target.value;
     obj[meal] = [{ foodServe: foodServe }];
-    this.props.updateDailyRecordServe(obj);
+    // when no state in Redux store, add first data
+    if (this.props.recordServe == undefined) {
+      this.props.updateDailyRecordServe(obj);
+    } else {
+      this.props.addRecordInputServe(obj);
+    }
   };
 
   appendInput = () => {
-    let emptyName = [{ foodName: "" }];
-    let emptyServe = [{ foodServe: "" }];
-    this.props.addRecordInput(emptyName, emptyServe);
+    this.setState(prevState => ({
+      addInputComponent: prevState.addInputComponent + 1
+    }));
+  };
+
+  getAppendedComponents = () => {
+    let addInputComponent = [];
+    for (let i = 1; i < this.state.addInputComponent; i++) {
+      addInputComponent.push(
+        <form className="main-input">
+          <input
+            placeholder="輸入食物名稱"
+            className="food-name"
+            onChange={this.inputNameChange}
+            id={i}
+          ></input>
+          <input
+            placeholder="輸入食物份量（100g 為一份）"
+            className="food-serve"
+            onChange={this.inputServeChange}
+            id={"-" + i}
+          ></input>
+          <img src={Delete} className="delete-button"></img>
+        </form>
+      );
+    }
+    return addInputComponent;
   };
 
   sendDataToFirebase = e => {
     e.preventDefault();
-
-    console.log(this.store);
     console.log(this.props);
-    console.log(this.state);
+    let currentState = this.props;
+    let stateName = this.props.recordName;
+    let stateServe = this.props.recordServe;
 
-    // const wholeState = store.getState();
-    // const wholeState = store.getState();
-    // let wholeState = this.props.recordName;
-    // let wholeState = this.props.recordName;
-
-    this.props.sendDataToFirebase("wholeState");
+    this.props.sendDataToFirebase(stateName, stateServe);
   };
 
   render() {
@@ -70,14 +106,17 @@ class MainForm extends React.Component {
             placeholder="輸入食物名稱"
             className="food-name"
             onChange={this.inputNameChange}
+            id="0"
           ></input>
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
-            onChange={this.inputClassChange}
+            onChange={this.inputServeChange}
+            id="-0"
           ></input>
           <img src={Delete} className="delete-button"></img>
         </form>
+        {this.getAppendedComponents()}
         <button className="add-input" onClick={this.appendInput}>
           新增欄位
         </button>
@@ -93,10 +132,6 @@ const mapStateToProps = state => {
   return {
     date: new Date().toLocaleDateString(),
     meals: state.daily.meals,
-    breakfast: state.daily.breakfast,
-    lunch: state.daily.lunch,
-    dinner: state.daily.dinner,
-    snack: state.daily.snack,
     record: state.daily.record,
     recordName: state.daily.recordName,
     recordServe: state.daily.recordServe
@@ -106,11 +141,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // create a method
-    addRecordInput: (emptyName, emptyServe) => {
-      dispatch(addRecordInput(emptyName, emptyServe));
+    addRecordInputName: nextInput => {
+      dispatch(addRecordInputName(nextInput));
     },
-    sendDataToFirebase: wholeState => {
-      dispatch(sendDataToFirebase(wholeState));
+    addRecordInputServe: nextInput => {
+      dispatch(addRecordInputServe(nextInput));
+    },
+    sendDataToFirebase: (stateName, stateServe) => {
+      dispatch(sendDataToFirebase(stateName, stateServe));
     },
     updateDailyRecordName: newRecord => {
       dispatch(updateDailyRecordName(newRecord));

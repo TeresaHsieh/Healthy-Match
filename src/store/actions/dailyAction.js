@@ -17,29 +17,46 @@ export const updateDailyRecordServe = newRecord => {
   };
 };
 
-export const addRecordInput = (inputName, inputServe) => {
+// export const addRecordInput = (inputName, inputServe) => {
+//   return {
+//     type: "ADD_RECORD_INPUT",
+//     inputName,
+//     inputServe
+//   };
+// };
+
+export const addRecordInputName = nextInputName => {
   return {
-    type: "ADD_RECORD_INPUT",
-    inputName,
-    inputServe
+    type: "ADD_RECORD_INPUT_NAME",
+    nextInputName
   };
 };
 
-export const sendDataToFirebase = wholeState => {
+export const addRecordInputServe = nextInputServe => {
+  return {
+    type: "ADD_RECORD_INPUT_SERVE",
+    nextInputServe
+  };
+};
+
+export const sendDataToFirebase = (stateName, stateServe) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     let meal = window.location.pathname.split("/")[2];
+    let mealString = meal.toString();
+    let date = new Date();
+    let dateString = date.toString();
     // make async call to database
     const firestore = getFirestore();
     firestore
       .collection("member")
-      .doc("member")
-      .collection(meal)
+      .doc("Teresa850506")
+      .collection(dateString)
       .add({
-        [meal]: wholeState,
-        createAt: new Date()
+        [meal + "Name"]: stateName,
+        [meal + "Serve"]: stateServe
       })
       .then(() => {
-        dispatch({ type: "SEND_DATA_TO_FIREBASE", wholeState });
+        dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
       });
   };
 };
