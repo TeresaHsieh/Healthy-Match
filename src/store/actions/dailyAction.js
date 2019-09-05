@@ -17,29 +17,29 @@ export const updateDailyRecordServe = newRecord => {
   };
 };
 
-// export const addRecordInput = (inputName, inputServe) => {
-//     return {
-//       type: "ADD_RECORD_INPUT",
-//       inputName, inputServe
-//     };
-//   };
-
 export const addRecordInput = (inputName, inputServe) => {
+  return {
+    type: "ADD_RECORD_INPUT",
+    inputName,
+    inputServe
+  };
+};
+
+export const sendDataToFirebase = wholeState => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    let meal = window.location.pathname.split("/")[2];
     // make async call to database
     const firestore = getFirestore();
     firestore
-      .collection("daily")
+      .collection("member")
+      .doc("member")
+      .collection(meal)
       .add({
-        name: inputName,
-        serve: inputServe,
+        [meal]: wholeState,
         createAt: new Date()
       })
       .then(() => {
-        dispatch({ type: "ADD_RECORD_INPUT", inputName, inputServe });
-      })
-      .catch(err => {
-        dispatch({ type: "ADD_RECORD_INPUT_ERR", err });
+        dispatch({ type: "SEND_DATA_TO_FIREBASE", wholeState });
       });
   };
 };

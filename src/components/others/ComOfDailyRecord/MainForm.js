@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 // App Components
 import { addRecordInput } from "../../../store/actions/dailyAction";
+import { sendDataToFirebase } from "../../../store/actions/dailyAction";
 import { updateDailyRecordName } from "../../../store/actions/dailyAction";
 import { updateDailyRecordServe } from "../../../store/actions/dailyAction";
 import Delete from "../../../imgs/delete.png";
@@ -46,6 +47,21 @@ class MainForm extends React.Component {
     this.props.addRecordInput(emptyName, emptyServe);
   };
 
+  sendDataToFirebase = e => {
+    e.preventDefault();
+
+    console.log(this.store);
+    console.log(this.props);
+    console.log(this.state);
+
+    // const wholeState = store.getState();
+    // const wholeState = store.getState();
+    // let wholeState = this.props.recordName;
+    // let wholeState = this.props.recordName;
+
+    this.props.sendDataToFirebase("wholeState");
+  };
+
   render() {
     return (
       <div className="main-form">
@@ -65,14 +81,15 @@ class MainForm extends React.Component {
         <button className="add-input" onClick={this.appendInput}>
           新增欄位
         </button>
-        <button className="add-record">新增紀錄</button>
+        <button className="add-record" onClick={this.sendDataToFirebase}>
+          新增紀錄
+        </button>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     date: new Date().toLocaleDateString(),
     meals: state.daily.meals,
@@ -91,6 +108,9 @@ const mapDispatchToProps = dispatch => {
     // create a method
     addRecordInput: (emptyName, emptyServe) => {
       dispatch(addRecordInput(emptyName, emptyServe));
+    },
+    sendDataToFirebase: wholeState => {
+      dispatch(sendDataToFirebase(wholeState));
     },
     updateDailyRecordName: newRecord => {
       dispatch(updateDailyRecordName(newRecord));

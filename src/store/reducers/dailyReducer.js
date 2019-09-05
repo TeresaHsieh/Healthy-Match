@@ -59,18 +59,10 @@ const dailyReducer = (state = initState, action) => {
         ...state,
         recordName: state.recordName[meal].concat(action.inputName),
         recordServe: state.recordServe[meal].concat(action.inputServe)
-        // allLogBooks: [
-        //     ...state.allLogBooks,
-        //     newLogbook
-        //   ]
-
-        // recordName: [...state.recordName, action.inputName],
-        // recordServe: [...state.recordServe, action.inputServe]
-        // recordName: [...state.recordName.meals, action.emptyName],
-        // recordServe: [...state.recordServe.meals, action.emptyServe]
-        // recordName: [...state.recordName, action.emptyName],
-        // recordServe: [...state.recordServe, action.emptyServe]
-        // arr: state.arr.concat(action.newItem)
+      };
+    case "SEND_DATA_TO_FIREBASE":
+      return {
+        record: action.wholeState
       };
     case "ADD_RECORD_INPUT_ERR":
       console.log("add input error", action.err);
