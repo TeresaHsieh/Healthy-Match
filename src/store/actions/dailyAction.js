@@ -17,14 +17,6 @@ export const updateDailyRecordServe = newRecord => {
   };
 };
 
-// export const addRecordInput = (inputName, inputServe) => {
-//   return {
-//     type: "ADD_RECORD_INPUT",
-//     inputName,
-//     inputServe
-//   };
-// };
-
 export const addRecordInputName = nextInputName => {
   return {
     type: "ADD_RECORD_INPUT_NAME",
@@ -39,12 +31,37 @@ export const addRecordInputServe = nextInputServe => {
   };
 };
 
+export const adjustRecordInputName = (adjustIndex, newInputName) => {
+  return {
+    type: "ADJUST_RECORD_INPUT_NAME",
+    adjustIndex,
+    newInputName
+  };
+};
+
+export const adjustRecordInputServe = (adjustIndex, newInputServe) => {
+  return {
+    type: "ADJUST_RECORD_INPUT_SERVE",
+    adjustIndex,
+    newInputServe
+  };
+};
+
 export const sendDataToFirebase = (stateName, stateServe) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     let meal = window.location.pathname.split("/")[2];
     let mealString = meal.toString();
-    let date = new Date();
-    let dateString = date.toString();
+
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
+    let day = today.getDate();
+
+    let yearString = year.toString();
+    let monthString = month.toString();
+    let dayString = day.toString();
+    let dateString = yearString + monthString + dayString;
+
     // make async call to database
     const firestore = getFirestore();
     firestore

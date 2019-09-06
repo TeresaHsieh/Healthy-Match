@@ -2,12 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import AppendInput from "../ComOfDailyRecord/AppendInput";
 
-// App Components
+// App Components and Actions
 import { addRecordInputName } from "../../../store/actions/dailyAction";
 import { addRecordInputServe } from "../../../store/actions/dailyAction";
 import { sendDataToFirebase } from "../../../store/actions/dailyAction";
 import { updateDailyRecordName } from "../../../store/actions/dailyAction";
 import { updateDailyRecordServe } from "../../../store/actions/dailyAction";
+import { adjustRecordInputName } from "../../../store/actions/dailyAction";
+import { adjustRecordInputServe } from "../../../store/actions/dailyAction";
 import Delete from "../../../imgs/delete.png";
 
 class MainForm extends React.Component {
@@ -32,40 +34,98 @@ class MainForm extends React.Component {
   // change input, change data (state)
   inputNameChange = e => {
     console.log(e.target.id);
+    let adjustIndex = Number(e.target.id);
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
     let obj = {};
     let foodName = e.target.value;
-    // when no state in Redux store, add first data
-    if (this.props.recordName == undefined) {
-      // obj[meal] = [{ foodName: foodName }];
-      obj = [{ foodName: foodName }];
-      this.props.updateDailyRecordName(obj);
-    } else {
-      obj = { foodName: foodName };
-      this.props.addRecordInputName(obj);
+    // avoid onBlur with no data, empty input shouldn't be save into the data store
+    if (foodName.trim() !== "") {
+      // when no state in Redux store, add first data
+      if (this.props.recordName === undefined) {
+        console.log("first");
+        obj = [{ foodName: foodName }];
+        this.props.updateDailyRecordName(obj);
+      } else {
+        // if input's value isn't empty, check if the data is rewriting the previous answer
+        if (
+          foodName !== this.props.recordName[adjustIndex] &&
+          this.props.recordName[adjustIndex] !== undefined
+        ) {
+          console.log("更新");
+          obj = { foodName: foodName };
+          this.props.adjustRecordInputName(adjustIndex, obj); // 寫更新的方法
+        } else if (this.props.recordName[adjustIndex] === undefined) {
+          console.log("新增一筆");
+          obj = [{ foodName: foodName }];
+          this.props.addRecordInputName(obj);
+        }
+      }
     }
   };
 
   inputServeChange = e => {
+    let adjustIndex = Number(e.target.id);
     console.log(e.target.id);
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
     let obj = {};
     let foodServe = e.target.value;
-
-    // when no state in Redux store, add first data
-    if (this.props.recordServe == undefined) {
-      obj = [{ foodServe: foodServe }];
-      this.props.updateDailyRecordServe(obj);
-    } else {
-      obj = { foodServe: foodServe };
-      this.props.addRecordInputServe(obj);
+    if (foodServe.trim() !== "") {
+      // when no state in Redux store, add first data
+      if (this.props.recordServe == undefined) {
+        obj = [{ foodServe: foodServe }];
+        this.props.updateDailyRecordServe(obj);
+      } else {
+        if (
+          foodServe !== this.props.recordServe[adjustIndex] &&
+          this.props.recordServe[adjustIndex] !== undefined
+        ) {
+          console.log("更新");
+          obj = { foodServe: foodServe };
+          this.props.adjustRecordInputServe(adjustIndex, obj); // 寫更新的方法
+        } else if (this.props.recordServe[adjustIndex] === undefined) {
+          console.log("新增一筆");
+          obj = [{ foodServe: foodServe }];
+          this.props.addRecordInputServe(obj);
+        }
+      }
     }
   };
 
+  // inputServeChange = e => {
+  //   console.log(e.target.id);
+  //   let meal = window.location.pathname.split("/")[2]; // checking by url subpath
+  //   let obj = {};
+  //   let foodServe = e.target.value;
+  //   if (foodServe.trim() !== "") {
+  //     // when no state in Redux store, add first data
+  //     if (this.props.recordServe == undefined) {
+  //       obj = [{ foodServe: foodServe }];
+  //       this.props.updateDailyRecordServe(obj);
+  //     } else {
+  //       obj = { foodServe: foodServe };
+  //       this.props.addRecordInputServe(obj);
+  //     }
+  //   }
+  // };
+
   appendInput = () => {
-    this.setState(prevState => ({
-      addInputComponent: prevState.addInputComponent + 1
-    }));
+    if (
+      this.props.recordName === undefined &&
+      this.props.recordServe === undefined
+    ) {
+      alert(" please add your first data!");
+    } else if (
+      this.props.recordName === undefined ||
+      this.props.recordServe === undefined
+    ) {
+      alert("some info is missing ~!");
+    } else if (this.props.recordName.length !== this.props.recordServe.length) {
+      alert("some info is missing ~!");
+    } else {
+      this.setState(prevState => ({
+        addInputComponent: prevState.addInputComponent + 1
+      }));
+    }
   };
 
   getAppendedComponents = () => {
@@ -83,7 +143,7 @@ class MainForm extends React.Component {
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
             onBlur={this.inputServeChange}
-            id={"-" + i}
+            id={i}
           ></input>
           <img src={Delete} className="delete-button"></img>
         </form>
@@ -116,7 +176,7 @@ class MainForm extends React.Component {
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
             onBlur={this.inputServeChange}
-            id="-0"
+            id="0"
           ></input>
           <img src={Delete} className="delete-button"></img>
         </form>
@@ -159,6 +219,12 @@ const mapDispatchToProps = dispatch => {
     },
     updateDailyRecordServe: newRecord => {
       dispatch(updateDailyRecordServe(newRecord));
+    },
+    adjustRecordInputName: (adjustIndex, newInputName) => {
+      dispatch(adjustRecordInputName(adjustIndex, newInputName));
+    },
+    adjustRecordInputServe: (adjustIndex, newInputServe) => {
+      dispatch(adjustRecordInputServe(adjustIndex, newInputServe));
     }
   };
 };
