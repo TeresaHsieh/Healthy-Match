@@ -1,3 +1,7 @@
+// ===== Component: DailyRecord ========
+export const CHECK_FIRESTORE_RECORD = "daily/CHECK_FIRESTORE_RECORD";
+
+// ===== Component: MainForm ========
 // records
 export const UPDATE_DAILY_RECORDS_NAME = "daily/UPDATE_DAILY_RECORDS_NAME";
 export const UPDATE_DAILY_RECORDS_SERVE = "daily/UPDATE_DAILY_RECORDS_SERVE";
