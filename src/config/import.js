@@ -1,7 +1,7 @@
 // // Imports
 // const firestoreService = require("firestore-export-import");
 // const firebaseConfig = require("./firebaseConfig");
-// const serviceAccount = require("./serviceAccount.json");
+// const serviceAccount = require("./HealthyMatchServiceAccount.json");
 
 // // JSON To Firestore
 // const jsonToFirestore = async () => {
