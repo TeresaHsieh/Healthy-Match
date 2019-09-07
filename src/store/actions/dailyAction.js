@@ -68,9 +68,11 @@ export const sendDataToFirebase = (stateName, stateServe) => {
       .collection("member")
       .doc("Teresa850506")
       .collection(dateString)
-      .add({
-        [meal + "Name"]: stateName,
-        [meal + "Serve"]: stateServe
+      .doc(meal)
+      // use "add" for collection, use set for document
+      .set({
+        Name: stateName,
+        Serve: stateServe
       })
       .then(() => {
         dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });

@@ -18,24 +18,11 @@ const dailyReducer = (state = initState, action) => {
         ...state,
         recordServe: action.newRecord
       };
-    // case "ADD_RECORD_INPUT":
-    //   console.log(action.inputName);
-    //   console.log(action.inputServe);
-
-    //   console.log(state);
-    //   let meal = state.meals;
-    //   return {
-    //     ...state,
-    //     recordName: state.recordName[meal].concat(action.inputName),
-    //     recordServe: state.recordServe[meal].concat(action.inputServe)
-    //   };
 
     case "ADD_RECORD_INPUT_NAME":
       return {
         ...state,
         recordName: state.recordName.concat(action.nextInputName)
-        // recordName: state.recordName[meal].concat(action.nextInputName)
-        // recordName: state.recordName[meal].splice(0, 0, action.nextInputName)
       };
     case "ADD_RECORD_INPUT_SERVE":
       return {
@@ -58,26 +45,11 @@ const dailyReducer = (state = initState, action) => {
 
     case "ADJUST_RECORD_INPUT_SERVE":
       let serves = state.recordServe.slice();
-      /*
-            for (let i = 0; i < state.recordName.length; i++) {
-              names[i] = state.recordName[i];
-            }
-            */
       serves.splice(action.adjustIndex, 1, action.newInputServe);
       return {
         ...state,
         recordServe: serves
       };
-
-    // case "ADJUST_RECORD_INPUT_SERVE":
-    //   return {
-    //     ...state,
-    //     recordServe: state.recordServe.splice(
-    //       action.adjustIndex,
-    //       1,
-    //       action.newInputServe
-    //     )
-    //   };
 
     case "SEND_DATA_TO_FIREBASE":
       return {
