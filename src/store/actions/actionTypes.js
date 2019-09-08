@@ -1,5 +1,6 @@
-// ===== Component: DailyRecord ========
-export const CHECK_FIRESTORE_RECORD = "daily/CHECK_FIRESTORE_RECORD";
+// ===== Component: ProteinCharts ========
+export const CHECK_FIRESTORE_RECORD_PROTEIN =
+  "daily/CHECK_FIRESTORE_RECORD_PROTEIN";
 
 // ===== Component: MainForm ========
 // records

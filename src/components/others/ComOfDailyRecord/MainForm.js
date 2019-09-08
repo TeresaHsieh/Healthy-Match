@@ -143,6 +143,13 @@ class MainForm extends React.Component {
     let stateServe = this.props.recordServe;
 
     this.props.sendDataToFirebase(stateName, stateServe);
+
+    // after sending data, empty all the input and cut down the append inputs
+
+    this.setState({
+      addInputComponent: 0
+    });
+    console.log(event.target.elements);
   };
 
   render() {
@@ -153,12 +160,14 @@ class MainForm extends React.Component {
             placeholder="輸入食物名稱"
             className="food-name"
             onBlur={this.inputNameChange}
+            // value={this.state.originalInput}
             id="0"
           ></input>
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
             onBlur={this.inputServeChange}
+            // value={this.state.originalInput}
             id="0"
           ></input>
           <img src={Delete} className="delete-button"></img>

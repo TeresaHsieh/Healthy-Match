@@ -2,56 +2,80 @@ import { firestore } from "firebase";
 
 // import * as ActionTypes from "../actions/actionTypes";
 
-// check Firestore Record when reload the page and have seperate input
-export const checkFirestoreRecord = previousRecord => {
+// check Firestore Record when mount the charts
+export const checkFirestoreRecordProtein = (
+  recordNameProtein,
+  recordServeProtein
+) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // type: "CHECK_FIRESTORE_RECORD",
-    // previousRecord
-
-    let meal = window.location.pathname.split("/")[2];
-    let mealString = meal.toString();
-
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
-    let day = today.getDate();
-
-    let yearString = year.toString();
-    let monthString = month.toString();
-    let dayString = day.toString();
-    let dateString = yearString + monthString + dayString;
-
     // make async call to database
     const firestore = getFirestore();
 
     let theRecord = firestore
       .collection("member")
       .doc("3Smynu8UzW2gPvJrZYOZ")
-      .collection(dateString)
-      .doc(meal);
+      .collection("201998")
+      .doc("breakfast");
 
-    theRecord
-      .get()
-      .then(function(doc) {
-        console.log(dateString, meal);
+    function getNameNutrition() {
+      return new Promise(function(resolve, reject) {
+        theRecord.get().then(function(doc) {
+          if (doc.exists) {
+            let nameArray = [];
+            for (let n = 0; n < doc.data().Name.length; n += 1) {
+              firestore
+                .collection("nutrition")
+                .doc(doc.data().Name[n].foodName)
+                .get()
+                .then(protein => {
+                  if (protein.exists) {
+                    nameArray.push(protein.data()["粗蛋白(g)"]);
+                    if (n == doc.data().Name.length - 1) {
+                      resolve(nameArray);
+                    }
+                  }
+                });
+            }
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        });
+      });
+    }
+    let promise = getNameNutrition();
+    promise.then(function(nameArray) {
+      console.log(nameArray);
+      theRecord.get().then(function(doc) {
         if (doc.exists) {
-          console.log("predata!:" + previousRecord);
-          console.log("Document data:", doc.data());
-          console.log(doc.data().Name, doc.data().Serve);
-          let prevName = doc.data().Name;
-          let prevServe = doc.data().Serve;
-          dispatch({ type: "CHECK_FIRESTORE_RECORD", prevName, prevServe });
+          let serveArray = [];
+          for (let s = 0; s < doc.data().Serve.length; s += 1) {
+            serveArray.push(doc.data().Serve[s].foodServe);
+          }
+
+          let combineArray = [];
+          for (let i = 0; i < nameArray.length; i++) {
+            let combine = nameArray[i] * serveArray[i];
+            combineArray[i] = combine;
+          }
+          console.log(combineArray);
+
+          let recordTotalProtein = combineArray;
+
+          dispatch({
+            type: "CHECK_FIRESTORE_RECORD_PROTEIN",
+            recordTotalProtein
+          });
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
         }
-      })
-      .catch(function(error) {
-        console.log("Error getting document:", error);
       });
+    });
   };
 };
 
+// new
 // =================================================
 
 // record --- action creator and action

@@ -8,11 +8,10 @@ const initState = {
 const dailyReducer = (state = initState, action) => {
   let meal = state.meals;
   switch (action.type) {
-    case "CHECK_FIRESTORE_RECORD":
+    case "CHECK_FIRESTORE_RECORD_PROTEIN":
       return {
         ...state,
-        recordName: action.prevName,
-        recordServe: action.prevServe
+        recordTotalProtein: action.recordTotalProtein
       };
 
     case "UPDATE_DAILY_RECORDS_NAME":
