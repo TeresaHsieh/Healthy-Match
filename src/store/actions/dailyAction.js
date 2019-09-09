@@ -2,6 +2,82 @@ import { firestore } from "firebase";
 
 // import * as ActionTypes from "../actions/actionTypes";
 
+export const searchKeywords = keywords => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    const firestore = getFirestore();
+
+    // check all food that correspond to keywords
+    let theRecord = firestore
+      .collection("nutrition")
+      .where("搜尋關鍵字", "array-contains", keywords)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id);
+        });
+      })
+      .catch(function(error) {
+        console.log("Error getting documents: ", error);
+      });
+
+    // console.log("we get " + keywords);
+    // theRecord.get().then(function(doc) {
+    //   if (doc.exists) {
+    //     console.log("Document data:", keywords, doc.data());
+    //   }
+
+    //   db.collection("nutrition").where("capital", "==", true)
+    // .get()
+    // .then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // })
+    // .catch(function(error) {
+    //     console.log("Error getting documents: ", error);
+    // });
+
+    //   let prevName = doc.data().Name;
+    //   let prevServe = doc.data().Serve;
+    //   let combineName = stateName.concat(prevName);
+    //   let combineServe = stateServe.concat(prevServe);
+    //   firestore
+    //     .collection("member")
+    //     .doc("3Smynu8UzW2gPvJrZYOZ")
+    //     .collection(dateString)
+    //     .doc(meal)
+    //     // use "add" for collection, use set for document
+    //     .set({
+    //       Name: combineName,
+    //       Serve: combineServe
+    //     })
+    //     .then(() => {
+    //       dispatch({ type: "SEARCH_KEYWORDS", keywords });
+    //     });
+    // } else {
+    //   // doc.data() will be undefined in this case
+    //   console.log("No previous document!");
+    //   firestore
+    //     .collection("member")
+    //     .doc("3Smynu8UzW2gPvJrZYOZ")
+    //     .collection(dateString)
+    //     .doc(meal)
+    //     // use "add" for collection, use set for document
+    //     .set({
+    //       Name: stateName,
+    //       Serve: stateServe
+    //     })
+    //     .then(() => {
+    //       dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
+    //     });
+    // }
+    // });
+  };
+};
+
 // check Firestore Record when mount the charts
 export const checkFirestoreRecordProtein = (
   recordNameProtein,

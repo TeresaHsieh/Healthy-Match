@@ -10,6 +10,7 @@ import { updateDailyRecordName } from "../../../store/actions/dailyAction";
 import { updateDailyRecordServe } from "../../../store/actions/dailyAction";
 import { adjustRecordInputName } from "../../../store/actions/dailyAction";
 import { adjustRecordInputServe } from "../../../store/actions/dailyAction";
+import { searchKeywords } from "../../../store/actions/dailyAction";
 import Delete from "../../../imgs/delete.png";
 
 class MainForm extends React.Component {
@@ -152,6 +153,11 @@ class MainForm extends React.Component {
     console.log(event.target.elements);
   };
 
+  searchKeywords = e => {
+    console.log("searching keywords");
+    this.props.searchKeywords(e.target.value);
+  };
+
   render() {
     return (
       <div className="main-form">
@@ -160,6 +166,7 @@ class MainForm extends React.Component {
             placeholder="輸入食物名稱"
             className="food-name"
             onBlur={this.inputNameChange}
+            onChange={this.searchKeywords}
             // value={this.state.originalInput}
             id="0"
           ></input>
@@ -190,7 +197,8 @@ const mapStateToProps = state => {
     meals: state.daily.meals,
     record: state.daily.record,
     recordName: state.daily.recordName,
-    recordServe: state.daily.recordServe
+    recordServe: state.daily.recordServe,
+    keywords: state.daily.keywords
   };
 };
 
@@ -217,6 +225,9 @@ const mapDispatchToProps = dispatch => {
     },
     adjustRecordInputServe: (adjustIndex, newInputServe) => {
       dispatch(adjustRecordInputServe(adjustIndex, newInputServe));
+    },
+    searchKeywords: keywords => {
+      dispatch(searchKeywords(keywords));
     }
   };
 };

@@ -3,6 +3,9 @@ export const CHECK_FIRESTORE_RECORD_PROTEIN =
   "daily/CHECK_FIRESTORE_RECORD_PROTEIN";
 
 // ===== Component: MainForm ========
+// search
+export const SEARCH_KEYWORDS = "daily/SEARCH_KEYWORDS";
+
 // records
 export const UPDATE_DAILY_RECORDS_NAME = "daily/UPDATE_DAILY_RECORDS_NAME";
 export const UPDATE_DAILY_RECORDS_SERVE = "daily/UPDATE_DAILY_RECORDS_SERVE";

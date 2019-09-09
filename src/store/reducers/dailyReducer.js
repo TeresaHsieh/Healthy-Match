@@ -8,6 +8,12 @@ const initState = {
 const dailyReducer = (state = initState, action) => {
   let meal = state.meals;
   switch (action.type) {
+    case "SEARCH_KEYWORDS":
+      return {
+        ...state,
+        keywords: action.keywords
+      };
+
     case "CHECK_FIRESTORE_RECORD_PROTEIN":
       return {
         ...state,
