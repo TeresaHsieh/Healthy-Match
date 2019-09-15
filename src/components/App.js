@@ -7,6 +7,7 @@ import DailyRecord from "./pages/DailyRecord";
 import History from "./pages/History";
 import MatchStatus from "./pages/MatchStatus";
 import Member from "./pages/Member";
+import LogOut from "./pages/LogOut";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 
@@ -33,7 +34,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={History} />
 
           {/* Home */}
 
@@ -42,6 +43,8 @@ class App extends React.Component {
           <Route path="/match-status" component={MatchStatus} />
           <Route path="/news" component={News} />
           <Route path="/member" component={Member} />
+          <Route path="/log-out" component={LogOut} />
+
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

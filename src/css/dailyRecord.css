@@ -1,6 +1,7 @@
 @import "./common.css";
 
 /* main */
+
 .dailyrecord-main {
   display: flex;
   flex-direction: row;
@@ -15,6 +16,7 @@
 }
 
 /* intro */
+
 .hello-intro {
   position: fixed;
   top: 450px;
@@ -119,4 +121,10 @@
   width: 100px;
   cursor: pointer;
   margin: 10px;
+}
+
+/* search suggestion*/
+.searchSuggestion {
+  font-size: 15px;
+  overflow-y: scroll;
 }

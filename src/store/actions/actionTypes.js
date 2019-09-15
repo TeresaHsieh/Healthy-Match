@@ -1,6 +1,11 @@
+// ===== Component: SignIn ========
+export const LOGIN_SUCCESS = "auth/LOGIN_SUCCESS";
+
+export const LOGIN_ERROR = "auth/LOGIN_ERROR";
+
 // ===== Component: ProteinCharts ========
-export const CHECK_FIRESTORE_RECORD_PROTEIN =
-  "daily/CHECK_FIRESTORE_RECORD_PROTEIN";
+export const CHECK_FIRESTORE_NUTRITION_RECORD =
+  "daily/CHECK_FIRESTORE_NUTRITION_RECORD";
 
 // ===== Component: MainForm ========
 // search

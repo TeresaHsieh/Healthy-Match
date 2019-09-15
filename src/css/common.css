@@ -4,7 +4,7 @@ body {
 }
 
 body {
-  font-size: 16px;
+  font-size: 20px;
   font-family: "Noto Sans TC", "微軟正黑體", "新細明體", arial, sans-serif;
   /* color:rgb(112, 112, 112); */
 }
@@ -32,14 +32,14 @@ img {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  height: 100px;
+  height: 120px;
   /* position: fixed;
   top: 0;
   width: 100%; */
 }
 
 .logo {
-  width: 200px;
+  width: 250px;
 }
 
 .main-nav {
@@ -57,8 +57,18 @@ img {
   color: darkgray;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1270px) {
   .main-nav {
     width: 70%;
   }
 }
+
+@media (max-width: 1120px) {
+  .main-nav {
+    width: 60%;
+  }
+}
+
+/* @media (max-width: 940px) {
+  
+} */

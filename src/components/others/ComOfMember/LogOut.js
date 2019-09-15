@@ -1,4 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { signOut } from "../../../store/actions/authAction";
 
 // App Components
 import ByeMatch from "../../../imgs/bye-match.gif";
@@ -10,7 +13,11 @@ class LogOut extends React.Component {
         <img src={ByeMatch} className="bye-match" />
         <p>確定登出嗎～？</p>
         <div className="exit-buttons">
-          <button>我先走囉！</button>
+          <button>
+            <NavLink to="/" onClick={this.props.signOut}>
+              我先走囉！
+            </NavLink>
+          </button>
           <button>再玩耍一下</button>
         </div>
       </div>
@@ -18,4 +25,13 @@ class LogOut extends React.Component {
   }
 }
 
-export default LogOut;
+const mapDispatchToProps = dispatch => {
+  return {
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LogOut);

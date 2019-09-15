@@ -2,12 +2,62 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 
 import { connect } from "react-redux";
-import { checkFirestoreRecordProtein } from "../../../store/actions/dailyAction";
+import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
 
 class ProteinChart extends React.Component {
   componentDidMount = () => {
     console.log("123");
-    this.props.checkFirestoreRecordProtein();
+
+    // count end date
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
+    let day = today.getDate();
+
+    let yearString = year.toString();
+
+    let monthString = "";
+    if (month < 10) {
+      monthString = "0" + month.toString();
+    } else {
+      monthString = month.toString();
+    }
+
+    let dayString = "";
+    if (day < 10) {
+      dayString = "0" + day.toString();
+    } else {
+      dayString = day.toString();
+    }
+
+    // count 7 days ago
+    let weekAgoDate = new Date();
+    weekAgoDate.setDate(weekAgoDate.getDate() - 6);
+    let weekAgoYear = weekAgoDate.getFullYear();
+    let weekAgoMonth = weekAgoDate.getMonth() + 1;
+    let weekAgoDay = weekAgoDate.getDate();
+
+    let weekAgoYearString = weekAgoYear.toString();
+    let weekAgoMonthString = "";
+
+    if (weekAgoMonth < 10) {
+      weekAgoMonthString = "0" + weekAgoMonth.toString();
+    } else {
+      weekAgoMonthString = weekAgoMonth.toString();
+    }
+
+    let weekAgoDayString = "";
+    if (weekAgoDay < 10) {
+      weekAgoDayString = "0" + weekAgoDay.toString();
+    } else {
+      weekAgoDayString = weekAgoDay.toString();
+    }
+
+    let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
+    let endDate = yearString + monthString + dayString; // default : today
+    // console.log(startDate);
+    // console.log(endDate);
+    this.props.checkFirestoreNutritionRecord(20190910, 20190911);
   };
   setGradientColor = (canvas, color) => {
     const ctx = canvas.getContext("2d");
@@ -19,7 +69,7 @@ class ProteinChart extends React.Component {
   };
 
   getChartDataProtein = canvas => {
-    let proteinArray = this.props.recordTotalProtein;
+    let proteinArray = this.props.recordTotalNutrition;
     const data = {
       labels: ["MON", "TUE", "WED", "THR", "FRI", "SAT", "SUN"],
       datasets: [
@@ -31,7 +81,7 @@ class ProteinChart extends React.Component {
         {
           label: "week-protein",
           backgroundColor: "rgba(247, 237, 151,0.75)",
-          data: proteinArray
+          data: [60, 60, 20, 70, 80, 10, 30]
         }
       ]
     };
@@ -49,7 +99,7 @@ class ProteinChart extends React.Component {
   render() {
     return (
       <div>
-        <h1> 蛋白質 </h1>
+        {/* <h1> 蛋白質 </h1> */}
         <Line
           width="600"
           height="250"
@@ -63,17 +113,15 @@ class ProteinChart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    date: new Date().toLocaleDateString(),
-    meals: state.daily.meals,
-    recordTotalProtein: state.daily.recordTotalProtein
+    recordTotalNutrition: state.daily.recordTotalNutrition
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     // create a method
-    checkFirestoreRecordProtein: recordProtein => {
-      dispatch(checkFirestoreRecordProtein(recordProtein));
+    checkFirestoreNutritionRecord: (startDate, endDate) => {
+      dispatch(checkFirestoreNutritionRecord(startDate, endDate));
     }
   };
 };

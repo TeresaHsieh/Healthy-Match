@@ -14,10 +14,10 @@ const dailyReducer = (state = initState, action) => {
         keywords: action.keywords
       };
 
-    case "CHECK_FIRESTORE_RECORD_PROTEIN":
+    case "CHECK_FIRESTORE_NUTRITION_RECORD":
       return {
         ...state,
-        recordTotalProtein: action.recordTotalProtein
+        recordTotalNutrition: action.results
       };
 
     case "UPDATE_DAILY_RECORDS_NAME":

@@ -17,7 +17,8 @@ class MainForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      addInputComponent: 0
+      addInputComponent: 0,
+      showSuggestion: false
     };
   }
   // submit state to the firebase
@@ -121,6 +122,8 @@ class MainForm extends React.Component {
             placeholder="輸入食物名稱"
             className="food-name"
             onBlur={this.inputNameChange}
+            onChange={this.searchKeywords}
+            onKeyUp={this.showKeywords}
             id={i}
           ></input>
           <input
@@ -158,7 +161,42 @@ class MainForm extends React.Component {
     this.props.searchKeywords(e.target.value);
   };
 
+  showKeywords = e => {
+    console.log("keyup!");
+    if (e.target.value.length !== 0) {
+      this.setState({
+        showSuggestion: true
+      });
+    } else {
+      this.setState({
+        showSuggestion: false
+      });
+    }
+  };
+
+  hideSuggestion = e => {
+    this.setState({
+      showSuggestion: false
+    });
+  };
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.hideSuggestion);
+  }
+
   render() {
+    const showSuggestion = this.state.showSuggestion;
+    let suggestion;
+    console.log("test", this.props.keywords);
+    if (showSuggestion && this.props.keywords !== undefined) {
+      suggestion = (
+        <ul onFocus={this.hideSuggestion}>
+          {this.props.keywords.map(food => (
+            <li>{food}</li>
+          ))}
+        </ul>
+      );
+    }
     return (
       <div className="main-form">
         <form className="main-input">
@@ -167,9 +205,11 @@ class MainForm extends React.Component {
             className="food-name"
             onBlur={this.inputNameChange}
             onChange={this.searchKeywords}
+            onKeyUp={this.showKeywords}
             // value={this.state.originalInput}
             id="0"
           ></input>
+          <div className="searchSuggestion">{suggestion}</div>
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
