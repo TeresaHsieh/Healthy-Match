@@ -62,38 +62,59 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
       let test = [];
       let teresa = [];
 
-      allRecord.get().then(mealTypes => {
-        mealTypes.docs.forEach(mealAndNameTypes => {
-          theName = mealAndNameTypes.get("Name"); // all foodName of the giving time
-          theDate = mealAndNameTypes.get("Date");
-          // console.log(theName);
-          // console.log(theDate);
-          // console.log(mealAndNameTypes);
+      let test_2 = [];
+      let test_3 = [];
 
-          foodNumber.push(theName.length); // knowing the number of foods in daily
-          const add = (a, b) => a + b;
-          sum = foodNumber.reduce(add);
+      allRecord
+        .get()
+        .then(mealTypes => {
+          mealTypes.docs.forEach(mealAndNameTypes => {
+            theName = mealAndNameTypes.get("Name"); // all foodName of the giving time
+            theDate = mealAndNameTypes.get("Date");
+            // console.log(theName);
+            // console.log(theDate);
+            // console.log(mealAndNameTypes);
 
-          theName.forEach(name => {
+            foodNumber.push(theName.length); // knowing the number of foods in daily
+            const add = (a, b) => a + b;
+            sum = foodNumber.reduce(add);
+            console.log("number", foodNumber.length);
+            console.log("sum", sum);
+
+            theName.forEach(name => {
+              let meal = {
+                name: name,
+                date: theDate
+              };
+              test_2.push(meal);
+            });
+          });
+        })
+        .then(() => {
+          console.log("test_2", test_2);
+          let loaded = 0;
+          for (let i = 0; i < test_2.length; i++) {
             firestore
               .collection("nutrition")
-              .doc(name.foodName)
+              .doc(test_2[i].name.foodName)
               .get()
               .then(function(ref) {
                 if (ref.exists) {
-                  data.push(ref.data());
+                  //test_3.push({ data: ref.data() });
+                  test_3.push({ date: test_2[i].date, data: ref.data() });
+                }
+              })
+              .then(() => {
+                console.log("testblablabla", test_2);
+                console.log("TESTTTTTT");
+                loaded++;
+                if (loaded === test_2.length) {
+                  console.log("test_3", test_3);
+                  resolve(test_3);
                 }
               });
-
-            // if (data.length <= sum) {
-            //test.push({ theDate: theDate, data: data });
-
-            test.push({ theDate: theDate, data: data });
-            resolve(test);
-            // }
-          });
+          }
         });
-      });
     });
 
     let getServe = new Promise((resolve, reject) => {
@@ -110,32 +131,65 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
         });
       });
     });
+    let foodNutrition;
+    let check = [];
 
-    Promise.all([getNameNutrition, getServe]).then(nutritionAndServes => {
-      console.log(nutritionAndServes);
-      let foodNutrition = nutritionAndServes[0];
-      console.log("foodNutrition", foodNutrition);
-      let foodServes = nutritionAndServes[1];
-      console.log(foodServes);
+    let theDate;
+    let data = {};
 
-      // for (let key in foodNutrition[0]) {
-      // if data is an array, key will be the index number of element in it. if data is an object, key will be the key in it
+    Promise.all([getNameNutrition, getServe])
+      .then(nutritionAndServes => {
+        console.log(nutritionAndServes);
+        foodNutrition = nutritionAndServes[0];
+        console.log("foodNutrition", foodNutrition);
+        let foodServes = nutritionAndServes[1];
+        console.log("foodServes ", foodServes);
 
-      // if (foodNutrition[0][key] != null && !isNaN(foodNutrition[0][key])) {
+        for (let m = 0; m < foodNutrition.length; m++) {
+          //for (let key in foodNutrition[m]) {
+          // if data is an array, key will be the index number of element in it. if data is an object, key will be the key in it
+          let yoyo = foodNutrition[m].data;
 
-      // for (let t = 0; t < 8; t++) {
-      // console.log(foodNutrition[1].data[key] * foodServes[t]);
-      // }
-      // for (let t = 0; t <= sum - 1; t++) {
-      //   if (results[theDate][key]) {
-      //     results[theDate][key] += data[key] * serves[t];
-      //   } else {
-      //     results[theDate][key] = data[key] * serves[t];
-      //   }
-      // }
-      //}
-      //}
-    });
+          let empty = [];
+          console.log(yoyo);
+          for (let key in yoyo) {
+            if (yoyo[key] != null && !isNaN(yoyo[key])) {
+              yoyo[key] = yoyo[key] * foodServes[m];
+            }
+          }
+        }
+        console.log(foodNutrition);
+      })
+      .then(() => {
+        dispatch({ type: "CHECK_FIRESTORE_NUTRITION_RECORD", foodNutrition });
+      });
+    //==========================
+
+    // console.log("gagaggagagaaaa", foodNutrition);
+
+    // for (let f = 0; f < foodNutrition.length; f++) {
+    //   let yeah = foodNutrition[f].data;
+    //   console.log("yeah", yeah);
+    //   for (let key in yeah) {
+    //     console.log(yeah);
+    //     console.log(yeah[key]);
+    //     if (yeah[key] != null && !isNaN(yeah[key])) {
+    //       console.log("123123123", results[0]);
+    //       //if (results[theDate][key]) {
+
+    //       //     results[theDate][key] += yeah[key];
+    //       //   } else {
+    //       //     results[theDate][key] = yeah[key];
+    //       //}
+    //       //   console.log(results);
+    //     }
+    //   }
+    // }
+    // console.log("hehe", results);
+    // console.log("123");
+
+    //============================
+
     // let promise = getServe();
     // promise.then(function(serves) {
     //   // console.log(serves);
@@ -152,9 +206,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
     //   //     let theDate = mealAndNameTypes.get("Date");
 
     //   //     // if [theDate] isn't exist in result, define it as an object, and then ready to be put nutrition information inside
-    //   //     if (!results[theDate]) {
-    //   //       results[theDate] = {};
-    //   //     }
 
     //   //     theName = mealAndNameTypes.get("Name"); // all foodName of the giving time
 
@@ -204,7 +255,7 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
     //   // });
     //   // console.log("this is", results);
 
-    //   // dispatch({ type: "CHECK_FIRESTORE_NUTRITION_RECORD", results });
+    //   //
     // });
   };
 };

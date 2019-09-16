@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 // App Components
 import Home from "./pages/Home";
@@ -55,5 +57,16 @@ class App extends React.Component {
 function demoAsyncCall() {
   return new Promise(resolve => setTimeout(() => resolve(), 100));
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     auth: state.firebase.auth
+//   };
+// };
+
+// export default connect(
+//   null,
+//   mapStateToProps
+// )(App);
 
 export default App;
