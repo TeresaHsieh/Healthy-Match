@@ -50,8 +50,8 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
       .collection("member")
       .doc("3Smynu8UzW2gPvJrZYOZ")
       .collection("nutritionRecord")
-      .where("Date", ">=", startDate)
-      .where("Date", "<=", endDate);
+      .where("Date", ">=", Number(startDate))
+      .where("Date", "<=", Number(endDate));
 
     let getNameNutrition = new Promise((resolve, reject) => {
       let theName = "";
@@ -71,10 +71,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
           mealTypes.docs.forEach(mealAndNameTypes => {
             theName = mealAndNameTypes.get("Name"); // all foodName of the giving time
             theDate = mealAndNameTypes.get("Date");
-            console.log("plz3", theDate);
-            // console.log(theName);
-            // console.log(theDate);
-            // console.log(mealAndNameTypes);
 
             foodNumber.push(theName.length); // knowing the number of foods in daily
             const add = (a, b) => a + b;
@@ -90,7 +86,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
           });
         })
         .then(() => {
-          console.log("test_2", test_2);
           let loaded = 0;
           for (let i = 0; i < test_2.length; i++) {
             firestore
@@ -104,11 +99,8 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
                 }
               })
               .then(() => {
-                console.log("testblablabla", test_2);
-                console.log("TESTTTTTT");
                 loaded++;
                 if (loaded === test_2.length) {
-                  console.log("test_3", test_3);
                   resolve(test_3);
                 }
               });
@@ -130,6 +122,7 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
         });
       });
     });
+
     let foodNutrition;
     let check = [];
     let theDate;
@@ -160,12 +153,8 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
             }
           }
         }
-        console.log(foodNutrition);
-        console.log("third", theDate);
       })
       .then(() => {
-        console.log("gagaggagagaaaa", foodNutrition);
-
         let yeah;
         let dateeee;
 
@@ -192,6 +181,7 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
         }
 
         dispatch({ type: "CHECK_FIRESTORE_NUTRITION_RECORD", results });
+        console.log("RITA", results);
       });
   };
 };
