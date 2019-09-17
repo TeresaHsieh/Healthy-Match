@@ -189,7 +189,6 @@ class ProteinChart extends React.Component {
 
   componentDidMount = () => {
     // count end date
-
     let today = new Date();
     let year = today.getFullYear();
     let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
@@ -240,106 +239,81 @@ class ProteinChart extends React.Component {
     this.props.checkFirestoreNutritionRecord(startDate, endDate);
   };
 
-  // setGradientColor = (canvas, color) => {
-  //   const ctx = canvas.getContext("2d");
-  //   console.log(ctx);
-  //   const gradient = ctx.createLinearGradient(0, 0, 600, 250);
-  //   gradient.addColorStop(0, color);
-  //   gradient.addColorStop(0.95, "rgba(245, 135, 73,0.75)");
-  //   return gradient;
-  // };
-
-  getChartDataProtein = canvas => {
-    let transferObjectToArray = new Promise((resolve, reject) => {
-      let nutritionObject = this.props.recordTotalNutrition;
-      resolve(nutritionObject);
-    });
-
-    let dataProteinArray = [];
-    transferObjectToArray
-      .then(nutritionObject => {
-        let result = Object.keys(nutritionObject).map(function(key) {
-          return { key: nutritionObject[key] };
-        });
-        console.log("get the data in redux store222");
-        let protein;
-        for (let d = 0; d < result.length; d++) {
-          protein = result[d].key["粗蛋白(g)"];
-          dataProteinArray.push(protein);
-        }
-      })
-      // .then(() => {
-      //   this.setState({ dataUpdate: true });
-
-      // })
-      .then(() => {
-        this.drawDataOnChart(dataProteinArray);
-        console.log("hopewowo", dataProteinArray);
-      });
-  };
-
-  drawDataOnChart = dataProteinArray => {
-    console.log("hope", dataProteinArray);
-    const data = {
-      labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
-      datasets: [
-        {
-          label: "average",
-          backgroundColor: "rgba(255, 184, 3,0.75)",
-          data: [300]
-        },
-        {
-          label: "week-protein",
-          backgroundColor: "rgba(247, 237, 151,0.75)",
-          data: dataProteinArray
-        }
-      ]
-    };
-    if (data.datasets) {
-      let colors = ["rgba(247, 237, 151,0.75)", "rgba(255, 184, 3,0.75)"];
-      data.datasets.forEach((set, i) => {
-        // set.backgroundColor = this.setGradientColor(canvas, colors[i]);
-        set.borderColor = "white";
-        set.borderWidth = 2;
-      });
-    }
-    return data;
-  };
-
   render() {
-    console.log("PENG", this.props.recordTotalNutrition);
+    //const getChartDataProtein = canvas => {
+    if (this.props.recordTotalNutrition == undefined) {
+      return (
+        <div>
+          <Line width="600" height="250" options={{ responsive: true }} />
+        </div>
+      );
+    } else {
+      let nutritionObject = this.props.recordTotalNutrition;
+      console.log("nutritionObject", nutritionObject);
+      let dataProteinArray = [];
+      let result = Object.keys(nutritionObject).map(function(key) {
+        return { key: nutritionObject[key] };
+      });
+      console.log("get the data in redux store222");
+      let protein;
+      for (let d = 0; d < result.length; d++) {
+        protein = result[d].key["粗蛋白(g)"];
+        dataProteinArray.push(protein);
+      }
+      // };
 
-    if (
-      this.props.recordTotalNutrition != undefined ||
-      this.props.recordTotalNutrition != null
-    ) {
-      this.getChartDataProtein();
-    }
+      // const drawDataOnChart = dataProteinArray => {
+      //   console.log("hope", dataProteinArray);
 
-    return (
-      <div>
-        {/* {dataUpdate ? (
+      //drawDataOnChart(dataProteinArray);
+      console.log("hopewowo", dataProteinArray);
+      const data = {
+        labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+        datasets: [
+          {
+            label: "average",
+            backgroundColor: "rgba(255, 184, 3,0.75)",
+            data: [300]
+          },
+          {
+            label: "week-protein",
+            backgroundColor: "rgba(247, 237, 151,0.75)",
+            data: dataProteinArray
+          }
+        ]
+      };
+      console.log("data", data);
+      if (data.datasets) {
+        let colors = ["rgba(247, 237, 151,0.75)", "rgba(255, 184, 3,0.75)"];
+        console.log(data.datasets);
+        data.datasets.forEach(set => {
+          //set.backgroundColor = setGradientColor(canvas, colors[i]);
+          set.borderColor = "white";
+          set.borderWidth = 2;
+        });
+      }
+
+      // };
+      return (
+        <div>
           <Line
             width="600"
             height="250"
             options={{ responsive: true }}
-            data={this.drawDataOnChart}
+            data={data}
           />
-        ) : (
-          <Line width="600" height="250" options={{ responsive: true }} />
-        )} */}
-        {/* {dataUpdate ? ( */}
-        <Line
-          width="600"
-          height="250"
-          options={{ responsive: true }}
-          data={this.drawDataOnChart}
-        />
-        {/* ) : (
-          <Line width="600" height="250" options={{ responsive: true }} />
-        )} */}
-      </div>
-    );
+        </div>
+      );
+    }
+
+    // const setGradientColor = (canvas, color) => {
+    //   const ctx = canvas.getContext("2d");
+    //   console.log(ctx);
+    //   const gradient = ctx.createLinearGradient(0, 0, 600, 250);
+    //   gradient.addColorStop(0, color);
+    //   gradient.addColorStop(0.95, "rgba(245, 135, 73,0.75)");
+    //   return gradient;
+    // };
   }
 }
 
