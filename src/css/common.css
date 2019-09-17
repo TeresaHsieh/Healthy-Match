@@ -40,6 +40,7 @@ img {
 
 .logo {
   width: 250px;
+  margin-left: 50px;
 }
 
 .main-nav {
@@ -55,6 +56,39 @@ img {
 
 .main-nav .active {
   color: darkgray;
+}
+
+.hamburger-button {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  width: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
+  justify-content: space-between;
+  margin-right: 50px;
+}
+
+.hamburger-button:focus {
+  outline: none;
+}
+
+.hamburger-line {
+  width: 40px;
+  height: 2px;
+  color: rgb(112, 112, 112);
+  background: rgb(112, 112, 112);
+}
+
+.mobile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 120px;
 }
 
 @media (max-width: 1270px) {

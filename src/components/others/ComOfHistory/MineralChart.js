@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
 
-class ProteinChart extends React.Component {
+class MineralChart extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -75,15 +75,15 @@ class ProteinChart extends React.Component {
     } else {
       let nutritionObject = this.props.recordTotalNutrition;
       console.log("nutritionObject", nutritionObject);
-      let dataProteinArray = [];
+      let dataMineralArray = [];
       let result = Object.keys(nutritionObject).map(function(key) {
         return { key: nutritionObject[key] };
       });
       console.log("get the data in redux store222");
-      let protein;
+      let mineral;
       for (let d = 0; d < result.length; d++) {
-        protein = result[d].key["粗蛋白(g)"];
-        dataProteinArray.push(protein);
+        mineral = result[d].key["總碳水化合物(g)"];
+        dataMineralArray.push(mineral);
       }
       // };
 
@@ -91,7 +91,7 @@ class ProteinChart extends React.Component {
       //   console.log("hope", dataProteinArray);
 
       //drawDataOnChart(dataProteinArray);
-      console.log("hopewowo", dataProteinArray);
+      console.log("hopewowo", dataMineralArray);
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -103,7 +103,7 @@ class ProteinChart extends React.Component {
           {
             label: "week-protein",
             backgroundColor: "rgba(247, 237, 151,0.75)",
-            data: dataProteinArray
+            data: dataMineralArray
           }
         ]
       };
@@ -160,4 +160,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProteinChart);
+)(MineralChart);

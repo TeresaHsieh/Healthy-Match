@@ -22,17 +22,20 @@
   letter-spacing: 2px;
   font-size: 60px;
   margin-top: 10px;
+  letter-spacing: 3px;
 }
 
 .home-intro > h3 {
   font-weight: normal;
   font-size: 30px;
   margin-top: 15px;
+  letter-spacing: 2px;
 }
 
 .home-intro > p {
   color: grey;
   font-size: 20px;
+  letter-spacing: 2px;
 }
 
 .start-button {
@@ -55,6 +58,7 @@
   display: inline-block;
   position: relative;
   transition: 0.5s;
+  letter-spacing: 1px;
 }
 
 .start-button span:after {
@@ -81,15 +85,21 @@
   height: auto;
 }
 
-@media (max-width: 1475px) {
+@media (max-width: 1530px) {
   .home-main {
     width: 80%;
   }
 }
 
+@media (max-width: 1310px) {
+  .home-main {
+    width: 85%;
+  }
+}
+
 @media (max-width: 1290px) {
   .home-intro > h1 {
-    font-size: 50px;
+    font-size: 55px;
   }
 
   .home-intro > h3 {
@@ -101,12 +111,12 @@
   }
 
   .start-button {
-    padding: 10px;
-    width: 150px;
+    padding: 15px;
+    width: 180px;
   }
 
   .main-match {
-    max-width: 500px;
+    max-width: 550px;
   }
 }
 
@@ -121,6 +131,22 @@
 
   .main-match {
     max-width: 400px;
+  }
+}
+
+@media (max-width: 1045px) {
+  .home-main {
+    flex-direction: column;
+  }
+  .home-intro {
+    display: inline-block;
+    margin: 10px auto 35px auto;
+  }
+  .start-button {
+    margin: auto;
+  }
+  .main-match {
+    margin: auto;
   }
 }
 

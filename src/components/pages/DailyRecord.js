@@ -12,6 +12,7 @@ class DailyRecord extends React.Component {
     return (
       <div>
         <Header />
+
         <div className="dailyrecord-main">
           <div className="hello-intro">
             {/* <h2> 書庭早安～歡迎回來！ </h2> */}

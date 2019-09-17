@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { signIn } from "../../../store/actions/authAction";
 import { firebase } from "firebase";
-// let firebaseui = require("firebaseui");
-// let ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 class LogIn extends React.Component {
   constructor() {
@@ -13,18 +11,6 @@ class LogIn extends React.Component {
       password: ""
     };
   }
-
-  // = () => {
-  //   let uiConfig = {
-  //     signInFlow: "popup",
-  //     signInOptions: [
-  //       // Leave the lines as is for the providers you want to offer your users.
-  //       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  //       firebase.auth.EmailAuthProvider.PROVIDER_ID
-  //     ]
-  //   };
-  // };
 
   handleChange = e => {
     this.setState({
@@ -40,7 +26,6 @@ class LogIn extends React.Component {
     const { authError } = this.props;
     return (
       <div className="log-in">
-        <div uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}></div>
         <div className="user-email">
           <span>信箱：</span>
           <input type="email" id="email" onChange={this.handleChange}></input>
