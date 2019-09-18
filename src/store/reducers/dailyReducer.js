@@ -17,7 +17,9 @@ const dailyReducer = (state = initState, action) => {
     case "CHECK_FIRESTORE_NUTRITION_RECORD":
       return {
         ...state,
-        recordTotalNutrition: action.results
+        recordTotalNutrition: action.results,
+        recordTotalName: action.names,
+        recordTotalServe: action.serves
       };
 
     case "UPDATE_DAILY_RECORDS_NAME":

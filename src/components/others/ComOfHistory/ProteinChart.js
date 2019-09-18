@@ -66,85 +66,161 @@ class ProteinChart extends React.Component {
 
   render() {
     //const getChartDataProtein = canvas => {
-    if (this.props.recordTotalNutrition == undefined) {
+    if (
+      this.props.recordTotalNutrition == undefined &&
+      this.props.recordTotalName == undefined &&
+      this.props.recordTotalServe == undefined
+    ) {
       return (
         <div>
           <Line width="600" height="250" options={{ responsive: true }} />
         </div>
       );
     } else {
+      // handling nutrition
       let nutritionObject = this.props.recordTotalNutrition;
-      console.log("nutritionObject", nutritionObject);
+      // console.log("nutritionObject", nutritionObject);
       let dataProteinArray = [];
       let result = Object.keys(nutritionObject).map(function(key) {
         return { key: nutritionObject[key] };
       });
-      console.log("get the data in redux store222");
+      // console.log("get the data in redux store222");
       let protein;
       for (let d = 0; d < result.length; d++) {
         protein = result[d].key["粗蛋白(g)"];
         dataProteinArray.push(protein);
       }
+
+      // handling name and serve
+      //  let nameObject = this.props.recordTotalName;
+      //  console.log("nutritionObject", nutritionObject);
+      //  let dataProteinArray = [];
+      //  let result = Object.keys(nutritionObject).map(function(key) {
+      //    return { key: nutritionObject[key] };
+      //  });
+      //  console.log("get the data in redux store222");
+      //  let protein;
+      //  for (let d = 0; d < result.length; d++) {
+      //    protein = result[d].key["粗蛋白(g)"];
+      //    dataProteinArray.push(protein);
+      //  }
+
       // };
 
       // const drawDataOnChart = dataProteinArray => {
       //   console.log("hope", dataProteinArray);
 
       //drawDataOnChart(dataProteinArray);
-      console.log("hopewowo", dataProteinArray);
+      // console.log("hopewowo", dataProteinArray);
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
           {
             label: "average",
-            backgroundColor: "rgba(255, 184, 3,0.75)",
-            data: [300]
+            borderColor: "rgb(255, 184, 3)",
+            backgroundColor: "rgb(255, 184, 3)",
+            data: [300, 56]
           },
           {
             label: "week-protein",
-            backgroundColor: "rgba(247, 237, 151,0.75)",
+            borderColor: "rgb(247, 237, 151)",
+            backgroundColor: "rgb(247, 237, 151)",
             data: dataProteinArray
           }
         ]
       };
-      console.log("data", data);
+
+      let teresa = [
+        ["早餐：漢堡 2 份", "食物2"],
+        ["食物5"],
+        ["食物3"],
+        ["食物4"]
+      ];
+      console.log(teresa[1]);
+      const option = {
+        responsive: true,
+        title: {
+          display: true,
+          position: "top",
+          text: "蛋白質歷史紀錄",
+          fontSize: 18,
+          fontColor: "grey"
+        },
+        tooltips: {
+          enabled: true,
+          mode: "single",
+          callbacks: {
+            label: function(tooltipItems, data) {
+              let multistringText = [tooltipItems.yLabel];
+              for (let x = 0; x < teresa[tooltipItems.index].length; x++) {
+                multistringText.push(teresa[tooltipItems.index][x]);
+              }
+              return multistringText;
+            },
+            title: function(tooltipItems, data) {
+              let title = ["當天飲食"];
+              return title;
+            }
+          }
+        },
+        legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+            fontColor: "#333",
+            fontSize: 16
+          }
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0
+              }
+            }
+          ]
+        }
+      };
+      // console.log("data", data);
+      // const setGradientColor = (canvas, color) => {
+      //   const ctx = canvas.getContext("2d");
+      //   console.log(ctx);
+      //   const gradient = ctx.createLinearGradient(0, 0, 600, 250);
+      //   gradient.addColorStop(0, color);
+      //   gradient.addColorStop(0.95, "rgba(245, 135, 73,0.75)");
+      //   return gradient;
+      // };
       if (data.datasets) {
-        let colors = ["rgba(247, 237, 151,0.75)", "rgba(255, 184, 3,0.75)"];
-        console.log(data.datasets);
+        //let colors = ["rgba(247, 237, 151,0.75)", "rgba(255, 184, 3,0.75)"];
+        // console.log(data.datasets);
         data.datasets.forEach(set => {
           //set.backgroundColor = setGradientColor(canvas, colors[i]);
-          set.borderColor = "white";
-          set.borderWidth = 2;
+          //set.borderColor = "rgb(255, 184, 3)";
+          set.pointHoverBackgroundColor = "red";
+          set.pointHoverBorderColor = "red";
+
+          set.borderWidth = 3;
+          set.borderJoinStyle = "miter";
+          set.borderCapStyle = "round";
+          set.fill = "false";
         });
       }
 
       // };
       return (
         <div>
-          <Line
-            width="600"
-            height="250"
-            options={{ responsive: true }}
-            data={data}
-          />
+          <Line width="600" height="250" options={option} data={data} />
         </div>
       );
     }
-
-    // const setGradientColor = (canvas, color) => {
-    //   const ctx = canvas.getContext("2d");
-    //   console.log(ctx);
-    //   const gradient = ctx.createLinearGradient(0, 0, 600, 250);
-    //   gradient.addColorStop(0, color);
-    //   gradient.addColorStop(0.95, "rgba(245, 135, 73,0.75)");
-    //   return gradient;
-    // };
   }
 }
 
 const mapStateToProps = state => {
   return {
-    recordTotalNutrition: state.daily.recordTotalNutrition
+    recordTotalNutrition: state.daily.recordTotalNutrition,
+    recordTotalName: state.daily.recordTotalName,
+    recordTotalServe: state.daily.recordTotalServe
   };
 };
 

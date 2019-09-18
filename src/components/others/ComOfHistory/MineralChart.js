@@ -75,23 +75,75 @@ class MineralChart extends React.Component {
     } else {
       let nutritionObject = this.props.recordTotalNutrition;
       console.log("nutritionObject", nutritionObject);
-      let dataMineralArray = [];
+      let dataMineralArrayP = []; //磷
+      let dataMineralArrayNa = []; //鈉
+      let dataMineralArrayCa = []; //鈣
+      let dataMineralArrayK = []; //鉀
+      let dataMineralArrayZn = []; //鋅
+      let dataMineralArrayMg = []; //鎂
+      let dataMineralArrayFe = []; //鐵
+      let dataMineralArrayTotal = []; //全部
+
       let result = Object.keys(nutritionObject).map(function(key) {
         return { key: nutritionObject[key] };
       });
       console.log("get the data in redux store222");
-      let mineral;
+      let mineralP;
       for (let d = 0; d < result.length; d++) {
-        mineral = result[d].key["總碳水化合物(g)"];
-        dataMineralArray.push(mineral);
+        mineralP = result[d].key["磷(mg)"];
+        dataMineralArrayP.push(mineralP);
       }
+      let mineralNa;
+      for (let d = 0; d < result.length; d++) {
+        mineralNa = result[d].key["鈉(mg)"];
+        dataMineralArrayNa.push(mineralNa);
+      }
+      let mineralCa;
+      for (let d = 0; d < result.length; d++) {
+        mineralCa = result[d].key["鈣(mg)"];
+        dataMineralArrayCa.push(mineralCa);
+      }
+      let mineralK;
+      for (let d = 0; d < result.length; d++) {
+        mineralK = result[d].key["鉀(mg)"];
+        dataMineralArrayK.push(mineralK);
+      }
+      let mineralZn;
+      for (let d = 0; d < result.length; d++) {
+        mineralZn = result[d].key["鋅(mg)"];
+        dataMineralArrayZn.push(mineralZn);
+      }
+      let mineralMg;
+      for (let d = 0; d < result.length; d++) {
+        mineralMg = result[d].key["鎂(mg)"];
+        dataMineralArrayMg.push(mineralMg);
+      }
+      let mineralFe;
+      for (let d = 0; d < result.length; d++) {
+        mineralFe = result[d].key["鐵(mg)"];
+        dataMineralArrayFe.push(mineralFe);
+      }
+
+      for (let t = 0; t < result.length; t++) {
+        dataMineralArrayTotal.push(
+          dataMineralArrayP[t] +
+            dataMineralArrayNa[t] +
+            dataMineralArrayCa[t] +
+            dataMineralArrayK[t] +
+            dataMineralArrayZn[t] +
+            dataMineralArrayMg[t] +
+            dataMineralArrayFe[t]
+        );
+      }
+      console.log("success", dataMineralArrayTotal);
+
       // };
 
       // const drawDataOnChart = dataProteinArray => {
       //   console.log("hope", dataProteinArray);
 
       //drawDataOnChart(dataProteinArray);
-      console.log("hopewowo", dataMineralArray);
+      console.log("hopewowo", dataMineralArrayTotal);
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -103,7 +155,7 @@ class MineralChart extends React.Component {
           {
             label: "week-protein",
             backgroundColor: "rgba(247, 237, 151,0.75)",
-            data: dataMineralArray
+            data: dataMineralArrayTotal
           }
         ]
       };

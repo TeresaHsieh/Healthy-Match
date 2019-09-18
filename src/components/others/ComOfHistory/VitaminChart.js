@@ -75,35 +75,88 @@ class VitaminChart extends React.Component {
     } else {
       let nutritionObject = this.props.recordTotalNutrition;
       console.log("nutritionObject", nutritionObject);
-      let dataVitaminArray = [];
+      let dataVitaminArrayTotal = [];
+
+      let dataVitaminArrayTE = []; //α-維生素E當量(α-TE)(mg)
+      let dataVitaminArrayB1 = []; //維生素B1(mg)
+      let dataVitaminArrayB2 = []; //維生素B2(mg)
+      let dataVitaminArrayB6 = []; //維生素B6(mg)
+      let dataVitaminArrayB12 = []; //維生素B12(ug)
+      let dataVitaminArrayC = []; // 維生素C(mg)
+      let dataVitaminArrayE = []; // 維生素E總量(mg)
+
       let result = Object.keys(nutritionObject).map(function(key) {
         return { key: nutritionObject[key] };
       });
       console.log("get the data in redux store222");
-      let vitamin;
+      let vitaminTE;
       for (let d = 0; d < result.length; d++) {
-        vitamin = result[d].key["總碳水化合物(g)"];
-        dataVitaminArray.push(vitamin);
+        vitaminTE = result[d].key["α-維生素E當量(α-TE)(mg)"];
+        dataVitaminArrayTE.push(vitaminTE);
       }
+      let vitaminB1;
+      for (let d = 0; d < result.length; d++) {
+        vitaminB1 = result[d].key["維生素B1(mg)"];
+        dataVitaminArrayB1.push(vitaminB1);
+      }
+      let vitaminB2;
+      for (let d = 0; d < result.length; d++) {
+        vitaminB2 = result[d].key["維生素B2(mg)"];
+        dataVitaminArrayB2.push(vitaminB2);
+      }
+      let vitaminB6;
+      for (let d = 0; d < result.length; d++) {
+        vitaminB6 = result[d].key["維生素B6(mg)"];
+        dataVitaminArrayB6.push(vitaminB6);
+      }
+      let vitaminB12;
+      for (let d = 0; d < result.length; d++) {
+        vitaminB12 = result[d].key["維生素B12(ug)"];
+        dataVitaminArrayB12.push(vitaminB12);
+      }
+      let vitaminC;
+      for (let d = 0; d < result.length; d++) {
+        vitaminC = result[d].key["維生素C(mg)"];
+        dataVitaminArrayC.push(vitaminC);
+      }
+      let vitaminE;
+      for (let d = 0; d < result.length; d++) {
+        vitaminE = result[d].key["維生素E總量(mg)"];
+        dataVitaminArrayE.push(vitaminE);
+      }
+
+      for (let t = 0; t < result.length; t++) {
+        dataVitaminArrayTotal.push(
+          dataVitaminArrayTE[t] +
+            dataVitaminArrayB1[t] +
+            dataVitaminArrayB2[t] +
+            dataVitaminArrayB6[t] +
+            dataVitaminArrayB12[t] +
+            dataVitaminArrayC[t] +
+            dataVitaminArrayE[t]
+        );
+      }
+
+      console.log("happy", dataVitaminArrayTotal);
       // };
 
       // const drawDataOnChart = dataProteinArray => {
       //   console.log("hope", dataProteinArray);
 
       //drawDataOnChart(dataProteinArray);
-      console.log("hopewowo", dataVitaminArray);
+      console.log("hopewowo", dataVitaminArrayTotal);
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
           {
             label: "average",
             backgroundColor: "rgba(255, 184, 3,0.75)",
-            data: [300]
+            data: [300, 300]
           },
           {
             label: "week-protein",
             backgroundColor: "rgba(247, 237, 151,0.75)",
-            data: dataVitaminArray
+            data: dataVitaminArrayTotal
           }
         ]
       };
