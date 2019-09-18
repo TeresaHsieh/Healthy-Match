@@ -130,6 +130,39 @@ class ProteinChart extends React.Component {
         ]
       };
 
+      let meal = this.props.recordTotalMeal;
+      let dateAndName = this.props.recordTotalName;
+      let theDate;
+      let dateArray;
+      let serve = this.props.recordTotalServe;
+      let labelArray = [];
+      let labelObject = {};
+      let detailArray = [];
+      let details;
+
+      for (let o = 0; o < dateAndName.length; o++) {
+        theDate = dateAndName[o].date;
+        console.log("ththththth", theDate);
+        labelObject = [
+          meal[o] +
+            " : " +
+            dateAndName[o].name.foodName +
+            " " +
+            serve[o] +
+            " 份 "
+        ];
+
+        if (!labelArray[theDate]) {
+          labelArray[theDate] = {};
+        }
+        if (labelArray[theDate].detail) {
+          labelArray[theDate].detail.push(labelObject);
+        } else {
+          labelArray[theDate].detail = labelObject;
+        }
+        console.log("momonono", labelArray);
+      }
+
       let teresa = [
         ["早餐：漢堡 2 份", "食物2"],
         ["食物5"],
@@ -142,7 +175,7 @@ class ProteinChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          text: "蛋白質歷史紀錄",
+          text: "蛋白質攝取紀錄",
           fontSize: 18,
           fontColor: "grey"
         },
@@ -220,7 +253,8 @@ const mapStateToProps = state => {
   return {
     recordTotalNutrition: state.daily.recordTotalNutrition,
     recordTotalName: state.daily.recordTotalName,
-    recordTotalServe: state.daily.recordTotalServe
+    recordTotalServe: state.daily.recordTotalServe,
+    recordTotalMeal: state.daily.recordTotalMeal
   };
 };
 

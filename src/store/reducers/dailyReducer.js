@@ -19,7 +19,8 @@ const dailyReducer = (state = initState, action) => {
         ...state,
         recordTotalNutrition: action.results,
         recordTotalName: action.names,
-        recordTotalServe: action.serves
+        recordTotalServe: action.serves,
+        recordTotalMeal: action.meals
       };
 
     case "UPDATE_DAILY_RECORDS_NAME":

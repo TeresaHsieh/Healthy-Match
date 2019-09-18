@@ -141,7 +141,7 @@ class MainForm extends React.Component {
 
   sendDataToFirebase = e => {
     e.preventDefault();
-    console.log(this.props);
+
     let currentState = this.props;
     let stateName = this.props.recordName;
     let stateServe = this.props.recordServe;
@@ -162,7 +162,6 @@ class MainForm extends React.Component {
   };
 
   showKeywords = e => {
-    console.log("keyup!");
     if (e.target.value.length !== 0) {
       this.setState({
         showSuggestion: true
@@ -187,7 +186,7 @@ class MainForm extends React.Component {
   render() {
     const showSuggestion = this.state.showSuggestion;
     let suggestion;
-    console.log("test", this.props.keywords);
+
     if (showSuggestion && this.props.keywords !== undefined) {
       suggestion = (
         <ul onFocus={this.hideSuggestion}>

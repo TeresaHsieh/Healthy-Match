@@ -71,6 +71,8 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
             theName = mealAndNameTypes.get("Name"); // all foodName of the giving time
             theDate = mealAndNameTypes.get("Date");
 
+            console.log("andyyyyyyyy", mealAndNameTypes);
+
             foodNumber.push(theName.length); // knowing the number of foods in daily
             const add = (a, b) => a + b;
             sum = foodNumber.reduce(add);
@@ -120,19 +122,22 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
       });
     });
 
-    // let mealType = [];
-    // let getMealType = new Promise((resolve, reject) => {
-    //   allRecord.get().then(mealTypes => {
-    //     mealTypes.docs.forEach(mealAndNameTypes => {
-    //       let theServe = mealAndNameTypes.get("Serve");
+    let meals = [];
+    let getMealType = new Promise((resolve, reject) => {
+      allRecord.get().then(mealTypes => {
+        mealTypes.docs.forEach(mealAndNameTypes => {
+          let theMeal = mealAndNameTypes.get("Meal");
+          let theName = mealAndNameTypes.get("Name");
 
-    //       mealType.push(theServe);
-
-    //       console.log("krkrkrkr", mealAndNameTypes.get("Name").doc());
-    //       resolve(mealType);
-    //     });
-    //   });
-    // });
+          console.log("reduxxxxxxx", theName);
+          for (let t = 0; t < theName.length; t++) {
+            meals.push(theMeal);
+          }
+        });
+      });
+      console.log("krkrkrkr", meals);
+      resolve(meals);
+    });
 
     let foodNutrition;
     let check = [];
@@ -140,7 +145,7 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
     let data = {};
     let results = {};
 
-    Promise.all([getNameNutrition, getServe])
+    Promise.all([getNameNutrition, getServe, getMealType])
       .then(nutritionAndServes => {
         allRecord.get().then(mealTypes => {
           mealTypes.docs.forEach(mealAndNameTypes => {
@@ -196,7 +201,8 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
           type: "CHECK_FIRESTORE_NUTRITION_RECORD",
           results,
           names,
-          serves
+          serves,
+          meals
         });
       });
   };
@@ -291,56 +297,218 @@ export const sendDataToFirebase = (stateName, stateServe) => {
       .collection("member")
       .doc("3Smynu8UzW2gPvJrZYOZ")
       .collection("nutritionRecord")
-      .doc("20190910" + meal);
+      .doc(dateString + meal);
 
     theRecord.get().then(function(doc) {
-      if (doc.exists) {
-        let prevName = doc.data().Name;
-        let prevServe = doc.data().Serve;
-        let combineName = stateName.concat(prevName);
-        let combineServe = stateServe.concat(prevServe);
+      // if (doc.exists) {
+      //   let prevName = doc.data().Name;
+      //   let prevServe = doc.data().Serve;
+      //   let combineName = stateName.concat(prevName);
+      //   let combineServe = stateServe.concat(prevServe);
 
-        firestore
-          .collection("member")
-          .doc("3Smynu8UzW2gPvJrZYOZ")
-          .collection("nutritionRecord")
-          .doc(dateString + meal)
-          // use "add" for collection, use set for document
-          .set({
-            Date: Number(dateString),
-            // [mealString]: {
-            Name: combineName,
-            Serve: combineServe
-            //  }
-          })
-          // .set({
-          //   Name: combineName,
-          //   Serve: combineServe
-          // })
-          .then(() => {
-            dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
-          });
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No previous document!");
-        firestore
-          .collection("member")
-          .doc("3Smynu8UzW2gPvJrZYOZ")
-          .collection("nutritionRecord")
-          .doc(dateString + meal)
-          // use "add" for collection, use set for document
-          .set({
-            Date: Number(dateString),
-            //[mealString]: {
-            Name: stateName,
-            Serve: stateServe
-            // }
-          })
+      //   firestore
+      //     .collection("member")
+      //     .doc("3Smynu8UzW2gPvJrZYOZ")
+      //     .collection("nutritionRecord")
+      //     .doc(dateString + meal)
+      //     // use "add" for collection, use set for document
+      //     .set({
+      //       Date: Number(dateString),
+      //       // [mealString]: {
+      //       Name: combineName,
+      //       Serve: combineServe
+      //       //  }
+      //     })
 
-          .then(() => {
-            dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
-          });
+      //     .then(() => {
+      //       dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
+      //     });
+      // } else {
+      //   // doc.data() will be undefined in this case
+      //   console.log("No previous document!");
+      //   firestore
+      //     .collection("member")
+      //     .doc("3Smynu8UzW2gPvJrZYOZ")
+      //     .collection("nutritionRecord")
+      //     .doc(dateString + meal)
+      //     // use "add" for collection, use set for document
+      //     .set({
+      //       Date: Number(dateString),
+      //       //[mealString]: {
+      //       Name: stateName,
+      //       Serve: stateServe
+      //       // }
+      //     })
+
+      //     .then(() => {
+      //       dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
+      //     });
+      // }
+
+      //================================================================================================
+      if (meal == "breakfast") {
+        if (doc.exists) {
+          console.log("see", doc);
+
+          let prevName = doc.data().Name;
+          let prevServe = doc.data().Serve;
+          let combineName = stateName.concat(prevName);
+          let combineServe = stateServe.concat(prevServe);
+          console.log("series", prevName, prevServe, combineName, combineServe);
+
+          firestore
+            .collection("member")
+            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .collection("nutritionRecord")
+            .doc(dateString + meal)
+            // use "add" for collection, use set for document
+            .set({
+              Date: Number(dateString),
+              Meal: "breakfast",
+              Name: combineName,
+              Serve: combineServe
+              //  }
+            })
+
+            .then(() => {
+              dispatch({
+                type: "SEND_DATA_TO_FIREBASE",
+                stateName,
+                stateServe
+              });
+            });
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No previous document!");
+          firestore
+            .collection("member")
+            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .collection("nutritionRecord")
+            .doc(dateString + meal)
+            // use "add" for collection, use set for document
+            .set({
+              Date: Number(dateString),
+              Meal: "breakfast",
+              Name: stateName,
+              Serve: stateServe
+            })
+
+            .then(() => {
+              dispatch({
+                type: "SEND_DATA_TO_FIREBASE",
+                stateName,
+                stateServe
+              });
+            });
+        }
+      } else if (meal == "lunch") {
+        if (doc.exists) {
+          let prevName = doc.data().Name;
+          let prevServe = doc.data().Serve;
+          let combineName = stateName.concat(prevName);
+          let combineServe = stateServe.concat(prevServe);
+
+          firestore
+            .collection("member")
+            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .collection("nutritionRecord")
+            .doc(dateString + meal)
+            // use "add" for collection, use set for document
+            .set({
+              Date: Number(dateString),
+              Meal: "lunch",
+              Name: combineName,
+              Serve: combineServe
+              //  }
+            })
+
+            .then(() => {
+              dispatch({
+                type: "SEND_DATA_TO_FIREBASE",
+                stateName,
+                stateServe
+              });
+            });
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No previous document!");
+          firestore
+            .collection("member")
+            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .collection("nutritionRecord")
+            .doc(dateString + meal)
+            // use "add" for collection, use set for document
+            .set({
+              Date: Number(dateString),
+              Meal: "lunch",
+              Name: stateName,
+              Serve: stateServe
+              // }
+            })
+
+            .then(() => {
+              dispatch({
+                type: "SEND_DATA_TO_FIREBASE",
+                stateName,
+                stateServe
+              });
+            });
+        }
+      } else if (meal == "dinner") {
+        if (doc.exists) {
+          let prevName = doc.data().Name;
+          let prevServe = doc.data().Serve;
+          let combineName = stateName.concat(prevName);
+          let combineServe = stateServe.concat(prevServe);
+
+          firestore
+            .collection("member")
+            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .collection("nutritionRecord")
+            .doc(dateString + meal)
+            // use "add" for collection, use set for document
+            .set({
+              Date: Number(dateString),
+              Meal: "dinner",
+              Name: combineName,
+              Serve: combineServe
+              //  }
+            })
+
+            .then(() => {
+              dispatch({
+                type: "SEND_DATA_TO_FIREBASE",
+                stateName,
+                stateServe
+              });
+            });
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No previous document!");
+          firestore
+            .collection("member")
+            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .collection("nutritionRecord")
+            .doc(dateString + meal)
+            // use "add" for collection, use set for document
+            .set({
+              Date: Number(dateString),
+              Meal: "dinner",
+              Name: stateName,
+              Serve: stateServe
+              // }
+            })
+
+            .then(() => {
+              dispatch({
+                type: "SEND_DATA_TO_FIREBASE",
+                stateName,
+                stateServe
+              });
+            });
+        }
       }
+      //  ================================================================================================
     });
   };
 };
