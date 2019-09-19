@@ -1,6 +1,6 @@
 @import "./common.css";
 
-.calendar {
+/* .calendar {
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -48,4 +48,39 @@
 
 .day {
   align-items: center;
+} */
+
+.date-picker {
+  display: flex;
+  flex-direction: row;
+  margin: 50px auto;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.start-date,
+.end-date {
+  font-size: 16px;
+  margin: auto 30px;
+}
+
+.start-date-input,
+.end-date-input {
+  padding: 5px 15px;
+  background: #f7ed97;
+  border: 0 none;
+  border-radius: 5px;
+  height: 16px;
+}
+
+.lineCharts {
+  width: 800px;
+  margin: 100px auto;
+}
+
+.date-submit {
+  margin-left: 30px;
+  border-radius: 12px;
+  cursor: pointer;
 }

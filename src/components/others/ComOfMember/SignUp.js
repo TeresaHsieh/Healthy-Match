@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { signUp } from "../../../store/actions/authAction";
+import { Redirect } from "react-router-dom";
 
 class SignUp extends React.Component {
   constructor() {
@@ -21,6 +22,9 @@ class SignUp extends React.Component {
     this.props.signUp(this.state);
   };
   render() {
+    const { auth } = this.props;
+    //if (auth.uid) return <Redirect to="./" />;
+
     return (
       <div className="sign-up">
         <div className="user-name">

@@ -1,6 +1,7 @@
 import React from "react";
 import "../../css/dailyRecord.css";
 import { Route, NavLink, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 // App Components
 import Header from "../common/Header";
@@ -9,6 +10,9 @@ import ChefMatch from "../../imgs/chef-match.png";
 
 class DailyRecord extends React.Component {
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="./member" />;
+
     return (
       <div>
         <Header />
@@ -41,4 +45,11 @@ class DailyRecord extends React.Component {
   }
 }
 
-export default DailyRecord;
+const mapStateToProps = state => {
+  return {
+    date: new Date().toLocaleDateString(),
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(DailyRecord);

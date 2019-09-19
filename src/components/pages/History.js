@@ -1,34 +1,48 @@
 import React from "react";
-import Calendar from "../others/ComOfHistory/Calendar";
+import DatePicker from "../others/ComOfHistory/DatePicker";
 import ProteinChart from "../others/ComOfHistory/ProteinChart";
 import FatChart from "../others/ComOfHistory/FatChart";
 import CarbohydrateChart from "../others/ComOfHistory/CarbohydrateChart";
 import VitaminChart from "../others/ComOfHistory/VitaminChart";
 import MineralChart from "../others/ComOfHistory/MineralChart";
+import ChefMatch from "../../imgs/chef-match.png";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+
+import "../../css/history.css";
 
 // App Components
 import Header from "../common/Header";
 
 class History extends React.Component {
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="./member" />;
     return (
       <div>
         <Header />
-        <h2> 圖表 </h2>
-        <Calendar />
-        <div>蛋白質</div>
-        <ProteinChart />
-        <div>脂肪</div>
-        <FatChart />
-        <div>碳水化合物</div>
-        <CarbohydrateChart />
-        <div>維生素</div>
-        <VitaminChart />
-        <div>礦物質</div>
-        <MineralChart />
+        {/* <img src={ChefMatch} className="chef-match" /> */}
+        <DatePicker className="date-picker" />
+
+        <ProteinChart style={{ width: 600, height: 250 }} />
+
+        <FatChart className="fatChart" />
+
+        <CarbohydrateChart className="carbohydrateChart" />
+
+        <VitaminChart className="vitaminChart" />
+
+        <MineralChart className="mineralChart" />
       </div>
     );
   }
 }
 
-export default History;
+const mapStateToProps = state => {
+  return {
+    date: new Date().toLocaleDateString(),
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(History);

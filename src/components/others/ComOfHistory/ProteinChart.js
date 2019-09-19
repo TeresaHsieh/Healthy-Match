@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 
 import { connect } from "react-redux";
 import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
+import { normalize } from "path";
 
 class ProteinChart extends React.Component {
   constructor() {
@@ -72,46 +73,29 @@ class ProteinChart extends React.Component {
       this.props.recordTotalServe == undefined
     ) {
       return (
-        <div>
-          <Line width="600" height="250" options={{ responsive: true }} />
+        <div className="lineCharts">
+          <Line
+            width={600}
+            height={250}
+            options={{ responsive: true, maintainAspectRatio: true }}
+          />
         </div>
       );
     } else {
       // handling nutrition
       let nutritionObject = this.props.recordTotalNutrition;
-      // console.log("nutritionObject", nutritionObject);
+
       let dataProteinArray = [];
       let result = Object.keys(nutritionObject).map(function(key) {
         return { key: nutritionObject[key] };
       });
-      // console.log("get the data in redux store222");
+
       let protein;
       for (let d = 0; d < result.length; d++) {
         protein = result[d].key["粗蛋白(g)"];
         dataProteinArray.push(protein);
       }
 
-      // handling name and serve
-      //  let nameObject = this.props.recordTotalName;
-      //  console.log("nutritionObject", nutritionObject);
-      //  let dataProteinArray = [];
-      //  let result = Object.keys(nutritionObject).map(function(key) {
-      //    return { key: nutritionObject[key] };
-      //  });
-      //  console.log("get the data in redux store222");
-      //  let protein;
-      //  for (let d = 0; d < result.length; d++) {
-      //    protein = result[d].key["粗蛋白(g)"];
-      //    dataProteinArray.push(protein);
-      //  }
-
-      // };
-
-      // const drawDataOnChart = dataProteinArray => {
-      //   console.log("hope", dataProteinArray);
-
-      //drawDataOnChart(dataProteinArray);
-      // console.log("hopewowo", dataProteinArray);
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -132,46 +116,53 @@ class ProteinChart extends React.Component {
 
       let meal = this.props.recordTotalMeal;
       let dateAndName = this.props.recordTotalName;
+      let serve = this.props.recordTotalServe;
+
       let theDate;
       let dateArray;
-      let serve = this.props.recordTotalServe;
-      let labelArray = [];
-      let labelObject = {};
+
+      let labelArray = {};
+      let labelObject;
+      let object = {};
+
       let detailArray = [];
-      let details;
+      let resultArray = [];
+
+      let test;
+      let key;
 
       for (let o = 0; o < dateAndName.length; o++) {
         theDate = dateAndName[o].date;
-        console.log("ththththth", theDate);
-        labelObject = [
+        labelObject =
           meal[o] +
-            " : " +
-            dateAndName[o].name.foodName +
-            " " +
-            serve[o] +
-            " 份 "
-        ];
+          " : " +
+          dateAndName[o].name.foodName +
+          " " +
+          serve[o] +
+          " 份 ";
 
         if (!labelArray[theDate]) {
-          labelArray[theDate] = {};
+          labelArray[theDate] = [];
         }
+
         if (labelArray[theDate].detail) {
           labelArray[theDate].detail.push(labelObject);
         } else {
-          labelArray[theDate].detail = labelObject;
+          labelArray[theDate].detail = [labelObject];
         }
-        console.log("momonono", labelArray);
       }
 
-      let teresa = [
-        ["早餐：漢堡 2 份", "食物2"],
-        ["食物5"],
-        ["食物3"],
-        ["食物4"]
-      ];
-      console.log(teresa[1]);
+      for (key in labelArray) {
+        detailArray.push(labelArray[key]);
+      }
+
+      for (let i = 0; i < detailArray.length; i++) {
+        resultArray.push(detailArray[i].detail);
+      }
+
       const option = {
         responsive: true,
+        maintainAspectRatio: true,
         title: {
           display: true,
           position: "top",
@@ -185,8 +176,8 @@ class ProteinChart extends React.Component {
           callbacks: {
             label: function(tooltipItems, data) {
               let multistringText = [tooltipItems.yLabel];
-              for (let x = 0; x < teresa[tooltipItems.index].length; x++) {
-                multistringText.push(teresa[tooltipItems.index][x]);
+              for (let x = 0; x < resultArray[tooltipItems.index].length; x++) {
+                multistringText.push(resultArray[tooltipItems.index][x]);
               }
               return multistringText;
             },
@@ -214,21 +205,9 @@ class ProteinChart extends React.Component {
           ]
         }
       };
-      // console.log("data", data);
-      // const setGradientColor = (canvas, color) => {
-      //   const ctx = canvas.getContext("2d");
-      //   console.log(ctx);
-      //   const gradient = ctx.createLinearGradient(0, 0, 600, 250);
-      //   gradient.addColorStop(0, color);
-      //   gradient.addColorStop(0.95, "rgba(245, 135, 73,0.75)");
-      //   return gradient;
-      // };
+
       if (data.datasets) {
-        //let colors = ["rgba(247, 237, 151,0.75)", "rgba(255, 184, 3,0.75)"];
-        // console.log(data.datasets);
         data.datasets.forEach(set => {
-          //set.backgroundColor = setGradientColor(canvas, colors[i]);
-          //set.borderColor = "rgb(255, 184, 3)";
           set.pointHoverBackgroundColor = "red";
           set.pointHoverBorderColor = "red";
 
@@ -239,10 +218,9 @@ class ProteinChart extends React.Component {
         });
       }
 
-      // };
       return (
-        <div>
-          <Line width="600" height="250" options={option} data={data} />
+        <div className="lineCharts">
+          <Line width={600} height={250} options={option} data={data} />
         </div>
       );
     }
