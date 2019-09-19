@@ -42,13 +42,15 @@ export const searchKeywords = keyword => {
 // 少吃某餐要是零（好像不用，因為都是用加總的）
 // 注意現在抓的都是一個區間的量
 
-export const checkFirestoreNutritionRecord = (startDate, endDate) => {
+export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // step 1: find foods' name and serve in specific time
+    let userUid = userUID.toString();
+    console.log("surprise", userUid);
     const firestore = getFirestore();
     let allRecord = firestore // "allRecord" is all the data that happens in the giving inerval of time
       .collection("member")
-      .doc("3Smynu8UzW2gPvJrZYOZ")
+      .doc(userUid)
       .collection("nutritionRecord")
       .where("Date", ">=", Number(startDate))
       .where("Date", "<=", Number(endDate));
@@ -129,13 +131,11 @@ export const checkFirestoreNutritionRecord = (startDate, endDate) => {
           let theMeal = mealAndNameTypes.get("Meal");
           let theName = mealAndNameTypes.get("Name");
 
-          console.log("reduxxxxxxx", theName);
           for (let t = 0; t < theName.length; t++) {
             meals.push(theMeal);
           }
         });
       });
-      console.log("krkrkrkr", meals);
       resolve(meals);
     });
 
@@ -254,11 +254,13 @@ export const adjustRecordInputServe = (adjustIndex, newInputServe) => {
   };
 };
 
-export const sendDataToFirebase = (stateName, stateServe) => {
+export const sendDataToFirebase = (stateName, stateServe, userUID) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     let meal = window.location.pathname.split("/")[2];
     let mealString = meal.toString();
-
+    let userUid = userUID.toString();
+    console.log("UID", userUID);
+    console.log("UID", userUid);
     let today = new Date();
     let year = today.getFullYear();
     let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
@@ -295,7 +297,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
 
     let theRecord = firestore
       .collection("member")
-      .doc("3Smynu8UzW2gPvJrZYOZ")
+      .doc(userUid)
       .collection("nutritionRecord")
       .doc(dateString + meal);
 
@@ -358,7 +360,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
 
           firestore
             .collection("member")
-            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .doc(userUid)
             .collection("nutritionRecord")
             .doc(dateString + meal)
             // use "add" for collection, use set for document
@@ -382,7 +384,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
           console.log("No previous document!");
           firestore
             .collection("member")
-            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .doc(userUid)
             .collection("nutritionRecord")
             .doc(dateString + meal)
             // use "add" for collection, use set for document
@@ -410,7 +412,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
 
           firestore
             .collection("member")
-            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .doc(userUid)
             .collection("nutritionRecord")
             .doc(dateString + meal)
             // use "add" for collection, use set for document
@@ -434,7 +436,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
           console.log("No previous document!");
           firestore
             .collection("member")
-            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .doc(userUid)
             .collection("nutritionRecord")
             .doc(dateString + meal)
             // use "add" for collection, use set for document
@@ -463,7 +465,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
 
           firestore
             .collection("member")
-            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .doc(userUid)
             .collection("nutritionRecord")
             .doc(dateString + meal)
             // use "add" for collection, use set for document
@@ -487,7 +489,7 @@ export const sendDataToFirebase = (stateName, stateServe) => {
           console.log("No previous document!");
           firestore
             .collection("member")
-            .doc("3Smynu8UzW2gPvJrZYOZ")
+            .doc(userUid)
             .collection("nutritionRecord")
             .doc(dateString + meal)
             // use "add" for collection, use set for document

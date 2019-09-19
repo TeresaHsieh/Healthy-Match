@@ -61,12 +61,18 @@ class CarbohydrateChart extends React.Component {
     let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
     let endDate = yearString + monthString + dayString; // default : today
 
-    this.props.checkFirestoreNutritionRecord(startDate, endDate);
+    let userUID = this.props.auth.uid;
+
+    this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
   };
 
   render() {
     //const getChartDataProtein = canvas => {
-    if (this.props.recordTotalNutrition == undefined) {
+    if (
+      this.props.recordTotalNutrition == undefined &&
+      this.props.recordTotalName == undefined &&
+      this.props.recordTotalServe == undefined
+    ) {
       return (
         <div className="lineCharts">
           <Line
@@ -224,15 +230,16 @@ const mapStateToProps = state => {
     recordTotalNutrition: state.daily.recordTotalNutrition,
     recordTotalName: state.daily.recordTotalName,
     recordTotalServe: state.daily.recordTotalServe,
-    recordTotalMeal: state.daily.recordTotalMeal
+    recordTotalMeal: state.daily.recordTotalMeal,
+    auth: state.firebase.auth
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     // create a method
-    checkFirestoreNutritionRecord: (startDate, endDate) => {
-      dispatch(checkFirestoreNutritionRecord(startDate, endDate));
+    checkFirestoreNutritionRecord: (startDate, endDate, userUID) => {
+      dispatch(checkFirestoreNutritionRecord(startDate, endDate, userUID));
     }
   };
 };

@@ -141,19 +141,19 @@ class MainForm extends React.Component {
 
   sendDataToFirebase = e => {
     e.preventDefault();
-
+    let userUID = this.props.auth.uid;
+    console.log("teresa", userUID);
     let currentState = this.props;
     let stateName = this.props.recordName;
     let stateServe = this.props.recordServe;
 
-    this.props.sendDataToFirebase(stateName, stateServe);
+    this.props.sendDataToFirebase(stateName, stateServe, userUID);
 
     // after sending data, empty all the input and cut down the append inputs
 
     this.setState({
       addInputComponent: 0
     });
-    console.log(event.target.elements);
   };
 
   searchKeywords = e => {
@@ -237,7 +237,8 @@ const mapStateToProps = state => {
     record: state.daily.record,
     recordName: state.daily.recordName,
     recordServe: state.daily.recordServe,
-    keywords: state.daily.keywords
+    keywords: state.daily.keywords,
+    auth: state.firebase.auth
   };
 };
 
@@ -250,8 +251,8 @@ const mapDispatchToProps = dispatch => {
     addRecordInputServe: nextInput => {
       dispatch(addRecordInputServe(nextInput));
     },
-    sendDataToFirebase: (stateName, stateServe) => {
-      dispatch(sendDataToFirebase(stateName, stateServe));
+    sendDataToFirebase: (stateName, stateServe, userUID) => {
+      dispatch(sendDataToFirebase(stateName, stateServe, userUID));
     },
     updateDailyRecordName: newRecord => {
       dispatch(updateDailyRecordName(newRecord));
