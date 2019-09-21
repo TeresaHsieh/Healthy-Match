@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import Header from "../common/Header";
 import MainForm from "../others/ComOfDailyRecord/MainForm";
 import ChefMatch from "../../imgs/chef-match.png";
+import Marquee from "../common/Marquee";
+import thinking from "../../imgs/thinking.png";
 
 class DailyRecord extends React.Component {
   render() {
@@ -20,14 +22,17 @@ class DailyRecord extends React.Component {
         <div className="dailyrecord-main">
           <div className="hello-intro">
             {/* <h2> 書庭早安～歡迎回來！ </h2> */}
+            <Marquee />
             <img src={ChefMatch} className="chef-match" />
+            {/* <div className="hiddenDiv"> */}
+            <img src={thinking} className="thinking" />
+            {/* </div> */}
           </div>
           <div className="meals">
             <div className="meals-nav">
               <NavLink to="/daily-record/breakfast">早餐</NavLink>
               <NavLink to="/daily-record/lunch">午餐</NavLink>
               <NavLink to="/daily-record/dinner">晚餐</NavLink>
-              <NavLink to="/daily-record/snack">點心</NavLink>
             </div>
             <Route
               exact
@@ -37,7 +42,6 @@ class DailyRecord extends React.Component {
             <Route path="/daily-record/breakfast" component={MainForm} />
             <Route path="/daily-record/lunch" component={MainForm} />
             <Route path="/daily-record/dinner" component={MainForm} />
-            <Route path="/daily-record/snack" component={MainForm} />
           </div>
         </div>
       </div>

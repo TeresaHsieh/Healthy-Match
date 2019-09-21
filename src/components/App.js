@@ -11,6 +11,7 @@ import MatchStatus from "./pages/MatchStatus";
 import Member from "./pages/Member";
 import LogOut from "./pages/LogOut";
 import News from "./pages/News";
+import Info from "./pages/Info";
 import NotFound from "./pages/NotFound";
 
 class App extends React.Component {
@@ -45,6 +46,7 @@ class App extends React.Component {
           <Route path="/match-status" component={MatchStatus} />
           <Route path="/news" component={News} />
           <Route path="/member" component={Member} />
+          <Route path="/info" component={Info} />
           <Route path="/log-out" component={LogOut} />
 
           <Route component={NotFound} />

@@ -93,6 +93,10 @@ class MainForm extends React.Component {
     }
   };
 
+  deleteRecord = e => {
+    console.log(e.target.id);
+  };
+
   appendInput = () => {
     if (
       this.props.recordName === undefined &&
@@ -132,7 +136,12 @@ class MainForm extends React.Component {
             onBlur={this.inputServeChange}
             id={i}
           ></input>
-          <img src={Delete} className="delete-button"></img>
+          <img
+            src={Delete}
+            className="delete-button"
+            id={i}
+            onClick={this.deleteRecord}
+          ></img>
         </form>
       );
     }
@@ -142,7 +151,6 @@ class MainForm extends React.Component {
   sendDataToFirebase = e => {
     e.preventDefault();
     let userUID = this.props.auth.uid;
-    console.log("teresa", userUID);
     let currentState = this.props;
     let stateName = this.props.recordName;
     let stateServe = this.props.recordServe;
@@ -216,7 +224,12 @@ class MainForm extends React.Component {
             // value={this.state.originalInput}
             id="0"
           ></input>
-          <img src={Delete} className="delete-button"></img>
+          <img
+            src={Delete}
+            className="delete-button"
+            onClick={this.deleteRecord}
+            id="0"
+          ></img>
         </form>
         {this.getAppendedComponents()}
         <button className="add-input" onClick={this.appendInput}>

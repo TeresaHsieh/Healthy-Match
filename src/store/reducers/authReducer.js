@@ -30,6 +30,12 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message
       };
+    case "CHECKUSERINFO":
+      return {
+        ...state,
+        userInfo: action.UserInfo,
+        matchImgDownloadURL: action.matchImgDownloadURL
+      };
     default:
       return state;
   }

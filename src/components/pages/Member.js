@@ -16,18 +16,19 @@ class Member extends React.Component {
       <div className="lightbox">
         <Header />
         <div className="main-member">
-          <div className="sign-up-log-in">
-            <NavLink to="/member/log-in">登入</NavLink>
-            <NavLink to="/member/sign-up">註冊</NavLink>
-            <Route
-              exact
-              path="/member"
-              render={() => <Redirect to="/member/log-in" />}
-            />
-            <Route path="/member/log-in" component={LogIn} />
-            <Route path="/member/sign-up" component={SignUp} />
-          </div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <div className="square"></div>
+          <NavLink to="/member/log-in">登入</NavLink>
+          <NavLink to="/member/sign-up">註冊</NavLink>
         </div>
+        <Route
+          exact
+          path="/member"
+          render={() => <Redirect to="/member/log-in" />}
+        />
+        <Route path="/member/log-in" component={LogIn} />
+        <Route path="/member/sign-up" component={SignUp} />
       </div>
     );
   }

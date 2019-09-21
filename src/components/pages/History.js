@@ -21,18 +21,12 @@ class History extends React.Component {
     return (
       <div>
         <Header />
-        {/* <img src={ChefMatch} className="chef-match" /> */}
-        <DatePicker className="date-picker" />
-
-        <ProteinChart style={{ width: 600, height: 250 }} />
-
-        <FatChart className="fatChart" />
-
-        <CarbohydrateChart className="carbohydrateChart" />
-
-        <VitaminChart className="vitaminChart" />
-
-        <MineralChart className="mineralChart" />
+        <DatePicker />
+        <ProteinChart />
+        <FatChart />
+        <CarbohydrateChart />
+        <VitaminChart />
+        <MineralChart />
       </div>
     );
   }

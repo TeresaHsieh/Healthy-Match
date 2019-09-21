@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/common.css";
+import "../../css/dailyRecord.css";
 
 // Components
 import carrot from "../../imgs/carrot.png";

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { signIn } from "../../../store/actions/authAction";
 import { firebase } from "firebase";
 import { Redirect } from "react-router-dom";
+import "../../../css/member.css";
 
 class LogIn extends React.Component {
   constructor() {
@@ -30,18 +31,24 @@ class LogIn extends React.Component {
     const { authError } = this.props;
     return (
       <div className="log-in">
-        <div className="user-email">
-          <span>信箱：</span>
-          <input type="email" id="email" onChange={this.handleChange}></input>
-        </div>
-        <div className="user-password">
-          <span>密碼：</span>
-          <input
-            type="password"
-            id="password"
-            onChange={this.handleChange}
-          ></input>
-        </div>
+        {/* <span>信箱：</span> */}
+        <input
+          type="email"
+          id="email"
+          onChange={this.handleChange}
+          placeholder="信箱"
+          className="log-in-user-email"
+        ></input>
+
+        {/* <span>密碼：</span> */}
+        <input
+          type="password"
+          id="password"
+          onChange={this.handleChange}
+          placeholder="密碼"
+          className="log-in-user-password"
+        ></input>
+
         <button className="login-button" onClick={this.handleSubmit}>
           登入
         </button>

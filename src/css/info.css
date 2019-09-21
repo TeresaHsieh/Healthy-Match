@@ -1,0 +1,120 @@
+@import "./common.css";
+
+.main-info {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: center;
+  margin: 80px auto;
+  border-radius: 10px;
+}
+
+.ChefMatch,
+.ChefMatch2 {
+  width: 200px;
+}
+
+.edit {
+  width: 15px;
+  margin-left: 30px;
+}
+
+.simple-info,
+.more-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.titleTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #f6ec8a;
+  width: 80%;
+  margin: auto auto 10px auto;
+}
+
+.ChefMatch {
+  margin: auto auto 80px auto;
+}
+
+.divideLine {
+  width: 50%;
+  border-bottom: 5px solid #f7ed97d7;
+  margin-left: 20px;
+}
+
+.simple-info {
+  width: 30%;
+  background-color: #fbf6c7d7;
+  border-radius: 10px;
+}
+
+.more-info {
+  width: 50%;
+}
+
+.userID,
+.userPassword,
+.userName,
+.userAge,
+.userSexual,
+.userHeight,
+.userWeight,
+.userMatchName,
+.userMatchPic {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  text-align: center;
+  width: 80%;
+  color: grey;
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+.userName,
+.userAge,
+.userSexual,
+.userHeight,
+.userWeight,
+.userMatchName,
+.userMatchPic {
+  margin: 10px;
+}
+
+.userID div:first-of-type,
+.userPassword div:first-of-type,
+.userName div:first-of-type,
+.userAge div:first-of-type,
+.userSexual div:first-of-type,
+.userHeight div:first-of-type,
+.userWeight div:first-of-type,
+.userMatchName div:first-of-type,
+.userMatchPic div:first-of-type {
+  margin: 10px 30px;
+  color: black;
+  font-size: 18px;
+}
+
+.userID > input,
+.userPassword > input {
+  background-color: #fbf6c7d7;
+  color: grey;
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+.userName > input,
+.userAge > input,
+.userSexual > input,
+.userHeight > input,
+.userWeight > input,
+.userMatchName > input,
+.userMatchPic > input {
+  color: grey;
+  font-size: 16px;
+  letter-spacing: 3px;
+}

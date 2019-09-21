@@ -24,11 +24,11 @@ const store = createStore(
   )
 );
 
-//store.attachAuthIsReady.then(() => {
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.querySelector("#root")
-);
-//});
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.querySelector("#root")
+  );
+});

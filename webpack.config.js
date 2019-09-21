@@ -20,10 +20,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [{ loader: "url-loader", options: { limit: 8192 } }]
+        use: [{ loader: "url-loader", options: { limit: 10000 } }]
       },
       {
-        test: /\.svg/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [{ loader: "file-loader", options: { emitFile: false } }]
       },
       {

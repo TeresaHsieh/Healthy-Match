@@ -1,3 +1,12 @@
+*:focus {
+  outline: none;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
 html,
 body {
   margin: 0px;
