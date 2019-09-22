@@ -4,7 +4,9 @@ import { Redirect } from "react-router-dom";
 import "../../css/info.css";
 import ChefMatch from "../../imgs/chef-match.png";
 import Edit from "../../imgs/edit.png";
-
+import BasicInfo from "../../components/others/ComOfInfo/BasicInfo";
+import AuthInfo from "../../components/others/ComOfInfo/AuthInfo";
+import MatchInfo from "../../components/others/ComOfInfo/MatchInfo";
 import { checkUserInfo } from "../../store/actions/authAction";
 
 // App Components
@@ -22,12 +24,17 @@ class Info extends React.Component {
       userHeight: "168",
       userWeight: "50",
       userMatchName: "花生"
+      // disabled: true
     };
   }
 
   componentDidMount = () => {
     this.props.checkUserInfo(this.props.auth.uid);
     console.log(this.props);
+  };
+
+  handleInfoChange = () => {
+    console.log("調整資料");
   };
 
   render() {
@@ -39,61 +46,11 @@ class Info extends React.Component {
         <Header />
         <div className="main-info">
           <div className="simple-info">
-            <div className="userPic">
-              <img src={ChefMatch} className="ChefMatch" />
-            </div>
-            <div className="userID">
-              <div>用戶帳號</div>
-              <input value={this.props.auth.email} />
-              <img src={Edit} className="edit" />
-            </div>
-            <div className="userPassword">
-              <div>用戶密碼</div>
-              <input value={this.state.userPassword} />
-            </div>
+            <AuthInfo />
           </div>
           <div className="more-info">
-            <div className="titleTitle">
-              <div className="titlewords">基本資料</div>
-              <div className="divideLine"></div>
-              <img src={Edit} className="edit" />
-            </div>
-            <div className="userName">
-              <div>用戶姓名</div>
-              <input value={this.props.userInfo.Name} />
-            </div>
-            <div className="userAge">
-              <div>用戶年齡</div>
-              <input value={this.state.userAge} />歲
-            </div>
-            <div className="userSexual">
-              <div>用戶性別</div>
-              <input value={this.state.userSexual} />歲
-            </div>
-            <div className="userHeight">
-              <div>用戶身高</div>
-              <input value={this.state.userHeight} />
-              公分
-            </div>
-            <div className="userWeight">
-              <div>用戶體重</div>
-              <input value={this.state.userWeight} />
-              公斤
-            </div>
-            <div className="titleTitle">
-              <div className="titlewords">麻吉資料</div>
-
-              <div className="divideLine"></div>
-              <img src={Edit} className="edit" />
-            </div>
-            <div className="userMatchName">
-              <div>麻吉名字</div>
-              <input value={this.state.userMatchName} />
-            </div>
-            <div className="userMatchPic">
-              <div>麻吉照片</div>
-              <img src={ChefMatch} className="ChefMatch2" />
-            </div>
+            <BasicInfo />
+            <MatchInfo />
           </div>
         </div>
       </div>

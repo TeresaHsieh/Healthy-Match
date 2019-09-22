@@ -66,30 +66,34 @@ class MainForm extends React.Component {
   };
 
   inputServeChange = e => {
-    let adjustIndex = Number(e.target.id);
     console.log(e.target.id);
-    let meal = window.location.pathname.split("/")[2]; // checking by url subpath
-    let obj = {};
-    let foodServe = e.target.value;
-    if (foodServe.trim() !== "") {
-      // when no state in Redux store, add first data
-      if (this.props.recordServe == undefined) {
-        obj = [{ foodServe: foodServe }];
-        this.props.updateDailyRecordServe(obj);
-      } else {
-        if (
-          foodServe !== this.props.recordServe[adjustIndex] &&
-          this.props.recordServe[adjustIndex] !== undefined
-        ) {
-          console.log("更新");
-          obj = { foodServe: foodServe };
-          this.props.adjustRecordInputServe(adjustIndex, obj); // 寫更新的方法
-        } else if (this.props.recordServe[adjustIndex] === undefined) {
-          console.log("新增一筆");
+    if (!isNaN(e.target.value)) {
+      let adjustIndex = Number(e.target.id);
+      let meal = window.location.pathname.split("/")[2]; // checking by url subpath
+      let obj = {};
+      let foodServe = e.target.value;
+      if (foodServe.trim() !== "") {
+        // when no state in Redux store, add first data
+        if (this.props.recordServe == undefined) {
           obj = [{ foodServe: foodServe }];
-          this.props.addRecordInputServe(obj);
+          this.props.updateDailyRecordServe(obj);
+        } else {
+          if (
+            foodServe !== this.props.recordServe[adjustIndex] &&
+            this.props.recordServe[adjustIndex] !== undefined
+          ) {
+            console.log("更新");
+            obj = { foodServe: foodServe };
+            this.props.adjustRecordInputServe(adjustIndex, obj); // 寫更新的方法
+          } else if (this.props.recordServe[adjustIndex] === undefined) {
+            console.log("新增一筆");
+            obj = [{ foodServe: foodServe }];
+            this.props.addRecordInputServe(obj);
+          }
         }
       }
+    } else {
+      alert("份數請填寫數字！");
     }
   };
 
@@ -135,6 +139,7 @@ class MainForm extends React.Component {
             className="food-serve"
             onBlur={this.inputServeChange}
             id={i}
+            type="number"
           ></input>
           <img
             src={Delete}
@@ -171,9 +176,11 @@ class MainForm extends React.Component {
 
   showKeywords = e => {
     if (e.target.value.length !== 0) {
-      this.setState({
-        showSuggestion: true
-      });
+      if (this.props.keywords.length !== 0) {
+        this.setState({
+          showSuggestion: true
+        });
+      }
     } else {
       this.setState({
         showSuggestion: false
@@ -223,6 +230,7 @@ class MainForm extends React.Component {
             onBlur={this.inputServeChange}
             // value={this.state.originalInput}
             id="0"
+            type="number"
           ></input>
           <img
             src={Delete}

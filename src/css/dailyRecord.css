@@ -105,10 +105,12 @@
 .food-name {
   margin-right: 10px;
   width: 300px;
+  text-indent: 10px;
 }
 
 .food-serve {
   width: 200px;
+  text-indent: 10px;
 }
 
 .input-form span {
@@ -121,6 +123,7 @@
   margin-left: 10px;
 }
 
+.add-input,
 .add-record {
   display: inline-block;
   border-radius: 8px;
@@ -136,9 +139,30 @@
 }
 
 /* search suggestion*/
+.searchSuggestion ul {
+  font-size: 12px;
+  overflow-y: scroll;
+  height: 200px;
+  overflow: hidden;
+  overflow-y: scroll;
+  list-style-type: none;
+  background-color: #fbf3a898;
+  padding: 0;
+  width: 300px;
+}
+
+.searchSuggestion ul li {
+  margin: 5px auto;
+  text-indent: 10px;
+  cursor: pointer;
+}
+
+.food-name {
+  position: relative;
+}
+
 .searchSuggestion {
-  /* font-size: 15px;
-  overflow-y: scroll; */
+  position: absolute;
 }
 
 .marquee {

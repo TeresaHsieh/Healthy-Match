@@ -19,13 +19,10 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [{ loader: "url-loader", options: { limit: 10000 } }]
-      },
-      {
         test: /\.(png|jpg|gif|svg)$/,
         use: [{ loader: "file-loader", options: { emitFile: false } }]
       },
+      // { test: /\.(png|jpe?g|gif|svg)$/i, use: [{ loader: "file-loader" }] },
       {
         test: /\.svg/,
         use: ["raw-loader"]

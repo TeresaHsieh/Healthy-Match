@@ -30,12 +30,18 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: action.err.message
       };
-    case "CHECKUSERINFO":
+    case "CHECK_USER_INFO":
       return {
         ...state,
         userInfo: action.UserInfo,
         matchImgDownloadURL: action.matchImgDownloadURL
       };
+    case "UPDATE_INFO_TO_FIRESTORE":
+      return {
+        ...state,
+        userInfo: action.UserInfo
+      };
+
     default:
       return state;
   }

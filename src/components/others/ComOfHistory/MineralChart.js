@@ -279,7 +279,8 @@ const mapStateToProps = state => {
     recordTotalName: state.daily.recordTotalName,
     recordTotalServe: state.daily.recordTotalServe,
     recordTotalMeal: state.daily.recordTotalMeal,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    userInfo: state.firebase.profile
   };
 };
 

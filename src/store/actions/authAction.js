@@ -76,41 +76,43 @@ export const checkUserInfo = userUID => {
               .child("characters/boymatch.png")
               .getDownloadURL()
               .then(function(url) {
-                // `url` is the download URL for 'images/stars.jpg'
-
-                // This can be downloaded directly:
                 let xhr = new XMLHttpRequest();
                 xhr.responseType = "blob";
                 xhr.onload = function(event) {
                   let blob = xhr.response;
                 };
-                xhr.open("GET", url);
+                xhr.open(
+                  "GET",
+                  "https://firebasestorage.googleapis.com/v0/b/healthy-match.appspot.com/o/characters%2Fboymatch.png?alt=media&token=7af3adf2-b390-4f70-afce-e04698767083"
+                );
                 xhr.send();
                 matchImgDownloadURL = url;
               })
               .catch(function(error) {
                 // Handle any errors
               });
+            console.log("URL", matchImgDownloadURL);
           } else if (matchImg == "girlMatch") {
             storageRef
               .child("characters/girlmatch.png")
               .getDownloadURL()
               .then(function(url) {
-                // `url` is the download URL for 'images/stars.jpg'
-
-                // This can be downloaded directly:
                 let xhr = new XMLHttpRequest();
                 xhr.responseType = "blob";
                 xhr.onload = function(event) {
                   let blob = xhr.response;
                 };
-                xhr.open("GET", url);
+                xhr.open(
+                  "GET",
+                  "https://firebasestorage.googleapis.com/v0/b/healthy-match.appspot.com/o/characters%2Fgirlmatch.png?alt=media&token=f8d02dfa-85e5-4e33-b5c7-88d9ff6c464e"
+                );
                 xhr.send();
                 matchImgDownloadURL = url;
               })
               .catch(function(error) {
                 // Handle any errors
               });
+            console.log("URL", matchImgDownloadURL);
           }
         } else {
           // doc.data() will be undefined in this case
@@ -119,9 +121,22 @@ export const checkUserInfo = userUID => {
       });
 
     return {
-      type: "CHECKUSERINFO",
+      type: "CHECK_USER_INFO",
       UserInfo,
       matchImgDownloadURL
     };
+  };
+};
+
+export const updateInfoToFirestore = (userUID, infoName, infoData) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("member")
+      .doc(userUID)
+      .update({
+        [infoName]: infoData
+      });
   };
 };

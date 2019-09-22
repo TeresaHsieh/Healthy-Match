@@ -14,9 +14,12 @@
   width: 200px;
 }
 
-.edit {
+.accountEdit,
+.basicInfoEdit,
+.matchEdit {
   width: 15px;
   margin-left: 30px;
+  cursor: pointer;
 }
 
 .simple-info,

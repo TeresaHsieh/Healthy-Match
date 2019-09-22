@@ -64,6 +64,14 @@ class ProteinChart extends React.Component {
 
     let userUID = this.props.auth.uid;
     this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
+
+    console.log("超重", this.props.userInfo.Weight);
+    let times = Number(endDate - startDate);
+    let averageArray = [];
+    for (let t = 0; t < times; t++) {
+      averageArray.push(this.props.userInfo.Weight);
+      console.log(averageArray);
+    }
   };
 
   render() {
@@ -234,7 +242,8 @@ const mapStateToProps = state => {
     recordTotalName: state.daily.recordTotalName,
     recordTotalServe: state.daily.recordTotalServe,
     recordTotalMeal: state.daily.recordTotalMeal,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    userInfo: state.firebase.profile
   };
 };
 
