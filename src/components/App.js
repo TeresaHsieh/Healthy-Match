@@ -37,7 +37,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Info} />
+          <Route exact path="/" component={History} />
 
           {/* Home */}
 

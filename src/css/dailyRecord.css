@@ -41,10 +41,10 @@
 }
 
 .marquee {
-  position: relative;
-  bottom: 150px;
+  position: absolute;
+  bottom: 300px;
   right: 30px;
-  top: 90px;
+  top: -120px;
 }
 
 /* form */
@@ -165,11 +165,12 @@
   position: absolute;
 }
 
-.marquee {
+/* marquee */
+
+.thinking .marquee {
   height: 100px;
   width: 100%;
   overflow: hidden;
-  position: relative;
 }
 
 .marquee div {
@@ -178,7 +179,7 @@
   height: 30px;
   position: absolute;
   overflow: hidden;
-  animation: marquee 10s linear infinite;
+  animation: marquee 5s linear infinite;
   display: flex;
   flex-direction: row;
 }
