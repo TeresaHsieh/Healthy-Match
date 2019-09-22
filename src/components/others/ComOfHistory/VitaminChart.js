@@ -144,6 +144,15 @@ class VitaminChart extends React.Component {
         );
       }
 
+      // sum of B1 + B2 + B6 + B12 + C + E
+      let times = dataVitaminArrayTotal.length;
+      let vitamin = 50 + 100 + 80 + 1000 + 1000 + 268;
+      let averageArray = [];
+      for (let t = 0; t < times; t++) {
+        averageArray.push(vitamin);
+        console.log(averageArray);
+      }
+
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -152,7 +161,7 @@ class VitaminChart extends React.Component {
             backgroundColor: "rgba(255, 184, 3,0.75)",
             borderColor: "rgb(255, 184, 3)",
             backgroundColor: "rgb(255, 184, 3)",
-            data: [300, 300]
+            data: averageArray
           },
           {
             label: "week-protein",

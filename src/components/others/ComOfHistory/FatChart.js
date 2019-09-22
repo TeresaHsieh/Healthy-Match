@@ -95,6 +95,20 @@ class FatChart extends React.Component {
         dataFatArray.push(fat);
       }
 
+      // 25% total calorie
+      let calorie;
+      let calorieArray = [];
+      for (let d = 0; d < result.length; d++) {
+        calorie = result[d].key["修正熱量(kcal)"];
+        calorieArray.push(calorie);
+      }
+      console.log("超重", this.props.userInfo.Weight);
+      let averageArray = [];
+      calorieArray.forEach(eachCalorie => {
+        averageArray.push(eachCalorie * 0.25 * 0.11); // kcal/g(transfer kcal to g)
+        console.log(averageArray);
+      });
+
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -102,7 +116,7 @@ class FatChart extends React.Component {
             label: "average",
             borderColor: "rgb(255, 184, 3)",
             backgroundColor: "rgb(255, 184, 3)",
-            data: [300]
+            data: averageArray
           },
           {
             label: "week-protein",

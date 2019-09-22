@@ -64,14 +64,6 @@ class ProteinChart extends React.Component {
 
     let userUID = this.props.auth.uid;
     this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
-
-    console.log("超重", this.props.userInfo.Weight);
-    let times = Number(endDate - startDate);
-    let averageArray = [];
-    for (let t = 0; t < times; t++) {
-      averageArray.push(this.props.userInfo.Weight);
-      console.log(averageArray);
-    }
   };
 
   render() {
@@ -105,6 +97,14 @@ class ProteinChart extends React.Component {
         dataProteinArray.push(protein);
       }
 
+      // l g protein for 1 kg
+      let times = dataProteinArray.length;
+      let averageArray = [];
+      for (let t = 0; t < times; t++) {
+        averageArray.push(this.props.userInfo.Weight);
+        console.log(averageArray);
+      }
+
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -112,7 +112,7 @@ class ProteinChart extends React.Component {
             label: "average",
             borderColor: "rgb(255, 184, 3)",
             backgroundColor: "rgb(255, 184, 3)",
-            data: [300, 56]
+            data: averageArray
           },
           {
             label: "week-protein",

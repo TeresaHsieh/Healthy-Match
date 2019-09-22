@@ -143,6 +143,15 @@ class MineralChart extends React.Component {
         );
       }
 
+      // sum of P + Na + Ca + Zn + Mg + Fe
+      let times = dataMineralArrayTotal.length;
+      let mineral = 1000 + 2000 + 1200 + 30 + 600 + 45;
+      let averageArray = [];
+      for (let t = 0; t < times; t++) {
+        averageArray.push(mineral);
+        console.log(averageArray);
+      }
+
       const data = {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [
@@ -150,7 +159,7 @@ class MineralChart extends React.Component {
             label: "average",
             borderColor: "rgb(255, 184, 3)",
             backgroundColor: "rgb(255, 184, 3)",
-            data: [300]
+            data: averageArray
           },
           {
             label: "week-protein",
