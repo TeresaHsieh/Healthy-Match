@@ -62,7 +62,7 @@ class AuthInfo extends React.Component {
     if (disabled) {
       editButtons = (
         <img
-          src={Edit}
+          src={`/${Edit}`}
           className="accountEdit"
           onClick={this.handleInfoChange}
         />
@@ -71,7 +71,7 @@ class AuthInfo extends React.Component {
       editButtons = (
         <div>
           <img
-            src={Cancel}
+            src={`/${Cancel}`}
             alt="cancel"
             onClick={this.cancelInfoChange}
             // className="basicInfoEdit"
@@ -87,7 +87,7 @@ class AuthInfo extends React.Component {
           <img src={ChefMatch} className="ChefMatch" />
         </div>
         <div className="userID">
-          <div>用戶帳號</div>
+          {/* <div>用戶帳號</div> */}
           <input
             name="ID"
             placeholder={this.props.auth.email}
@@ -97,7 +97,7 @@ class AuthInfo extends React.Component {
           {editButtons}
         </div>
         <div className="userPassword">
-          <div>用戶密碼</div>
+          {/* <div>用戶密碼</div> */}
           <input
             name="Password"
             placeholder={this.state.userPassword}

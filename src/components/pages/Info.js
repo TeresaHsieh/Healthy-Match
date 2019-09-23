@@ -29,7 +29,7 @@ class Info extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.checkUserInfo(this.props.auth.uid);
+    // this.props.checkUserInfo(this.props.auth.uid);
     console.log(this.props);
   };
 
@@ -39,7 +39,7 @@ class Info extends React.Component {
 
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to="./member" />;
+    // if (!auth.uid) return <Redirect to="./member" />;
 
     return (
       <div>

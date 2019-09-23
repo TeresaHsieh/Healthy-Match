@@ -12,6 +12,8 @@ import { adjustRecordInputName } from "../../../store/actions/dailyAction";
 import { adjustRecordInputServe } from "../../../store/actions/dailyAction";
 import { searchKeywords } from "../../../store/actions/dailyAction";
 import Delete from "../../../imgs/delete.png";
+import Add from "../../../imgs/add.png";
+import Food from "../../../imgs/salad.png";
 
 class MainForm extends React.Component {
   constructor() {
@@ -126,6 +128,8 @@ class MainForm extends React.Component {
     for (let i = 1; i < this.state.addInputComponent; i++) {
       addInputComponent.push(
         <form className="main-input">
+          <img src={`/${Food}`} className="food-icon" id="0"></img>
+
           <input
             placeholder="輸入食物名稱"
             className="food-name"
@@ -142,7 +146,7 @@ class MainForm extends React.Component {
             type="number"
           ></input>
           <img
-            src={Delete}
+            src={`/${Delete}`}
             className="delete-button"
             id={i}
             onClick={this.deleteRecord}
@@ -214,6 +218,7 @@ class MainForm extends React.Component {
     return (
       <div className="main-form">
         <form className="main-input">
+          <img src={`/${Food}`} className="food-icon" id="0"></img>
           <input
             placeholder="輸入食物名稱"
             className="food-name"
@@ -233,16 +238,25 @@ class MainForm extends React.Component {
             type="number"
           ></input>
           <img
-            src={Delete}
+            src={`/${Delete}`}
             className="delete-button"
             onClick={this.deleteRecord}
             id="0"
           ></img>
         </form>
         {this.getAppendedComponents()}
-        <button className="add-input" onClick={this.appendInput}>
-          新增欄位
-        </button>
+        <div className="add-input">
+          <img
+            src={`/${Add}`}
+            className="add-button"
+            onClick={this.appendInput}
+          ></img>
+          <p className="add-input-word" onClick={this.appendInput}>
+            新增欄位
+          </p>
+        </div>
+        {/* <button className="add-input" onClick={this.appendInput}> */}
+        {/* </button> */}
         <button className="add-record" onClick={this.sendDataToFirebase}>
           新增紀錄
         </button>

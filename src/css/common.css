@@ -112,6 +112,17 @@ img {
   }
 }
 
-/* @media (max-width: 940px) {
-  
-} */
+@media (max-width: 1125px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 475px) {
+  .logo {
+    width: 220px;
+    margin-left: 30px;
+  }
+}

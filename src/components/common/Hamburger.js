@@ -11,7 +11,10 @@ class Hamburger extends React.Component {
   }
 
   openSideDrawer = () => {
-    this.setState = { openHamburger: true };
+    this.setState({ openHamburger: true }, () => {
+      //callback
+      console.log(this.state.openHamburger);
+    });
   };
 
   render() {

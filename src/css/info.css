@@ -30,6 +30,11 @@
   align-items: center;
 }
 
+.more-info-basic,
+.more-info-match {
+  width: 100%;
+}
+
 .titleTitle {
   display: flex;
   flex-direction: row;

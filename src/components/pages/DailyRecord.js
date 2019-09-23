@@ -22,12 +22,10 @@ class DailyRecord extends React.Component {
         <div className="dailyrecord-main">
           <div className="hello-intro">
             {/* <h2> 書庭早安～歡迎回來！ </h2> */}
-            <Marquee />
+            {/* <Marquee /> */}
             <img src={ChefMatch} className="chef-match" />
-            {/* <div className="hiddenDiv"> */}
-            <img src={thinking} className="thinking" />
-            {/* </div> */}
           </div>
+
           <div className="meals">
             <div className="meals-nav">
               <NavLink to="/daily-record/breakfast">早餐</NavLink>

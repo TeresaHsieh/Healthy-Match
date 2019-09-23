@@ -81,10 +81,8 @@ export const checkUserInfo = userUID => {
                 xhr.onload = function(event) {
                   let blob = xhr.response;
                 };
-                xhr.open(
-                  "GET",
-                  "https://firebasestorage.googleapis.com/v0/b/healthy-match.appspot.com/o/characters%2Fboymatch.png?alt=media&token=7af3adf2-b390-4f70-afce-e04698767083"
-                );
+                xhr.open("GET", url);
+                console.log("Mark", url);
                 xhr.send();
                 matchImgDownloadURL = url;
               })
@@ -102,10 +100,8 @@ export const checkUserInfo = userUID => {
                 xhr.onload = function(event) {
                   let blob = xhr.response;
                 };
-                xhr.open(
-                  "GET",
-                  "https://firebasestorage.googleapis.com/v0/b/healthy-match.appspot.com/o/characters%2Fgirlmatch.png?alt=media&token=f8d02dfa-85e5-4e33-b5c7-88d9ff6c464e"
-                );
+                xhr.open("GET", url);
+                console.log("Mark", url);
                 xhr.send();
                 matchImgDownloadURL = url;
               })

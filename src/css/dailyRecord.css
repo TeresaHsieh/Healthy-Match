@@ -7,16 +7,8 @@
   flex-direction: row;
   width: 80%;
   justify-content: space-around;
-  /* 
- 
-
-  left: 50%;
-  position: absolute;
-  top: 70%;
-  transform: translate(-50%, -50%);
-  background-color: aquamarine;
-  margin: 0 auto;
-  margin-top: 30px; */
+  margin-left: 30px;
+  margin-right: 10px;
 }
 
 /* intro */
@@ -56,15 +48,40 @@
   justify-content: center; */
 }
 
+/* .meals-border {
+  width: 100%;
+  height: 700px;
+  margin-left: 600px;
+  margin-top: 30px;
+  background-color: #f7ed97;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  border-radius: 5px;
+} */
+
 .meals {
   font-size: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 650px;
+  margin-top: 30px;
+  height: 700px;
+  border-radius: 15px;
+  padding: 15px;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-left: 600px;
+  border: 2px solid #f9e10a;
 }
 
 .meals-nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 30px;
 }
 
 .meals-nav a {
@@ -73,16 +90,17 @@
 }
 
 .meals-nav .active {
-  color: #f9e10a;
+  color: grey;
+  border-bottom: 3px #f9e10a solid;
 }
 
 .meal-navbar span {
   margin-right: 100px;
 }
 
-.category {
-  /* margin-top: 35px;
-  width: 100%; */
+.food-icon {
+  width: 15px;
+  margin-right: 10px;
 }
 
 .input-form {
@@ -93,24 +111,33 @@
 .main-input {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .input-form input {
   outline: 0;
   border-width: 0 0 2px;
   border-color: lightgray;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .food-name {
-  margin-right: 10px;
   width: 300px;
   text-indent: 10px;
+  border-bottom: 1px solid lightgrey;
+  height: 30px;
+  margin: 15px 10px 15px 0px;
+  font-size: 14px;
 }
 
 .food-serve {
-  width: 200px;
+  width: 250px;
   text-indent: 10px;
+  border-bottom: 1px solid lightgrey;
+  height: 30px;
+  margin: 15px 30px 15px 30px;
+  font-size: 14px;
 }
 
 .input-form span {
@@ -123,7 +150,6 @@
   margin-left: 10px;
 }
 
-.add-input,
 .add-record {
   display: inline-block;
   border-radius: 8px;
@@ -135,7 +161,24 @@
   padding: 10px;
   width: 100px;
   cursor: pointer;
-  margin: 10px;
+  margin-top: 20px;
+}
+
+.add-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-button {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.add-input-word {
+  font-size: 12px;
 }
 
 /* search suggestion*/

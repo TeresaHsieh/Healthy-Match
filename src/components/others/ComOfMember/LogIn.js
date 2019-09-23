@@ -24,10 +24,8 @@ class LogIn extends React.Component {
     e.preventDefault();
     this.props.signIn(this.state);
   };
-  render() {
-    const { auth } = this.props;
-    //if (auth.uid) return <Redirect to="./" />;
 
+  render() {
     const { authError } = this.props;
     return (
       <div className="log-in">

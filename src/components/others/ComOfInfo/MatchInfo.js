@@ -62,7 +62,7 @@ class MatchInfo extends React.Component {
     if (disabled) {
       editButtons = (
         <img
-          src={Edit}
+          src={`/${Edit}`}
           className="accountEdit"
           onClick={this.handleInfoChange}
         />
@@ -71,7 +71,7 @@ class MatchInfo extends React.Component {
       editButtons = (
         <div>
           <img
-            src={Cancel}
+            src={`/${Cancel}`}
             alt="cancel"
             onClick={this.cancelInfoChange}
             // className="basicInfoEdit"
@@ -82,7 +82,7 @@ class MatchInfo extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="more-info-match">
         <div className="titleTitle">
           <div className="titlewords">麻吉資料</div>
 

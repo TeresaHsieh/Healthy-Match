@@ -4,6 +4,7 @@ import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
 import "../../../css/history.css";
+import { DH_CHECK_P_NOT_SAFE_PRIME } from "constants";
 
 class VitaminChart extends React.Component {
   constructor() {
@@ -13,57 +14,57 @@ class VitaminChart extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    // count end date
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
-    let day = today.getDate();
+  // componentDidMount = () => {
+  //   // count end date
+  //   let today = new Date();
+  //   let year = today.getFullYear();
+  //   let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
+  //   let day = today.getDate();
 
-    let yearString = year.toString();
+  //   let yearString = year.toString();
 
-    let monthString = "";
-    if (month < 10) {
-      monthString = "0" + month.toString();
-    } else {
-      monthString = month.toString();
-    }
+  //   let monthString = "";
+  //   if (month < 10) {
+  //     monthString = "0" + month.toString();
+  //   } else {
+  //     monthString = month.toString();
+  //   }
 
-    let dayString = "";
-    if (day < 10) {
-      dayString = "0" + day.toString();
-    } else {
-      dayString = day.toString();
-    }
+  //   let dayString = "";
+  //   if (day < 10) {
+  //     dayString = "0" + day.toString();
+  //   } else {
+  //     dayString = day.toString();
+  //   }
 
-    // count 7 days ago
-    let weekAgoDate = new Date();
-    weekAgoDate.setDate(weekAgoDate.getDate() - 6);
-    let weekAgoYear = weekAgoDate.getFullYear();
-    let weekAgoMonth = weekAgoDate.getMonth() + 1;
-    let weekAgoDay = weekAgoDate.getDate();
+  //   // count 7 days ago
+  //   let weekAgoDate = new Date();
+  //   weekAgoDate.setDate(weekAgoDate.getDate() - 6);
+  //   let weekAgoYear = weekAgoDate.getFullYear();
+  //   let weekAgoMonth = weekAgoDate.getMonth() + 1;
+  //   let weekAgoDay = weekAgoDate.getDate();
 
-    let weekAgoYearString = weekAgoYear.toString();
-    let weekAgoMonthString = "";
+  //   let weekAgoYearString = weekAgoYear.toString();
+  //   let weekAgoMonthString = "";
 
-    if (weekAgoMonth < 10) {
-      weekAgoMonthString = "0" + weekAgoMonth.toString();
-    } else {
-      weekAgoMonthString = weekAgoMonth.toString();
-    }
+  //   if (weekAgoMonth < 10) {
+  //     weekAgoMonthString = "0" + weekAgoMonth.toString();
+  //   } else {
+  //     weekAgoMonthString = weekAgoMonth.toString();
+  //   }
 
-    let weekAgoDayString = "";
-    if (weekAgoDay < 10) {
-      weekAgoDayString = "0" + weekAgoDay.toString();
-    } else {
-      weekAgoDayString = weekAgoDay.toString();
-    }
+  //   let weekAgoDayString = "";
+  //   if (weekAgoDay < 10) {
+  //     weekAgoDayString = "0" + weekAgoDay.toString();
+  //   } else {
+  //     weekAgoDayString = weekAgoDay.toString();
+  //   }
 
-    let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
-    let endDate = yearString + monthString + dayString; // default : today
-    let userUID = this.props.auth.uid;
-    this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
-  };
+  //   let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
+  //   let endDate = yearString + monthString + dayString; // default : today
+  //   let userUID = this.props.auth.uid;
+  //   this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
+  // };
 
   render() {
     //const getChartDataProtein = canvas => {
@@ -138,23 +139,42 @@ class VitaminChart extends React.Component {
             dataVitaminArrayB1[t] +
             dataVitaminArrayB2[t] +
             dataVitaminArrayB6[t] +
-            dataVitaminArrayB12[t] +
-            dataVitaminArrayC[t] +
+            // dataVitaminArrayB12[t] +
+            // dataVitaminArrayC[t] +
             dataVitaminArrayE[t]
+        );
+        console.log(
+          "為什麼不行",
+          dataVitaminArrayTE,
+          dataVitaminArrayB1,
+          dataVitaminArrayB2,
+          dataVitaminArrayB12,
+          dataVitaminArrayC,
+          dataVitaminArrayE
         );
       }
 
       // sum of B1 + B2 + B6 + B12 + C + E
       let times = dataVitaminArrayTotal.length;
-      let vitamin = 50 + 100 + 80 + 1000 + 1000 + 268;
+      let vitamin =
+        50 +
+        100 +
+        80 +
+        // 1000 + 1000 +
+        268;
       let averageArray = [];
       for (let t = 0; t < times; t++) {
         averageArray.push(vitamin);
         console.log(averageArray);
       }
 
+      let theDays = [];
+      for (let d = 0; d < this.props.recordTotalName.length; d++) {
+        theDays.push(this.props.recordTotalName[d].date.toString());
+      }
+
       const data = {
-        labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
+        labels: theDays,
         datasets: [
           {
             label: "average",
@@ -225,7 +245,7 @@ class VitaminChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          text: "維他命攝取紀錄",
+          text: "維他命（B1、B2、B6、B12、C、E）攝取紀錄",
           fontSize: 18,
           fontColor: "grey"
         },
@@ -292,7 +312,9 @@ const mapStateToProps = state => {
     recordTotalServe: state.daily.recordTotalServe,
     recordTotalMeal: state.daily.recordTotalMeal,
     auth: state.firebase.auth,
-    userInfo: state.firebase.profile
+    userInfo: state.firebase.profile,
+    startDate: state.daily.startDate,
+    endDate: state.daily.endDate
   };
 };
 

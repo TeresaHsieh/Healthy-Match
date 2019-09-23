@@ -61,7 +61,7 @@ class BasicInfo extends React.Component {
     if (disabled) {
       editButtons = (
         <img
-          src={Edit}
+          src={`/${Edit}`}
           className="basicInfoEdit"
           onClick={this.handleInfoChange}
         />
@@ -70,7 +70,7 @@ class BasicInfo extends React.Component {
       editButtons = (
         <div>
           <img
-            src={Cancel}
+            src={`/${Cancel}`}
             alt="cancel"
             onClick={this.cancelInfoChange}
             // className="basicInfoEdit"
@@ -81,7 +81,7 @@ class BasicInfo extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="more-info-basic">
         <div className="titleTitle">
           <div className="titlewords">基本資料</div>
           <div className="divideLine"></div>

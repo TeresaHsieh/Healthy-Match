@@ -73,6 +73,25 @@ const dailyReducer = (state = initState, action) => {
         recordServe: state.recordServe
       };
 
+    case "MAKE_SELECTED_DATES_TO_PROPS":
+      return {
+        ...state,
+        startDate: action.startDate,
+        endDate: action.endDate
+      };
+
+    case "CHANGE_PROPS_START_DATE":
+      return {
+        ...state,
+        startDate: action.startDatesValue
+      };
+
+    case "CHANGE_PROPS_END_DATE":
+      return {
+        ...state,
+        endDate: action.endDatesValue
+      };
+
     case "ADD_RECORD_INPUT_ERR":
       console.log("add input error", action.err);
       return state;

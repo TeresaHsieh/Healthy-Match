@@ -11,7 +11,7 @@ import LogIn from "../others/ComOfMember/LogIn";
 class Member extends React.Component {
   render() {
     const { auth } = this.props;
-    //if (auth.uid) return <Redirect to="./" />;
+    // if (auth.uid) return <Redirect to="./" />;
     return (
       <div className="lightbox">
         <Header />

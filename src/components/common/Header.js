@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import LogOut from "../others/ComOfMember/LogOut";
 
 // Components
 import logo from "../../imgs/logo.png";
@@ -15,20 +16,26 @@ class Header extends React.Component {
   }
 
   componentDidMount = () => {
+    this.checkForHeaderStyle();
     window.addEventListener("resize", this.checkForHeaderStyle);
   };
 
   checkForHeaderStyle = () => {
-    console.log(window.screen.width);
-    if (window.screen.width < Number(1000)) {
-      this.setState = { screenMobile: true };
+    console.log(document.body.offsetWidth);
+    if (document.body.offsetWidth < Number(1125)) {
+      this.setState({ screenMobile: true });
+    } else {
+      this.setState({ screenMobile: false });
     }
   };
 
   render() {
     const { auth } = this.props;
     const links = auth.uid ? (
-      <NavLink to="/log-out"> 登出 </NavLink>
+      <div>
+        <NavLink to="/info"> 會員資料 </NavLink>
+        <NavLink to="/log-out"> 登出 </NavLink>
+      </div>
     ) : (
       <NavLink to="/member"> 註冊/登入 </NavLink>
     );
@@ -53,7 +60,6 @@ class Header extends React.Component {
             <NavLink to="/history"> 營養歷史 </NavLink>
             <NavLink to="/match-status"> 麻吉樂園 </NavLink>
             <NavLink to="/news"> 健康新知 </NavLink>
-            <NavLink to="/info"> 會員資料 </NavLink>
             {/* <NavLink to="/member"> 註冊/登入 </NavLink>
     <NavLink to="/log-out"> 登出 </NavLink> */}
             {links}

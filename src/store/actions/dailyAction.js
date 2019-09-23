@@ -514,3 +514,26 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
     });
   };
 };
+
+export const makeSelectedDatesToProps = (startDate, endDate) => {
+  return {
+    type: "MAKE_SELECTED_DATES_TO_PROPS",
+    startDate,
+    endDate
+  };
+};
+
+export const changePropsStartDate = startDatesValue => {
+  console.log(startDatesValue);
+  return {
+    type: "CHANGE_PROPS_START_DATE",
+    startDatesValue
+  };
+};
+
+export const changePropsEndDate = endDatesValue => {
+  return {
+    type: "CHANGE_PROPS_END_DATE",
+    endDatesValue
+  };
+};

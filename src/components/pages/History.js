@@ -15,6 +15,12 @@ import "../../css/history.css";
 import Header from "../common/Header";
 
 class History extends React.Component {
+  // componentDidMount = () => {
+  //   let userWeight = this.props.userInfo.Weight;
+  //   if (userWeight == undefined || userWeight == null || isNaN(userWeight)) {
+  //     alert("尚未輸入體重，這樣會無法給予部分營養素建議喔～");
+  //   }
+  // };
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="./member" />;
@@ -35,7 +41,8 @@ class History extends React.Component {
 const mapStateToProps = state => {
   return {
     date: new Date().toLocaleDateString(),
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    userInfo: state.firebase.profile
   };
 };
 

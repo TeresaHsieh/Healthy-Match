@@ -48,6 +48,7 @@ class App extends React.Component {
           <Route path="/member" component={Member} />
           <Route path="/info" component={Info} />
           <Route path="/log-out" component={LogOut} />
+          {/* <LogOut /> */}
 
           <Route component={NotFound} />
         </Switch>

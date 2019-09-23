@@ -9,7 +9,7 @@ const Member = () => (
   <div>
     <Header />
     <div>
-      <div>
+      <div className="black-screen">
         <LogOut />
       </div>
     </div>
