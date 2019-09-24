@@ -10,6 +10,8 @@ import { updateDailyRecordName } from "../../../store/actions/dailyAction";
 import { updateDailyRecordServe } from "../../../store/actions/dailyAction";
 import { adjustRecordInputName } from "../../../store/actions/dailyAction";
 import { adjustRecordInputServe } from "../../../store/actions/dailyAction";
+import { deleteRecord } from "../../../store/actions/dailyAction";
+
 import { searchKeywords } from "../../../store/actions/dailyAction";
 import Delete from "../../../imgs/delete.png";
 import Add from "../../../imgs/add.png";
@@ -101,6 +103,7 @@ class MainForm extends React.Component {
 
   deleteRecord = e => {
     console.log(e.target.id);
+    this.props.deleteRecord(e.target.id);
   };
 
   appendInput = () => {
@@ -303,6 +306,9 @@ const mapDispatchToProps = dispatch => {
     },
     searchKeywords: keywords => {
       dispatch(searchKeywords(keywords));
+    },
+    deleteRecord: objectIndex => {
+      dispatch(deleteRecord(objectIndex));
     }
   };
 };

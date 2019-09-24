@@ -18,44 +18,67 @@ class MatchInfo extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.checkUserInfo(this.props.auth.uid);
-    console.log(this.props);
+    console.log("did mount", this.props.userInfo);
+    if (this.props.userInfo.MatchName) {
+      this.setState(this.props.userInfo);
+    }
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("成功吧！", this.props.userInfo);
+    if (!prevState.MatchName) {
+      console.log("set", this.props.userInfo);
+      this.setState(this.props.userInfo);
+    }
+  };
+
+  // 按編輯按鈕
   handleInfoChange = () => {
     console.log("調整麻吉資料");
-    // setState(prevState => ({ disabled: false }));
     this.setState({ disabled: false }, () => {
-      //callback
       console.log(this.state.disabled);
     });
   };
 
+  // 按勾勾
   checkInfoChange = () => {
     console.log("麻吉資料更新完畢");
     this.setState({ disabled: true }, () => {
       //callback
       console.log(this.state.disabled);
     });
+    let userUID = this.props.auth.uid;
+    let MatchName = this.state.MatchName;
+    let wholeState = {
+      MatchName: MatchName
+    };
+    this.props.updateInfoToFirestore(userUID, wholeState);
   };
 
+  // onchange 時
   updateInfo = e => {
     console.log("麻吉資料更新中");
     let infoName = e.target.name;
     let infoData = e.target.value;
-    let userUID = this.props.auth.uid;
-    this.props.updateInfoToFirestore(userUID, infoName, infoData);
+    if (infoData) {
+      this.setState({ [infoName]: infoData });
+    }
   };
 
+  // 按叉叉
   cancelInfoChange = () => {
     console.log("取消更新麻吉資料");
     this.setState({ disabled: true }, () => {
       //callback
       console.log(this.state.disabled);
     });
+    this.setState(this.props.userInfo);
   };
 
   render() {
+    if (!this.state.MatchCharacterIMG) {
+      return <div> Loading (｡･ω･｡)ﾉ </div>;
+    }
     const disabled = this.state.disabled;
     let editButtons;
 
@@ -73,11 +96,17 @@ class MatchInfo extends React.Component {
           <img
             src={`/${Cancel}`}
             alt="cancel"
+            className="cancel"
             onClick={this.cancelInfoChange}
             // className="basicInfoEdit"
             // onClick={this.handleInfoChange}
           />
-          <img src={check} alt="check" onClick={this.checkInfoChange} />
+          <img
+            src={check}
+            className="check"
+            alt="check"
+            onClick={this.checkInfoChange}
+          />
         </div>
       );
     }
@@ -93,14 +122,18 @@ class MatchInfo extends React.Component {
           <div>麻吉名字</div>
           <input
             name="MatchName"
-            placeholder={this.props.userInfo.MatchName}
+            // placeholder={this.props.userInfo.MatchName}
+            value={this.state.MatchName}
             onChange={this.updateInfo}
             disabled={this.state.disabled ? "disabled" : ""}
           />
         </div>
         <div className="userMatchPic">
           <div>麻吉照片</div>
-          <img src={ChefMatch} className="ChefMatch2" />
+          <img
+            src={this.props.userInfo.MatchCharacterIMG}
+            className="ChefMatch2"
+          />
         </div>
       </div>
     );
@@ -111,8 +144,7 @@ const mapStateToProps = state => {
   return {
     date: new Date().toLocaleDateString(),
     auth: state.firebase.auth,
-    userInfo: state.firebase.profile,
-    matchImgDownloadURL: state.firebase
+    userInfo: state.firebase.profile
   };
 };
 
@@ -122,8 +154,8 @@ const mapDispatchToProps = dispatch => {
     checkUserInfo: userUID => {
       dispatch(checkUserInfo(userUID));
     },
-    updateInfoToFirestore: (userUID, infoName, infoData) => {
-      dispatch(updateInfoToFirestore(userUID, infoName, infoData));
+    updateInfoToFirestore: (userUID, wholeState) => {
+      dispatch(updateInfoToFirestore(userUID, wholeState));
     }
   };
 };

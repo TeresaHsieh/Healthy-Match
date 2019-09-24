@@ -71,13 +71,19 @@ class AuthInfo extends React.Component {
       editButtons = (
         <div>
           <img
+            className="cancel"
             src={`/${Cancel}`}
             alt="cancel"
             onClick={this.cancelInfoChange}
             // className="basicInfoEdit"
             // onClick={this.handleInfoChange}
           />
-          <img src={check} alt="check" onClick={this.checkInfoChange} />
+          <img
+            src={check}
+            alt="check"
+            className="check"
+            onClick={this.checkInfoChange}
+          />
         </div>
       );
     }
@@ -114,8 +120,7 @@ const mapStateToProps = state => {
   return {
     date: new Date().toLocaleDateString(),
     auth: state.firebase.auth,
-    userInfo: state.firebase.profile,
-    matchImgDownloadURL: state.firebase
+    userInfo: state.firebase.profile
   };
 };
 

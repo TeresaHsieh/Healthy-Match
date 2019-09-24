@@ -46,7 +46,10 @@ class MatchStatus extends React.Component {
             </span>
           </div>
           <div className="backgroud">
-            <img src={MainMatch} className="match-in-background" />
+            <img
+              src={this.props.userInfo.MatchCharacterIMG}
+              className="match-in-background"
+            />
           </div>
         </div>
       </div>
@@ -57,7 +60,8 @@ class MatchStatus extends React.Component {
 const mapStateToProps = state => {
   return {
     date: new Date().toLocaleDateString(),
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    userInfo: state.firebase.profile
   };
 };
 

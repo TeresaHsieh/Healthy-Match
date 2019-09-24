@@ -15,17 +15,7 @@ import Header from "../common/Header";
 class Info extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userID: "test@gmail.com",
-      userPassword: "test123",
-      userName: "Teresa Hsieh",
-      userAge: "18",
-      userSexual: "女生",
-      userHeight: "168",
-      userWeight: "50",
-      userMatchName: "花生"
-      // disabled: true
-    };
+    this.state = {};
   }
 
   componentDidMount = () => {
@@ -50,7 +40,6 @@ class Info extends React.Component {
           </div>
           <div className="more-info">
             <BasicInfo />
-            <MatchInfo />
           </div>
         </div>
       </div>
@@ -62,8 +51,7 @@ const mapStateToProps = state => {
   return {
     date: new Date().toLocaleDateString(),
     auth: state.firebase.auth,
-    userInfo: state.firebase.profile,
-    matchImgDownloadURL: state.firebase
+    userInfo: state.firebase.profile
   };
 };
 

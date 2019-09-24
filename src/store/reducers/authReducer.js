@@ -33,13 +33,18 @@ const authReducer = (state = initState, action) => {
     case "CHECK_USER_INFO":
       return {
         ...state,
-        userInfo: action.UserInfo,
-        matchImgDownloadURL: action.matchImgDownloadURL
+        userInfo: action.UserInfo
       };
+    // case "UPDATE_INFO_TO_FIRESTORE":
+    //   return {
+    //     ...state,
+    //     userInfo: action.UserInfo
+    //   };
+
     case "UPDATE_INFO_TO_FIRESTORE":
       return {
         ...state,
-        userInfo: action.UserInfo
+        userInfo: action.wholeState
       };
 
     default:

@@ -37,14 +37,13 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={History} />
+          <Route exact path="/" component={Info} />
 
           {/* Home */}
 
           <Route path="/daily-record" component={DailyRecord} />
           <Route path="/history" component={History} />
           <Route path="/match-status" component={MatchStatus} />
-          <Route path="/news" component={News} />
           <Route path="/member" component={Member} />
           <Route path="/info" component={Info} />
           <Route path="/log-out" component={LogOut} />
