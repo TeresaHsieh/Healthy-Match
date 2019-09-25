@@ -186,7 +186,7 @@ class CarbohydrateChart extends React.Component {
           display: true,
           position: "top",
           text: "碳水化合物攝取紀錄",
-          fontSize: 18,
+          fontSize: 12,
           fontColor: "grey"
         },
         tooltips: {
@@ -211,7 +211,7 @@ class CarbohydrateChart extends React.Component {
           position: "bottom",
           labels: {
             fontColor: "#333",
-            fontSize: 16
+            fontSize: 12
           }
         },
         scales: {

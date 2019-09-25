@@ -80,7 +80,7 @@
 }
 
 .date-submit {
-  margin-left: 30px;
+  margin-left: 50px;
   border-radius: 12px;
   display: inline-block;
   background: #f7ed97;
@@ -91,5 +91,104 @@
   padding: 10px;
   width: 100px;
   cursor: pointer;
-  margin: 10px;
+  /* margin: 10px; */
+}
+
+@media (max-width: 1510px) {
+  .start-date,
+  .end-date {
+    font-size: 14px;
+    margin: auto 15px;
+  }
+  .date-picker {
+    width: 70%;
+  }
+}
+
+@media (max-width: 950px) {
+  .lineCharts {
+    width: 600px;
+    margin: 100px auto;
+  }
+  .start-date,
+  .end-date {
+    font-size: 14px;
+    margin: auto 10px;
+  }
+  .start-date-input,
+  .end-date-input {
+    padding: 5px 10px;
+  }
+  .date-submit {
+    margin-left: 20px;
+    font-size: 12px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 830px) {
+  .start-date-input,
+  .end-date-input {
+    padding: 5px 5px;
+  }
+}
+
+@media (max-width: 800px) {
+  .date-picker {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .date-submit {
+    margin: 30px 10px;
+  }
+}
+
+@media (max-width: 650px) {
+  .date-picker {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 75%;
+  }
+  .date-submit {
+    margin: 30px 0px 0px 0px;
+  }
+  .start-date,
+  .end-date {
+    margin: 10px 0px;
+  }
+  .lineCharts {
+    width: 500px;
+    margin: 80px auto;
+  }
+}
+
+@media (max-width: 510px) {
+  .date-picker {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .lineCharts {
+    width: 400px;
+    margin: 70px auto;
+  }
+  .start-date,
+  .end-date {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .lineCharts {
+    width: 400px;
+    margin: 60px auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .lineCharts {
+    width: 360px;
+    margin: 30px auto;
+  }
 }

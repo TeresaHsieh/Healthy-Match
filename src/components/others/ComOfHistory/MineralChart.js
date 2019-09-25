@@ -228,7 +228,7 @@ class MineralChart extends React.Component {
           display: true,
           position: "top",
           text: "礦物質（磷、鈉、鈣、鉀、鋅、鎂、鐵）攝取紀錄",
-          fontSize: 18,
+          fontSize: 12,
           fontColor: "grey"
         },
         tooltips: {
@@ -253,7 +253,7 @@ class MineralChart extends React.Component {
           position: "bottom",
           labels: {
             fontColor: "#333",
-            fontSize: 16
+            fontSize: 12
           }
         },
         scales: {
