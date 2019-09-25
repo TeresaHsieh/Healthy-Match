@@ -10,7 +10,7 @@ import History from "./pages/History";
 import MatchStatus from "./pages/MatchStatus";
 import Member from "./pages/Member";
 import LogOut from "./pages/LogOut";
-import News from "./pages/News";
+import AddDatabase from "./pages/AddDatabase";
 import Info from "./pages/Info";
 import NotFound from "./pages/NotFound";
 
@@ -37,12 +37,13 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Info} />
+          <Route exact path="/" component={AddDatabase} />
 
           {/* Home */}
 
           <Route path="/daily-record" component={DailyRecord} />
           <Route path="/history" component={History} />
+          <Route path="/add-data" component={AddDatabase} />
           <Route path="/match-status" component={MatchStatus} />
           <Route path="/member" component={Member} />
           <Route path="/info" component={Info} />

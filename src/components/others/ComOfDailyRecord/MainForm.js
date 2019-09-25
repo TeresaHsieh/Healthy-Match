@@ -127,6 +127,20 @@ class MainForm extends React.Component {
   };
 
   getAppendedComponents = () => {
+    const showSuggestion = this.state.showSuggestion;
+    let suggestion;
+
+    if (showSuggestion && this.props.keywords !== undefined) {
+      suggestion = (
+        <div className="turnOffDiv" onClick={this.hideSuggestion}>
+          <ul>
+            {this.props.keywords.map(food => (
+              <li className="eachSuggestion">{food}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
     let addInputComponent = [];
     for (let i = 1; i < this.state.addInputComponent; i++) {
       addInputComponent.push(
@@ -141,6 +155,10 @@ class MainForm extends React.Component {
             onKeyUp={this.showKeywords}
             id={i}
           ></input>
+          <div className="searchSuggestion" id={i}>
+            {suggestion}
+          </div>
+
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
@@ -201,9 +219,9 @@ class MainForm extends React.Component {
     });
   };
 
-  componentDidMount() {
-    document.addEventListener("mousedown", this.hideSuggestion);
-  }
+  // componentDidMount() {
+  //   document.addEventListener("mousedown", this.hideSuggestion);
+  // }
 
   render() {
     const showSuggestion = this.state.showSuggestion;
@@ -211,11 +229,13 @@ class MainForm extends React.Component {
 
     if (showSuggestion && this.props.keywords !== undefined) {
       suggestion = (
-        <ul onFocus={this.hideSuggestion}>
-          {this.props.keywords.map(food => (
-            <li>{food}</li>
-          ))}
-        </ul>
+        <div className="turnOffDiv" onClick={this.hideSuggestion}>
+          <ul>
+            {this.props.keywords.map(food => (
+              <li className="eachSuggestion">{food}</li>
+            ))}
+          </ul>
+        </div>
       );
     }
     return (

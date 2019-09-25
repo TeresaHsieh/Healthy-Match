@@ -1,0 +1,81 @@
+@import "./common.css";
+
+.customForm {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto 0;
+  border: solid 3px #f7ed97;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.titleOne {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.custom-form input {
+  width: 500px;
+  text-indent: 10px;
+  border-bottom: 1px solid lightgrey;
+  height: 30px;
+  margin: 15px 10px 15px 0px;
+  font-size: 14px;
+}
+
+.sentToDataBase {
+  display: inline-block;
+  border-radius: 8px;
+  background: #f7ed97;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 300px;
+  cursor: pointer;
+  margin: 30px 10px;
+}
+
+@media (max-width: 865px) {
+  .custom-form input {
+    width: 300px;
+  }
+}
+
+@media (max-width: 540px) {
+  .customForm {
+    padding: 20px;
+  }
+  .titleOne {
+    font-size: 20px;
+  }
+  .titleTwo {
+    font-size: 15px;
+  }
+  .custom-form input {
+    width: 250px;
+    font-size: 12px;
+  }
+  .sentToDataBase {
+    width: 200px;
+  }
+}

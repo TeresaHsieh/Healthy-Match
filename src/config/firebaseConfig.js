@@ -19,7 +19,7 @@ firebase.firestore().settings({ timestampsInSnapshots: true });
 
 export default firebase;
 
-// export const auth = firebase.auth();
+export const storage = firebase.storage();
 // export const googleProvider = new firebase.auth.GoogleAuthProvider();
 // export const facebookProvider = new firebase.auth.FacebookAuthProvider();
 // export const emailProvider = new firebase.auth.EmailAuthProvider();

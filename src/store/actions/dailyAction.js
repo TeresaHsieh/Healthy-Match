@@ -537,3 +537,24 @@ export const changePropsEndDate = endDatesValue => {
     endDatesValue
   };
 };
+
+export const sentDataToNutritionDatbase = newNutrition => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("nutrition")
+      .doc(newNutrition.食品名稱)
+      .set(newNutrition, { merge: true });
+
+    let NewNutritionName = newNutrition.食品名稱;
+    let keyWords;
+    let keyWordsArray = [];
+    keyWordsArray = NewNutritionName.split("");
+
+    firestore
+      .collection("nutrition")
+      .doc(newNutrition.食品名稱)
+      .set({ 搜尋關鍵字: keyWordsArray }, { merge: true });
+  };
+};

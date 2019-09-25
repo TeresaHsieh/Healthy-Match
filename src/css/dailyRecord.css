@@ -198,6 +198,16 @@
   margin: 5px auto;
   text-indent: 10px;
   cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+
+.turnOffDiv {
+  width: 3000px;
+  background-color: aquamarine;
+  height: 3000px;
+  z-index: -1;
+  position: absolute;
 }
 
 .food-name {

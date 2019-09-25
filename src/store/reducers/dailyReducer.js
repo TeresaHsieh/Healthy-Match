@@ -92,6 +92,11 @@ const dailyReducer = (state = initState, action) => {
         endDate: action.endDatesValue
       };
 
+    case "SENT_DATA_TO_NUTRITION_DATABASE":
+      return {
+        ...state
+      };
+
     case "ADD_RECORD_INPUT_ERR":
       console.log("add input error", action.err);
       return state;

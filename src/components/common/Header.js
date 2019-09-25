@@ -58,6 +58,7 @@ class Header extends React.Component {
           <div className="main-nav">
             <NavLink to="/daily-record"> 每日記錄 </NavLink>
             <NavLink to="/history"> 營養歷史 </NavLink>
+            <NavLink to="/add-data"> 添加營養 </NavLink>
             <NavLink to="/match-status"> 麻吉樂園 </NavLink>
             {/* <NavLink to="/member"> 註冊/登入 </NavLink>
     <NavLink to="/log-out"> 登出 </NavLink> */}
