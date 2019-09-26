@@ -2,6 +2,7 @@ import React from "react";
 import "../../css/addDatabase.css";
 import { connect } from "react-redux";
 import { sentDataToNutritionDatbase } from "../../store/actions/dailyAction";
+import { Route, NavLink, Redirect } from "react-router-dom";
 
 // App Components
 import Header from "../common/Header";
@@ -29,6 +30,9 @@ class CustomForm extends React.Component {
     this.props.sentDataToNutritionDatbase(this.state);
   };
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="./member" />;
+
     return (
       <div>
         <Header />
@@ -158,6 +162,11 @@ class CustomForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     sentDataToNutritionDatbase: newNutrition => {
@@ -167,6 +176,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CustomForm);

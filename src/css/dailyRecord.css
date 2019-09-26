@@ -5,75 +5,34 @@
 .dailyrecord-main {
   display: flex;
   flex-direction: row;
-  width: 80%;
-  justify-content: space-around;
-  margin-left: 30px;
-  margin-right: 10px;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
 }
 
 /* intro */
 
-.hello-intro {
-  position: absolute;
-  bottom: 0px;
-  left: 5%;
-}
-
 .chef-match {
-  position: relative;
-  bottom: 30px;
+  margin-top: 330px;
   width: 300px;
-}
-
-.thinking {
-  position: relative;
-  bottom: 150px;
-  right: 30px;
-  width: 150px;
-}
-
-.marquee {
-  position: absolute;
-  bottom: 300px;
-  right: 30px;
-  top: -120px;
+  height: 300px;
+  margin-right: -120px;
+  z-index: 50;
 }
 
 /* form */
-.main-form {
-  /* width: 100%;
-  margin-left: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; */
-}
-
-/* .meals-border {
-  width: 100%;
-  height: 700px;
-  margin-left: 600px;
-  margin-top: 30px;
-  background-color: #f7ed97;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  position: relative;
-  border-radius: 5px;
-} */
-
 .meals {
   font-size: 20px;
   display: flex;
   flex-direction: column;
-  width: 650px;
-  margin-top: 30px;
-  height: 700px;
+  width: 900px;
+  margin-top: 60px;
+  height: 500px;
   border-radius: 15px;
-  padding: 15px;
+  padding: 20px;
   overflow: hidden;
   overflow-y: scroll;
-  margin-left: 600px;
-  border: 2px solid #f9e10a;
+  border: 3px solid #f9e10a;
 }
 
 .meals-nav {
@@ -151,7 +110,6 @@
 }
 
 .add-record {
-  display: inline-block;
   border-radius: 8px;
   background: #f7ed97;
   border: none;
@@ -162,6 +120,8 @@
   width: 100px;
   cursor: pointer;
   margin-top: 20px;
+  float: right;
+  margin-right: 30px;
 }
 
 .add-input {
@@ -181,33 +141,40 @@
   font-size: 12px;
 }
 
+.main-form {
+  width: 80%;
+  align-self: center;
+}
+
 /* search suggestion*/
 .searchSuggestion ul {
+  position: absolute;
+  /* left: 10;
+  top: -2; */
+  margin-left: 25px;
   font-size: 12px;
-  overflow-y: scroll;
   height: 200px;
   overflow: hidden;
   overflow-y: scroll;
   list-style-type: none;
-  background-color: #fbf3a898;
+  background-color: #fbf3a8;
   padding: 0;
-  width: 300px;
+  width: 320px;
+  z-index: 1;
 }
 
 .searchSuggestion ul li {
   margin: 5px auto;
   text-indent: 10px;
   cursor: pointer;
-  position: absolute;
-  z-index: 1;
 }
 
 .turnOffDiv {
-  width: 3000px;
+  /* width: 3000px;
   background-color: aquamarine;
   height: 3000px;
   z-index: -1;
-  position: absolute;
+  position: absolute; */
 }
 
 .food-name {
@@ -218,41 +185,125 @@
   position: absolute;
 }
 
-/* marquee */
-
-.thinking .marquee {
-  height: 100px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.marquee div {
-  display: block;
-  width: 60%;
-  height: 30px;
-  position: absolute;
-  overflow: hidden;
-  animation: marquee 5s linear infinite;
-  display: flex;
-  flex-direction: row;
-}
-
-.marquee img {
-  float: left;
-  width: 30px;
-  height: 30px;
-  margin: 0 10px;
-}
-
-@keyframes marquee {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 100%;
+@media (max-width: 1230px) {
+  .meals {
+    width: 800px;
   }
 }
-/* 
-.hiddenDiv {
-  overflow: hidden;
-} */
+
+@media (max-width: 1120px) {
+  .meals {
+    width: 700px;
+  }
+  .food-name,
+  .searchSuggestion ul {
+    width: 250px;
+  }
+
+  .food-serve {
+    width: 250px;
+  }
+}
+
+@media (max-width: 990px) {
+  .meals {
+    width: 650px;
+  }
+  .food-name,
+  .searchSuggestion ul {
+    width: 200px;
+  }
+
+  .food-serve {
+    width: 200px;
+  }
+}
+
+@media (max-width: 935px) {
+  .meals {
+    width: 650px;
+  }
+  .main-input {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+  .food-name,
+  .searchSuggestion ul {
+    text-indent: 0px;
+    margin: 5px 10px 15px 0px;
+  }
+
+  .searchSuggestion ul {
+    margin-left: 1px;
+    margin-top: 50px;
+  }
+
+  .food-serve {
+    text-indent: 0px;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (max-width: 920px) {
+  .meals {
+    width: 550px;
+  }
+  .chef-match {
+    margin-top: 450px;
+    width: 200px;
+    height: 200px;
+    margin-right: -100px;
+  }
+}
+
+@media (max-width: 730px) {
+  .meals {
+    width: 450px;
+  }
+  .chef-match {
+    margin-right: -80px;
+  }
+}
+
+@media (max-width: 635px) {
+  .meals {
+    width: 400px;
+  }
+  .add-record {
+    margin-right: 0;
+  }
+}
+@media (max-width: 600px) {
+  .chef-match {
+    display: none;
+  }
+  .searchSuggestion ul {
+    width: 200px;
+  }
+}
+
+@media (max-width: 475px) {
+  .chef-match {
+    display: none;
+  }
+  .meals {
+    width: 350px;
+  }
+  .main-form {
+    align-self: flex-start;
+  }
+  .searchSuggestion ul {
+    width: 180px;
+  }
+}
+
+@media (max-width: 400px) {
+  .meals {
+    width: 300px;
+  }
+  .searchSuggestion ul {
+    width: 130px;
+  }
+}

@@ -67,11 +67,17 @@
 
 .start-date-input,
 .end-date-input {
-  padding: 5px 15px;
+  /* padding: 5px 15px;
   background: #f7ed97;
   border: 0 none;
   border-radius: 5px;
-  height: 16px;
+  height: 16px; */
+  width: 150px;
+  text-indent: 10px;
+  border-bottom: 1px solid lightgrey;
+  height: 30px;
+  margin: 15px 10px 15px 0px;
+  font-size: 14px;
 }
 
 .lineCharts {
@@ -103,6 +109,11 @@
   .date-picker {
     width: 70%;
   }
+  .date-submit {
+    font-size: 12px;
+    padding: 8px;
+    width: 80px;
+  }
 }
 
 @media (max-width: 950px) {
@@ -126,6 +137,13 @@
   }
 }
 
+@media (max-width: 920px) {
+  .start-date-input,
+  .end-date-input {
+    width: 100px;
+  }
+}
+
 @media (max-width: 830px) {
   .start-date-input,
   .end-date-input {
@@ -145,14 +163,14 @@
 
 @media (max-width: 650px) {
   .date-picker {
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     width: 75%;
   }
   .date-submit {
-    margin: 30px 0px 0px 0px;
+    margin: 0px;
   }
   .start-date,
   .end-date {
@@ -161,6 +179,12 @@
   .lineCharts {
     width: 500px;
     margin: 80px auto;
+  }
+
+  .start-date-input,
+  .end-date-input {
+    text-indent: 0px;
+    width: 80px;
   }
 }
 
@@ -186,9 +210,30 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .lineCharts {
     width: 360px;
     margin: 30px auto;
+  }
+  .start-date,
+  .end-date {
+    font-size: 12px;
+  }
+  .start-date-input,
+  .end-date-input {
+    width: 70px;
+    margin: 0;
+  }
+  .date-picker {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 90%;
+    margin-left: 20px;
+  }
+  .date-submit {
+    margin-top: 10px;
+    font-size: 10px;
+    padding: 6px;
   }
 }

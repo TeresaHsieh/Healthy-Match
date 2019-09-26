@@ -16,8 +16,8 @@
 }
 
 .main-member a {
-  font-size: 20px;
-  color: black;
+  font-size: 18px;
+  color: grey;
   margin: 10px 10px 10px 10px;
   padding: 0;
   cursor: pointer;
@@ -59,7 +59,15 @@
   text-indent: 50px;
   width: 300px;
   height: 50px;
-  margin: 30px auto;
+  border-radius: 5px;
+}
+
+.log-in-user-email {
+  margin: 30px auto 15px auto;
+}
+
+.log-in-user-password {
+  margin: 10px auto 15px auto;
 }
 
 .log-in-user-email {
@@ -70,28 +78,55 @@
   background-image: url(../imgs/password.png);
 }
 
+@media (max-width: 520px) {
+  .log-in-user-email,
+  .log-in-user-password {
+    width: 250px;
+    height: 50px;
+  }
+  .main-member a {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .log-in-user-email,
+  .log-in-user-password {
+    width: 220px;
+  }
+}
+
 /* sign-up */
 
 .sign-up {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.sign-up-user-name,
 .sign-up-user-email,
 .sign-up-user-sexual,
 .sign-up-user-tall,
 .sign-up-user-weight,
 .sign-up-user-password,
-.sign-up-user-checked-password {
+.sign-up-user-checked-password,
+.sign-up-matchSelect {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  margin: 30px auto;
-  width: 500px;
+  margin: 15px auto;
+  width: 400px;
+}
+
+.sign-up-user-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px auto 15px auto;
+  width: 400px;
 }
 
 .sign-up-matchSelect {
@@ -115,7 +150,22 @@
   background-size: 30px 30px;
   width: 300px;
   height: 35px;
-  text-indent: 20px;
+  text-indent: 15px;
+  border-radius: 5px;
+}
+
+.sign-up-user-name span,
+.sign-up-user-email span,
+.sign-up-user-sexual span,
+.sign-up-user-tall span,
+.sign-up-user-weight span,
+.sign-up-user-password span,
+.sign-up-user-checked-password span,
+.sign-up-matchSelect span,
+.sign-up-matchSelect p,
+.select-title {
+  font-size: 15px;
+  color: grey;
 }
 
 .sign-up-matchSelect input {
@@ -123,9 +173,16 @@
   border-width: 0 0 2px;
   border-color: lightgray;
   background-size: 30px 30px;
-  width: 50px;
-  height: 35px;
+  width: 20px;
+  height: 20px;
   text-indent: 20px;
+}
+
+.sign-up-matchSelect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .boyMatch,

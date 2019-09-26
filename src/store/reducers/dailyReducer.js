@@ -97,6 +97,23 @@ const dailyReducer = (state = initState, action) => {
         ...state
       };
 
+    case "DELETE_RECORD":
+      console.log(state.recordName, state.recordServe, action.objectIndex);
+      let deleteName = state.recordName.splice(action.objectIndex, 1);
+      let deleteServe = state.recordServe.splice(action.objectIndex, 1);
+      return {
+        ...state,
+        recordName: state.recordName,
+        recordServe: state.recordServe
+      };
+
+    case "CLEAR_VALUES":
+      return {
+        ...state,
+        recordName: action.emptyValue,
+        recordServe: action.emptyValue
+      };
+
     case "ADD_RECORD_INPUT_ERR":
       console.log("add input error", action.err);
       return state;

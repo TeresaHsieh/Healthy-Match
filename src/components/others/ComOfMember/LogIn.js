@@ -26,6 +26,9 @@ class LogIn extends React.Component {
   };
 
   render() {
+    if (this.props.auth.uid) {
+      return <Redirect to="/daily-record" />;
+    }
     const { authError } = this.props;
     return (
       <div className="log-in">

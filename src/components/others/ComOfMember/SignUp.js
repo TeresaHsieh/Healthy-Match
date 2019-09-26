@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { signUp } from "../../../store/actions/authAction";
 import { Redirect } from "react-router-dom";
 import "../../../css/member.css";
@@ -90,26 +91,33 @@ class SignUp extends React.Component {
           />
         </div>
         <div className="sign-up-matchSelect">
-          <p>挑選麻吉：</p>
-          <input
-            type="radio"
-            id="matchGender"
-            value="boyMatch"
-            onChange={this.handleChange}
-          />
-          <span>活潑麻糬</span>
-          <img src={`/${boyMatch}`} className="boyMatch" />
-          <input
-            type="radio"
-            id="matchGender"
-            value="girlMatch"
-            onChange={this.handleChange}
-          />
-          <span>氣質麻糬</span>
-          <img src={`/${girlMatch}`} className="girlMatch" />
+          <div>
+            <p className="select-title">挑選麻吉：</p>
+
+            <div className="boymatch">
+              <input
+                type="radio"
+                id="matchGender"
+                value="boyMatch"
+                onChange={this.handleChange}
+              />
+              <span>活潑麻糬</span>
+              <img src={`/${boyMatch}`} className="boyMatch" />
+            </div>
+            <div className="girlmatch">
+              <input
+                type="radio"
+                id="matchGender"
+                value="girlMatch"
+                onChange={this.handleChange}
+              />
+              <span>氣質麻糬</span>
+              <img src={`/${girlMatch}`} className="girlMatch" />
+            </div>
+          </div>
         </div>
         <button className="register" onClick={this.handleSubmit}>
-          確認註冊！
+          <NavLink to="/daily-record">確認註冊！</NavLink>
         </button>
       </form>
     );

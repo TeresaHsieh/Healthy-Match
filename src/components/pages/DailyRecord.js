@@ -23,8 +23,8 @@ class DailyRecord extends React.Component {
           <div className="hello-intro">
             {/* <h2> 書庭早安～歡迎回來！ </h2> */}
             {/* <Marquee /> */}
-            <img src={ChefMatch} className="chef-match" />
           </div>
+          <img src={ChefMatch} className="chef-match" />
 
           <div className="meals">
             <div className="meals-nav">

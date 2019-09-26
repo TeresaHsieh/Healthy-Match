@@ -30,6 +30,13 @@ export const searchKeywords = keyword => {
   };
 };
 
+export const clearValues = emptyValue => {
+  return dispatch => {
+    console.log(emptyValue);
+    dispatch({ type: "CLEAR_VALUES", emptyValue });
+  };
+};
+
 // 先寫期待的 result 形式（依照日期分類，把每天吃的各式營養加總）
 // 把日期一樣的文件挑起來，找到裡面的細節（吃了什麼）去資料庫裡面抓出營養
 // 把營養值乘上份數（這一樣要先把日期一樣的文件挑起來，找到裡面的細節（份數））
@@ -556,5 +563,16 @@ export const sentDataToNutritionDatbase = newNutrition => {
       .collection("nutrition")
       .doc(newNutrition.食品名稱)
       .set({ 搜尋關鍵字: keyWordsArray }, { merge: true });
+  };
+};
+
+export const deleteRecord = objectIndex => {
+  // return (dispatch, getState, { getFirebase, getFirestore }) => {
+  console.log("進來囉！", objectIndex);
+  //   console.log("進來囉！", recordName);
+  // };
+  return {
+    type: "DELETE_RECORD",
+    objectIndex
   };
 };

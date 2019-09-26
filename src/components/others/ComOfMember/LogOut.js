@@ -18,7 +18,9 @@ class LogOut extends React.Component {
               我先走囉！
             </NavLink>
           </button>
-          <button>再玩耍一下</button>
+          <button>
+            <NavLink to="/daily-record">再玩耍一下</NavLink>
+          </button>
         </div>
       </div>
     );

@@ -145,9 +145,31 @@
   }
 }
 
-@media (max-width: 815px) {
+@media (max-width: 740px) {
+  .home-intro > h1 {
+    font-size: 45px;
+  }
+
+  .home-intro > p {
+    font-size: 15px;
+  }
+
+  .main-match {
+    max-width: 450px;
+  }
+
+  .home-main {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 530px) {
   .home-intro > h1 {
     font-size: 30px;
+  }
+
+  .home-intro > h3 {
+    font-size: 20px;
   }
 
   .home-intro > p {
@@ -156,10 +178,6 @@
 
   .main-match {
     max-width: 300px;
-  }
-
-  .home-main {
-    margin-top: 60px;
   }
 }
 
@@ -175,5 +193,8 @@
   .start-button {
     padding: 10px;
     width: 160px;
+  }
+  .main-match {
+    max-width: 250px;
   }
 }
