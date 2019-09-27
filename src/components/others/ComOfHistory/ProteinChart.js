@@ -4,6 +4,7 @@ import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
 import { normalize } from "path";
+import { removeUsingFilterFunction } from "../../../store/actions/dailyAction";
 
 class ProteinChart extends React.Component {
   constructor() {
@@ -12,6 +13,10 @@ class ProteinChart extends React.Component {
       dataUpdate: ""
     };
   }
+
+  componentWillUnmount = () => {
+    this.props.removeUsingFilterFunction();
+  };
 
   // componentDidMount = () => {
   //   //========================================================
@@ -110,9 +115,39 @@ class ProteinChart extends React.Component {
       }
 
       let theDays = [];
-      for (let d = 0; d < this.props.recordTotalName.length; d++) {
-        theDays.push(this.props.recordTotalName[d].date.toString());
+      // if using filter time function, rearrange days label
+      if (this.props.usingFilterFunction == true) {
+        let daysInProps = this.props.recordTotalNutrition;
+        let theDaysResult = Object.keys(daysInProps).map(function(key) {
+          return [Number(key), daysInProps[key]];
+        });
+        for (let t = 0; t < theDaysResult.length; t++) {
+          theDays.push(theDaysResult[t][0].toString());
+        }
+      } else {
+        // let startDay = Number(this.props.startDate);
+        // let endDay = Number(this.props.endDate);
+        // theDays.push(
+        //   startDay.toString(),
+        //   (startDay + 1).toString(),
+        //   (startDay + 2).toString(),
+        //   (startDay + 3).toString(),
+        //   (startDay + 4).toString(),
+        //   (startDay + 5).toString(),
+        //   endDay.toString()
+        // );
+        let daysInProps = this.props.recordTotalNutrition;
+        let theDaysResult = Object.keys(daysInProps).map(function(key) {
+          return [Number(key), daysInProps[key]];
+        });
+        for (let t = 0; t < theDaysResult.length; t++) {
+          theDays.push(theDaysResult[t][0].toString());
+        }
       }
+
+      // for (let d = 0; d < this.props.recordTotalName.length; d++) {
+      //   theDays.push(this.props.recordTotalName[d].date.toString());
+      // }
 
       const data = {
         labels: theDays,
@@ -254,7 +289,8 @@ const mapStateToProps = state => {
     auth: state.firebase.auth,
     userInfo: state.firebase.profile,
     startDate: state.daily.startDate,
-    endDate: state.daily.endDate
+    endDate: state.daily.endDate,
+    usingFilterFunction: state.daily.usingFilterFunction
   };
 };
 
@@ -263,6 +299,9 @@ const mapDispatchToProps = dispatch => {
     // create a method
     checkFirestoreNutritionRecord: (startDate, endDate, userUID) => {
       dispatch(checkFirestoreNutritionRecord(startDate, endDate, userUID));
+    },
+    removeUsingFilterFunction: () => {
+      dispatch(removeUsingFilterFunction());
     }
   };
 };

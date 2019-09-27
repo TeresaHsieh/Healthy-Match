@@ -501,7 +501,7 @@
 //==============================================================================
 //==============================================================================
 
-import React from "react";
+import React, { createRef, useRef } from "react";
 import { connect } from "react-redux";
 import AppendInput from "../ComOfDailyRecord/AppendInput";
 
@@ -531,6 +531,9 @@ class MainForm extends React.Component {
       showSuggestion: false,
       openDropdownlist: false
     };
+    this.nameInput = React.createRef();
+    this.serveInput = React.createRef();
+    this.areaOutsideDiv = React.createRef();
   }
   // submit state to the firebase
   // addMealData = () => {
@@ -650,8 +653,8 @@ class MainForm extends React.Component {
         //     ))}
         //   </MenuList>
         // </ClickAwayListener>
-        <div className="turnOffDiv" onClick={this.hideSuggestion}>
-          <ul>
+        <div className="turnOffDiv">
+          <ul ref={node => (this.areaOutsideDiv = node)}>
             {this.props.keywords.map(food => (
               <li
                 className="eachSuggestion"
@@ -723,6 +726,11 @@ class MainForm extends React.Component {
     });
     let emptyValue = [];
     this.props.clearValues(emptyValue);
+    this.nameInput.current.value = "";
+    this.serveInput.current.value = "";
+    // () => {
+
+    // };
   };
 
   searchKeywords = e => {
@@ -747,8 +755,22 @@ class MainForm extends React.Component {
     }
   };
 
+  componentDidMount() {
+    document.addEventListener("click", this.hideSuggestion);
+  }
+
   hideSuggestion = e => {
-    console.log("關掉");
+    //console.log("cool", this.areaOutsideDiv.current.value);
+    if (this.areaOutsideDiv.contains(e.target)) {
+      // Clicked in box
+      console.log("Clicked in box");
+    } else {
+      // Clicked outside the box
+      console.log("Clicked outside the box");
+      // this.setState({
+      //   showSuggestion: false
+      // });
+    }
   };
 
   setInput = e => {
@@ -771,18 +793,18 @@ class MainForm extends React.Component {
     // this.props.changeInputByKeywords(arrayObjectindex, keywordsName);
   };
 
-  // componentDidMount() {
-  //   document.addEventListener("mousedown", this.hideSuggestion);
-  // }
-
   render() {
     const showSuggestion = this.state.showSuggestion;
     let suggestion;
 
     if (showSuggestion && this.props.keywords !== undefined) {
       suggestion = (
-        <div className="turnOffDiv" onClick={this.hideSuggestion}>
-          <ul>
+        <div
+          className="turnOffDiv"
+          // width="1000px"
+          // height="1000px"
+        >
+          <ul ref={node => (this.areaOutsideDiv = node)}>
             {this.props.keywords.map(food => (
               <li
                 className="eachSuggestion"
@@ -816,6 +838,7 @@ class MainForm extends React.Component {
             onChange={this.searchKeywords}
             onKeyUp={this.showKeywords}
             // value={this.state.originalInput}
+            ref={this.nameInput}
             id="0"
           ></input>
           <div
@@ -832,6 +855,7 @@ class MainForm extends React.Component {
             // value={this.state.originalInput}
             id="0"
             type="number"
+            ref={this.serveInput}
           ></input>
           {/* <img
             src={`/${Delete}`}

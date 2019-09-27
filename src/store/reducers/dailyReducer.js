@@ -114,6 +114,18 @@ const dailyReducer = (state = initState, action) => {
         recordServe: action.emptyValue
       };
 
+    case "USING_FILTER_TIME_FUNCTION":
+      return {
+        ...state,
+        usingFilterFunction: true
+      };
+
+    case "REMOVE_USING_FILTER_TIME_FUNCTION":
+      return {
+        ...state,
+        usingFilterFunction: false
+      };
+
     case "ADD_RECORD_INPUT_ERR":
       console.log("add input error", action.err);
       return state;

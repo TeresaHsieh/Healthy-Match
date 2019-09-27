@@ -576,3 +576,15 @@ export const deleteRecord = objectIndex => {
     objectIndex
   };
 };
+
+export const usingFilterTimeFunction = () => {
+  return {
+    type: "USING_FILTER_TIME_FUNCTION"
+  };
+};
+
+export const removeUsingFilterFunction = () => {
+  return {
+    type: "REMOVE_USING_FILTER_TIME_FUNCTION"
+  };
+};

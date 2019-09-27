@@ -6,6 +6,7 @@ import { makeSelectedDatesToProps } from "../../../store/actions/dailyAction";
 import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
 import { changePropsStartDate } from "../../../store/actions/dailyAction";
 import { changePropsEndDate } from "../../../store/actions/dailyAction";
+import { usingFilterTimeFunction } from "../../../store/actions/dailyAction";
 
 class DateSearch extends React.Component {
   constructor() {
@@ -95,6 +96,7 @@ class DateSearch extends React.Component {
     }
     let userUID = this.props.auth.uid;
     this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
+    this.props.usingFilterTimeFunction();
   };
 
   render() {
@@ -144,7 +146,8 @@ const mapStateToProps = state => {
     auth: state.firebase.auth,
     userInfo: state.firebase.profile,
     startDate: state.daily.startDate,
-    endDate: state.daily.endDate
+    endDate: state.daily.endDate,
+    usingFilterFunction: state.daily.usingFilterFunction
   };
 };
 
@@ -162,6 +165,9 @@ const mapDispatchToProps = dispatch => {
     },
     changePropsEndDate: endDatesValue => {
       dispatch(changePropsEndDate(endDatesValue));
+    },
+    usingFilterTimeFunction: () => {
+      dispatch(usingFilterTimeFunction());
     }
   };
 };
