@@ -219,47 +219,44 @@ class MatchStatus extends React.Component {
       let LastIMG;
       // no records last 4 days
       if (pass7daysEating >= 4) {
-        console.log("換餓死圖");
-        this.setState(
-          {
-            // imgSrc: this.props.userInfo.MatchCharacterIMGCarbohydrate,
-            changeIMG: true,
-            description: "你已經好久沒有來喂我了，哭哭"
-          },
-          () => this.props.sentDescriptionToReduxStore(this.state.description)
+        let state = {
+          changeIMG: true
+        };
+        state.description = `你已經好久沒有來喂我了(´；ω；｀) 快到「每日記錄」新增飲食吧！`;
+        this.setState(state, () =>
+          this.props.sentDescriptionToReduxStore(this.state.description)
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGCarbohydrate;
         this.props.sentLastImgToReduxStore(LastIMG);
       } else if (alhohol.length >= 3) {
-        console.log("換喝醉圖");
-        this.setState(
-          {
-            changeIMG: true,
-            description: "哈囉主人～這週已經飲酒超過 3 次，"
-          },
-          () => this.props.sentDescriptionToReduxStore(this.state.description)
+        let state = {
+          changeIMG: true
+        };
+        state.description = `本週飲酒次數已經 ${alhohol.length} 次囉！根據醫學期刊《The Lancet》研究結果，每週飲酒上限應在每星期 100 克純酒精。長期過度飲酒，除了容易引發心肌梗塞以外的心臟疾病，也容易容易罹癌、導致肝臟疾病喔！`;
+        this.setState(state, () =>
+          this.props.sentDescriptionToReduxStore(this.state.description)
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGAlcohol;
         this.props.sentLastImgToReduxStore(LastIMG);
       } else if (addUPFat > addUPCalorie * 0.35) {
-        console.log("換肥胖圖");
-        this.setState(
-          {
-            changeIMG: true,
-            description: "你也太胖了吧！"
-          },
-          () => this.props.sentDescriptionToReduxStore(this.state.description)
+        let state = {
+          changeIMG: true
+        };
+        state.description = `雖然缺乏油脂會導致「必需脂肪酸」缺乏，，進而影響生理狀態及代謝作用。但根據國健署建議，每天人類脂肪攝取量不應超過每日熱量的 20%-30%，目前本週以攝取 ${addUPFat}g，超出快要 ${Math.ceil(
+          addUPFat / addUPCalorie
+        )} 倍了！要多多注意喔～`;
+        this.setState(state, () =>
+          this.props.sentDescriptionToReduxStore(this.state.description)
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGFat;
         this.props.sentLastImgToReduxStore(LastIMG);
       } else if (addUPProtein > addUPUserWeight) {
-        console.log("換肌肉圖");
-
         let state = {
           changeIMG: true
         };
 
-        state.description = `這週主人攝取的蛋白質已經超過總熱量的 35% 囉！因為 ${VitaminCEZNshouldTake} 蛋白質比較高的食物，要減少攝取喔！`;
+        state.description = `目前攝取的蛋白質已經超過 ${addUPProtein -
+          addUPUserWeight}g 囉！根據國民健康署建議，每天蛋白質建議的攝取量應為體重公斤數的一倍，但這週共攝取 ${addUPProtein}g 的蛋白質！下週要再更注意～否則長期高蛋白攝取將會在體內堆積過多含氮廢物，如氨、尿素及尿酸等，將增加腎臟排除含氮廢物的負擔、引發腎損傷 > <`;
 
         this.setState(state, () =>
           this.props.sentDescriptionToReduxStore(this.state.description)
@@ -267,23 +264,24 @@ class MatchStatus extends React.Component {
         LastIMG = this.props.userInfo.MatchCharacterIMGProtein;
         this.props.sentLastImgToReduxStore(LastIMG);
       } else if (VitaminCEZNshouldTake < addUPAllVitaminCEandZn) {
-        console.log("換眼鏡圖");
-        this.setState(
-          {
-            changeIMG: true,
-            description: "再不攝取維他命，你就要戴眼鏡，單壓乘一"
-          },
-          () => this.props.sentDescriptionToReduxStore(this.state.description)
+        let state = {
+          changeIMG: true
+        };
+        state.description = `嗚嗚～看來本週的維生素 C、維生素 E、鋅攝取不足喔！這些都是保護眼睛的好營養素～建議每天攝取維生素 C 100mg、維生素 E 13mg、鋅 15mg 喔！本週還差約 ${Math.abs(
+          Math.ceil(VitaminCEZNshouldTake - addUPAllVitaminCEandZn)
+        )}mg，加油加油！`;
+        this.setState(state, () =>
+          this.props.sentDescriptionToReduxStore(this.state.description)
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGVitamin;
         this.props.sentLastImgToReduxStore(LastIMG);
       } else {
-        this.setState(
-          {
-            changeIMG: true,
-            description: "歡迎回來～偶ㄉ主人"
-          },
-          () => this.props.sentDescriptionToReduxStore(this.state.description)
+        let state = {
+          changeIMG: true
+        };
+        state.description = `歡迎回來看我～～～今天新增飲食記錄了嗎 ⁎⁍̴̛ᴗ⁍̴̛⁎`;
+        this.setState(state, () =>
+          this.props.sentDescriptionToReduxStore(this.state.description)
         );
         LastIMG = this.props.userInfo.MatchCharacterIMG;
         this.props.sentLastImgToReduxStore(LastIMG);
@@ -306,22 +304,6 @@ class MatchStatus extends React.Component {
               <span>點擊背包！</span>
             </span>
             <span className="divide-line"></span>
-            {/* <span className="match-mood">
-              <span>心情值：</span>
-              <img src={Happy} />
-              <img src={Happy} />
-              <img src={Happy} />
-              <img src={Unhappy} />
-              <img src={Unhappy} />
-            </span>
-            <span className="match-healthy">
-              <span>健康值：</span>
-              <img src={Happy} />
-              <img src={Happy} />
-              <img src={Happy} />
-              <img src={Unhappy} />
-              <img src={Unhappy} />
-            </span> */}
             <span>
               年紀{" "}
               {Math.floor(
@@ -329,8 +311,8 @@ class MatchStatus extends React.Component {
               )}{" "}
               天
             </span>
-
-            <span>想對主人說：{this.props.description}</span>
+            <p> 想對主人說： </p>
+            <span className="weekly-suggestion">{this.props.description}</span>
           </div>
           <div className="backgroud">
             <img src={this.props.LastIMG} className="match-in-background" />

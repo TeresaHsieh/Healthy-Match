@@ -69,3 +69,8 @@
   top: 150px;
   right: 300px;
 }
+
+.weekly-suggestion {
+  font-size: 15px;
+  color: grey;
+}
