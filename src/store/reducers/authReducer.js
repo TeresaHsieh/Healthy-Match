@@ -35,16 +35,23 @@ const authReducer = (state = initState, action) => {
         ...state,
         userInfo: action.UserInfo
       };
-    // case "UPDATE_INFO_TO_FIRESTORE":
-    //   return {
-    //     ...state,
-    //     userInfo: action.UserInfo
-    //   };
 
     case "UPDATE_INFO_TO_FIRESTORE":
       return {
         ...state,
         userInfo: action.wholeState
+      };
+
+    case "SENT_LAST_IMG_TO_REDUX_STORE":
+      return {
+        ...state,
+        LastIMG: action.LastIMG
+      };
+
+    case "SENT_DESCRIPTION_TO_REDUX_STORE":
+      return {
+        ...state,
+        description: action.stateDescription
       };
 
     default:

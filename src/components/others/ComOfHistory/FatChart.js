@@ -138,7 +138,6 @@ class FatChart extends React.Component {
         calorie = result[d].key["修正熱量(kcal)"];
         calorieArray.push(calorie);
       }
-      console.log("超重", this.props.userInfo.Weight);
       let averageArray = [];
       calorieArray.forEach(eachCalorie => {
         averageArray.push(eachCalorie * 0.25 * 0.11); // kcal/g(transfer kcal to g)

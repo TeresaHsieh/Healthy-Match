@@ -760,8 +760,6 @@ class MainForm extends React.Component {
   }
 
   hideSuggestion = e => {
-    //console.log("cool", this.areaOutsideDiv.current.value);
-    console.log("hereee", this.areaOutsideDiv, e.target);
     if (this.areaOutsideDiv.current.contains(e.target)) {
       // Clicked in box
       console.log("Clicked in box");

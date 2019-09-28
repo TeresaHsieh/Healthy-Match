@@ -14,7 +14,8 @@ class SignUp extends React.Component {
       name: "",
       email: "",
       password: "",
-      matchGender: ""
+      matchGender: "",
+      signUpDate: ""
     };
   }
   handleChange = e => {
@@ -24,6 +25,29 @@ class SignUp extends React.Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    // let signUpDay = new Date();
+    // let year = signUpDay.getFullYear();
+    // let month = signUpDay.getMonth() + 1; // if no plus one, the result would be August when expected September
+    // let day = signUpDay.getDate();
+
+    // let yearString = year.toString();
+
+    // let monthString = "";
+    // if (month < 10) {
+    //   monthString = "0" + month.toString();
+    // } else {
+    //   monthString = month.toString();
+    // }
+
+    // let dayString = "";
+    // if (day < 10) {
+    //   dayString = "0" + day.toString();
+    // } else {
+    //   dayString = day.toString();
+    // }
+
+    // let signUpDate = yearString + monthString + dayString; // default : signUpDay
+    // this.setState({ signUpDate: signUpDate });
     this.props.signUp(this.state);
   };
   render() {
