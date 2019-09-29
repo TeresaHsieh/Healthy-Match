@@ -131,3 +131,12 @@
   font-size: 16px;
   letter-spacing: 3px;
 }
+
+/* contribution-info */
+.contributionEachFood {
+  background-color: #f6c372d7;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+}

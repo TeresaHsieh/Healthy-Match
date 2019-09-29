@@ -54,6 +54,12 @@ const authReducer = (state = initState, action) => {
         description: action.stateDescription
       };
 
+    case "GET_CONTRIBUTION_DETAILS":
+      return {
+        ...state,
+        contributionDetails: action.contributionDetail
+      };
+
     default:
       return state;
   }

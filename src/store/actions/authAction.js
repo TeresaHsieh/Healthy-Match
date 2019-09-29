@@ -172,3 +172,26 @@ export const sentDescriptionToReduxStore = stateDescription => {
     };
   };
 };
+
+export const getContributionDetails = (userUID, contributionFoodName) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    let contributionDetail;
+    let contributionDetailInDatabase = firestore
+      .collection("nutrition")
+      .doc(contributionFoodName)
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+          contributionDetail = doc.data();
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .then(() => {
+        dispatch({ type: "GET_CONTRIBUTION_DETAILS", contributionDetail });
+      });
+  };
+};

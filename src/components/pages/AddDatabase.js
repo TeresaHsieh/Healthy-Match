@@ -2,6 +2,8 @@ import React from "react";
 import "../../css/addDatabase.css";
 import { connect } from "react-redux";
 import { sentDataToNutritionDatbase } from "../../store/actions/dailyAction";
+import { personalNutritionContribution } from "../../store/actions/dailyAction";
+
 import { Route, NavLink, Redirect } from "react-router-dom";
 
 // App Components
@@ -28,6 +30,7 @@ class CustomForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.sentDataToNutritionDatbase(this.state);
+    this.props.personalNutritionContribution(this.props.auth.uid, this.state);
   };
   render() {
     const { auth } = this.props;
@@ -171,6 +174,10 @@ const mapDispatchToProps = dispatch => {
   return {
     sentDataToNutritionDatbase: newNutrition => {
       dispatch(sentDataToNutritionDatbase(newNutrition));
+    },
+
+    personalNutritionContribution: (useruid, newNutrition) => {
+      dispatch(personalNutritionContribution(useruid, newNutrition));
     }
   };
 };

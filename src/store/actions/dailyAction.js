@@ -588,3 +588,26 @@ export const removeUsingFilterFunction = () => {
     type: "REMOVE_USING_FILTER_TIME_FUNCTION"
   };
 };
+
+export const personalNutritionContribution = (useruid, newNutrition) => {
+  console.log(useruid, newNutrition);
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    let memberFile = firestore.collection("member").doc(useruid);
+
+    if (memberFile) {
+      memberFile.get().then(function(doc) {
+        if (doc.data().foodContribute) {
+          let foodItems = doc.data().foodContribute;
+          foodItems.push(newNutrition.食品名稱);
+          memberFile.set({ foodContribute: foodItems }, { merge: true });
+        } else {
+          let foodItems = [];
+          foodItems.push(newNutrition.食品名稱);
+          memberFile.set({ foodContribute: foodItems });
+        }
+      });
+    }
+  };
+};

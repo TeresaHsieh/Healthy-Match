@@ -97,7 +97,39 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 120px;
+  z-index: 50;
+}
+
+.mobile-main-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 200px;
+  position: fixed;
+  z-index: 60;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: #f7ed97cc;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.closebtn {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mobile-main-nav a {
+  margin: 10px 0px 0px 0px;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 @media (max-width: 1270px) {

@@ -14,10 +14,13 @@ const SideDrawer = props => {
   return (
     <header className="mobile-header">
       <div className="mobile-main-nav">
+        <a href="javascript:void(0)" className="closebtn" onClick="closeNav()">
+          ×
+        </a>
         <NavLink to="/daily-record"> 每日記錄 </NavLink>
         <NavLink to="/history"> 營養歷史 </NavLink>
+        <NavLink to="/add-data"> 添加營養 </NavLink>
         <NavLink to="/match-status"> 麻吉樂園 </NavLink>
-        <NavLink to="/news"> 健康新知 </NavLink>
         {links}
       </div>
     </header>

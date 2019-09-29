@@ -38,9 +38,10 @@
 .meals-nav {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .meals-nav a {
@@ -56,6 +57,116 @@
 .meal-navbar span {
   margin-right: 100px;
 }
+
+/* nutrition charts */
+.nutritionCountTips {
+  color: grey;
+  font-size: 10px;
+  cursor: pointer;
+  border-bottom: 1px grey solid;
+  letter-spacing: 1px;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+
+.informationIcon {
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+
+.closeInfoDiv {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  background: #f5efbc96;
+}
+
+.nutritionInfo {
+  position: relative;
+}
+
+.nutritionInfoDetails {
+  background-color: white;
+  position: fixed;
+  width: 900px;
+  height: 300px;
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: calc(50vh - 300px / 2);
+  margin-left: calc(50vw - 900px / 2);
+}
+.teaching {
+  margin-bottom: 30px;
+}
+
+.halffist,
+.leftwholepalm,
+.halfpalm,
+.wholepalm,
+.onefinger {
+  width: 28px;
+  height: 28px;
+}
+
+.allInformation {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.categoryTitle {
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  width: 20%;
+}
+
+.categoryServe {
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  font-size: 20px;
+  width: 50%;
+}
+
+.categoryTitle span,
+.categoryServe span,
+.categoryServeIMG div {
+  margin: 3px auto 3px 0px;
+}
+
+.categoryServeIMG {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 60%;
+}
+
+.categoryTitle {
+  color: grey;
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.categoryServe {
+  color: grey;
+  margin-right: 15px;
+  font-size: 18px;
+} */
 
 .food-icon {
   width: 15px;
@@ -149,8 +260,6 @@
 /* search suggestion*/
 .searchSuggestion ul {
   position: absolute;
-  /* left: 10;
-  top: -2; */
   margin-left: 25px;
   font-size: 12px;
   height: 200px;
@@ -167,14 +276,6 @@
   margin: 5px auto;
   text-indent: 10px;
   cursor: pointer;
-}
-
-.turnOffDiv {
-  /* width: 3000px;
-  background-color: aquamarine;
-  height: 3000px;
-  z-index: -1;
-  position: absolute; */
 }
 
 .food-name {
@@ -202,6 +303,16 @@
 
   .food-serve {
     width: 250px;
+  }
+  .nutritionInfoDetails {
+    width: 700px;
+    margin-left: calc(50vw - 700px / 2);
+  }
+  .categoryTitle {
+    width: 30%;
+  }
+  .categoryServe {
+    width: 40%;
   }
 }
 
@@ -256,6 +367,34 @@
     height: 200px;
     margin-right: -100px;
   }
+  .nutritionInfoDetails {
+    height: 300px;
+    width: 500px;
+    margin-top: calc(50vh - 300px / 2);
+    margin-left: calc(50vw - 500px / 2);
+  }
+
+  .categoryTitle {
+    font-size: 15px;
+    width: 15%;
+  }
+
+  .categoryServe {
+    font-size: 15px;
+    width: 30%;
+  }
+  .halffist,
+  .leftwholepalm,
+  .halfpalm,
+  .wholepalm,
+  .onefinger {
+    width: 17px;
+    height: 17px;
+  }
+
+  .categoryServeIMG div {
+    margin: 2px auto 2px 0px;
+  }
 }
 
 @media (max-width: 730px) {
@@ -275,12 +414,54 @@
     margin-right: 0;
   }
 }
+@media (max-width: 620px) {
+  .teaching {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .nutritionInfoDetails {
+    height: 200px;
+    width: 250px;
+    margin-top: calc(50vh - 200px / 2);
+    margin-left: calc(50vw - 275px / 2);
+  }
+
+  .categoryTitle {
+    font-size: 12px;
+    width: 30%;
+  }
+
+  .categoryServe {
+    font-size: 12px;
+    width: 60%;
+  }
+  .halffist,
+  .leftwholepalm,
+  .halfpalm,
+  .wholepalm,
+  .onefinger {
+    display: none;
+  }
+}
 @media (max-width: 600px) {
   .chef-match {
     display: none;
   }
   .searchSuggestion ul {
     width: 200px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nutritionCountTips {
+    display: none;
+  }
+
+  .informationIcon {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 7px;
   }
 }
 

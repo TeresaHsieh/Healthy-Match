@@ -6,7 +6,7 @@ import ChefMatch from "../../imgs/chef-match.png";
 import Edit from "../../imgs/edit.png";
 import BasicInfo from "../../components/others/ComOfInfo/BasicInfo";
 import AuthInfo from "../../components/others/ComOfInfo/AuthInfo";
-import MatchInfo from "../../components/others/ComOfInfo/MatchInfo";
+import ContributionInfo from "../others/ComOfInfo/ContributionInfo";
 import { checkUserInfo } from "../../store/actions/authAction";
 
 // App Components
@@ -39,7 +39,8 @@ class Info extends React.Component {
             <AuthInfo />
           </div>
           <div className="more-info">
-            <BasicInfo />
+            {/* <BasicInfo /> */}
+            <ContributionInfo />
           </div>
         </div>
       </div>
