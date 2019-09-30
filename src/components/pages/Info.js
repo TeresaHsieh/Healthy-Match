@@ -47,7 +47,7 @@ class Info extends React.Component {
 
   render() {
     const { auth } = this.props;
-    // if (!auth.uid) return <Redirect to="./member" />;
+    if (!auth.uid) return <Redirect to="./member" />;
 
     const openFirstSignUpBox = this.state.openFirstSignUpBox;
 
