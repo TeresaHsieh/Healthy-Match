@@ -221,7 +221,7 @@ class MatchStatus extends React.Component {
 
       let LastIMG;
       // no records last 4 days
-      if (pass7daysEating >= 4) {
+      if (pass7daysEating < 5) {
         let state = {
           changeIMG: true
         };

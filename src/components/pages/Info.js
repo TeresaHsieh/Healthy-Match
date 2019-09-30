@@ -26,7 +26,6 @@ class Info extends React.Component {
 
   componentDidMount = () => {
     // this.props.checkUserInfo(this.props.auth.uid);
-    console.log(this.props);
     if (
       // !this.props.userInfo.Name &&
       !this.props.userInfo.Age &&
@@ -67,7 +66,11 @@ class Info extends React.Component {
             ""
           )}
           <div className="simple-info">
-            <AuthInfo />
+            {/* <h1>
+              HELLO :)
+              <br /> {this.props.userInfo.Name}
+            </h1> */}
+            {/* <AuthInfo /> */}
           </div>
           <div className="more-info">
             <BasicInfo />

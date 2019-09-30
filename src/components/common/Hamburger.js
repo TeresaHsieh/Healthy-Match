@@ -55,6 +55,8 @@ class Hamburger extends React.Component {
               <NavLink to="/history"> 營養歷史 </NavLink>
               <NavLink to="/add-data"> 添加營養 </NavLink>
               <NavLink to="/match-status"> 麻吉樂園 </NavLink>
+              <NavLink to="/info"> 會員資料 </NavLink>
+
               {links}
             </div>
           </header>

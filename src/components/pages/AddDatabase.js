@@ -40,7 +40,7 @@ class CustomForm extends React.Component {
       function() {
         this.setState({ openContributionSuccessfulBox: false });
       }.bind(this),
-      1000
+      2000
     );
   };
   render() {

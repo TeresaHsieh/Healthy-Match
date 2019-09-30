@@ -739,7 +739,7 @@ class MainForm extends React.Component {
       function() {
         this.setState({ openRecordSuccessfulBox: false });
       }.bind(this),
-      1000
+      2000
     );
   };
 

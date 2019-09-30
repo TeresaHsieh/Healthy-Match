@@ -145,6 +145,16 @@ class BasicInfo extends React.Component {
               disabled={this.state.disabled ? "disabled" : ""}
             />
           </div>
+          <div className="userEmail">
+            <div>用戶信箱</div>
+            <input
+              name="Email"
+              //placeholder={this.props.userInfo.Name}
+              value={this.props.auth.email}
+              onChange={this.updateInfo}
+              disabled="disabled"
+            />
+          </div>
           <div className="userAge">
             <div>用戶年齡</div>
             <input
@@ -223,6 +233,16 @@ class BasicInfo extends React.Component {
               value={this.state.Name}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userEmail">
+            <div>用戶信箱</div>
+            <input
+              name="Email"
+              //placeholder={this.props.userInfo.Name}
+              value={this.props.auth.email}
+              onChange={this.updateInfo}
+              disabled="disabled"
             />
           </div>
           <div className="userAge">

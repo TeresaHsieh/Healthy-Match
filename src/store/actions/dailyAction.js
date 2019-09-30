@@ -548,7 +548,7 @@ export const changePropsEndDate = endDatesValue => {
 export const sentDataToNutritionDatbase = newNutrition => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
-
+    delete newNutrition.openContributionSuccessfulBox;
     firestore
       .collection("nutrition")
       .doc(newNutrition.食品名稱)

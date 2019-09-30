@@ -62,6 +62,7 @@ class ContributionInfo extends React.Component {
 
     if (contributionDetails && this.state.openDetails == true) {
       delete contributionDetails["搜尋關鍵字"];
+      delete contributionDetails["食品名稱"];
       let remainContributionDetails = Object.keys(contributionDetails).map(
         // must use arrow function for the close button function using "this"
         key => {

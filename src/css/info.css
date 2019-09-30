@@ -5,7 +5,7 @@
   flex-direction: row;
   width: 80%;
   justify-content: center;
-  margin: 80px auto;
+  margin: 60px auto;
   border-radius: 10px;
 }
 
@@ -55,6 +55,14 @@
   height: 600px;
 }
 
+.simple-info h1 {
+  color: grey;
+  font-size: 30px;
+  margin-top: 60px;
+  font-weight: normal;
+  margin-right: 250px;
+}
+
 .simple-info,
 .more-info {
   display: flex;
@@ -63,9 +71,10 @@
   align-items: center;
 }
 
-.more-info-basic,
-.more-info-match {
+.more-info-match,
+.more-info-basic {
   width: 100%;
+  margin: 10px auto 10px auto;
 }
 
 .titleTitle {
@@ -95,11 +104,13 @@
 
 .more-info {
   width: 50%;
+  /* margin: 60px auto auto auto; */
 }
 
 .userID,
 .userPassword,
 .userName,
+.userEmail,
 .userAge,
 .userSexual,
 .userHeight,
@@ -117,6 +128,7 @@
 }
 
 .userName,
+.userEmail,
 .userAge,
 .userSexual,
 .userHeight,
@@ -129,6 +141,7 @@
 .userID div:first-of-type,
 .userPassword div:first-of-type,
 .userName div:first-of-type,
+.userEmail div:first-of-type,
 .userAge div:first-of-type,
 .userSexual div:first-of-type,
 .userHeight div:first-of-type,
@@ -148,6 +161,7 @@
 }
 
 .userName > input,
+.userEmail > input,
 .userAge > input,
 .userSexual > input,
 .userHeight > input,
@@ -157,6 +171,7 @@
   color: grey;
   font-size: 16px;
   letter-spacing: 3px;
+  width: 35%;
 }
 
 /* contribution-info */
@@ -172,6 +187,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  border-radius: 5px;
+  background-color: #faf5c9;
+  position: relative;
+  width: 280px;
+}
+
+.contributionEachNutritionName p,
+.contributionEachNutritionNumber p {
+  color: black;
+  font-size: 18px;
+  text-align: left;
+}
+
+.detailsCloseButton {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 /* signup redirect box*/
@@ -232,4 +265,134 @@
 .love-match {
   width: 200px;
   margin-top: 10px;
+}
+
+@media (max-width: 1610px) {
+  .simple-info {
+    width: 20%;
+  }
+
+  .userID,
+  .userPassword,
+  .userName,
+  .userEmail,
+  .userAge,
+  .userSexual,
+  .userHeight,
+  .userWeight,
+  .userMatchName,
+  .userMatchPic {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1285px) {
+  .simple-info {
+    display: none;
+  }
+  .more-info {
+    width: 50%;
+  }
+  .userName > input,
+  .userEmail > input,
+  .userAge > input,
+  .userSexual > input,
+  .userHeight > input,
+  .userWeight > input,
+  .userMatchName > input,
+  .userMatchPic > input {
+    width: 50%;
+  }
+  .titleTitle {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .simple-info {
+    display: none;
+  }
+  .more-info {
+    width: 70%;
+  }
+}
+
+@media (max-width: 720px) {
+  .main-info {
+    width: 90%;
+  }
+}
+
+@media (max-width: 585px) {
+  .main-info {
+    width: 100%;
+  }
+  .userID,
+  .userPassword,
+  .userName,
+  .userEmail,
+  .userAge,
+  .userSexual,
+  .userHeight,
+  .userWeight,
+  .userMatchName,
+  .userMatchPic {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .userID div:first-of-type,
+  .userPassword div:first-of-type,
+  .userName div:first-of-type,
+  .userEmail div:first-of-type,
+  .userAge div:first-of-type,
+  .userSexual div:first-of-type,
+  .userHeight div:first-of-type,
+  .userWeight div:first-of-type,
+  .userMatchName div:first-of-type,
+  .userMatchPic div:first-of-type,
+  .titleTitle {
+    margin: 10px auto 10px 0px;
+  }
+  .contributionEachNutritionName p {
+    margin-left: 20px;
+  }
+  .contributionEachNutritionNumber p {
+    margin-right: 20px;
+  }
+  .userName > input,
+  .userEmail > input,
+  .userAge > input,
+  .userSexual > input,
+  .userHeight > input,
+  .userWeight > input,
+  .userMatchName > input,
+  .userMatchPic > input {
+    width: 100%;
+  }
+  .userName,
+  .userEmail,
+  .userAge,
+  .userSexual,
+  .userHeight,
+  .userWeight,
+  .userMatchName,
+  .userMatchPic {
+    margin: 10px 10px 10px 0px;
+  }
+}
+
+@media (max-width: 460px) {
+  .titlewords,
+  .userID div:first-of-type,
+  .userPassword div:first-of-type,
+  .userName div:first-of-type,
+  .userEmail div:first-of-type,
+  .userAge div:first-of-type,
+  .userSexual div:first-of-type,
+  .userHeight div:first-of-type,
+  .userWeight div:first-of-type,
+  .userMatchName div:first-of-type,
+  .userMatchPic div:first-of-type {
+    font-size: 15px;
+  }
 }
