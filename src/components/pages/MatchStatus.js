@@ -106,7 +106,10 @@ class MatchStatus extends React.Component {
       let endDate = yearString + monthString + dayString; // default : today
 
       let userUID = this.props.auth.uid;
-      this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
+      console.log("慘");
+      if (userUID) {
+        this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
+      }
       // this.setState({ imgSrc: this.props.userInfo.MatchCharacterIMG });
     }
   };
@@ -291,35 +294,87 @@ class MatchStatus extends React.Component {
 
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to="./member" />;
+    if (!auth.uid) {
+      return <Redirect to="./member" />;
+    }
 
-    return (
-      <div>
-        <Header />
-        <div className="matchstatus-main">
-          <div className="match-status">
-            <span className="match-name"> {this.props.userInfo.MatchName}</span>
-            <span className="match-backpack">
-              <img src={Backpack} />
-              <span>點擊背包！</span>
-            </span>
-            <span className="divide-line"></span>
-            <span>
-              年紀{" "}
-              {Math.floor(
-                Math.abs(new Date() - this.props.auth.createdAt) / 1000 / 86400
-              )}{" "}
-              天
-            </span>
-            <p> 想對主人說： </p>
-            <span className="weekly-suggestion">{this.props.description}</span>
-          </div>
-          <div className="backgroud">
-            <img src={this.props.LastIMG} className="match-in-background" />
+    if (this.props.LastIMG) {
+      return (
+        <div>
+          <Header />
+          <div className="matchstatus-main">
+            <div className="match-status">
+              <span className="match-name">
+                {" "}
+                {this.props.userInfo.MatchName}
+              </span>
+              {/* <span className="match-backpack">
+                <img src={Backpack} />
+                <span>點擊背包！</span>
+              </span> */}
+              <span className="divide-line"></span>
+              <span>
+                年紀：{" "}
+                {Math.floor(
+                  Math.abs(new Date() - this.props.auth.createdAt) /
+                    1000 /
+                    86400
+                )}{" "}
+                天
+              </span>
+              <p> 想對主人說： </p>
+              <span className="weekly-suggestion">
+                {this.props.description}
+              </span>
+            </div>
+            <div className="backgroud">
+              <img src={this.props.LastIMG} className="match-in-background" />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <Header />
+          <div className="matchstatus-main">
+            <div className="match-status">
+              <span className="match-name">
+                {" "}
+                {this.props.userInfo.MatchName}
+              </span>
+              {/* <span className="match-backpack">
+              <img src={Backpack} />
+              <span>點擊背包！</span>
+            </span> */}
+              <span className="divide-line"></span>
+              <span>
+                年紀：{" "}
+                {Math.floor(
+                  Math.abs(new Date() - this.props.auth.createdAt) /
+                    1000 /
+                    86400
+                )}{" "}
+                天
+              </span>
+              <p>
+                {" "}
+                想對主人說：
+                <span className="weekly-suggestion">
+                  這週還沒有飲食紀錄喔～快去新增今天吃了什麼吧！
+                </span>
+              </p>
+            </div>
+            <div className="backgroud">
+              <img
+                src={this.props.userInfo.MatchCharacterIMG}
+                className="match-in-background"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

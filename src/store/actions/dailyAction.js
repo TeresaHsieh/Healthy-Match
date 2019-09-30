@@ -605,7 +605,7 @@ export const personalNutritionContribution = (useruid, newNutrition) => {
         } else {
           let foodItems = [];
           foodItems.push(newNutrition.食品名稱);
-          memberFile.set({ foodContribute: foodItems });
+          memberFile.set({ foodContribute: foodItems }, { merge: true });
         }
       });
     }

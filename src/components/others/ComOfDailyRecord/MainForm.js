@@ -523,13 +523,16 @@ import Delete from "../../../imgs/delete.png";
 import Add from "../../../imgs/add.png";
 import Food from "../../../imgs/salad.png";
 
+import EatingMatch from "../../../imgs/eating-match.png";
+
 class MainForm extends React.Component {
   constructor() {
     super();
     this.state = {
       addInputComponent: 0,
       showSuggestion: false,
-      openDropdownlist: false
+      openDropdownlist: false,
+      openRecordSuccessfulBox: false
     };
     this.nameInput = React.createRef();
     this.serveInput = React.createRef();
@@ -722,7 +725,8 @@ class MainForm extends React.Component {
     // after sending data, empty all the input and cut down the append inputs
 
     this.setState({
-      addInputComponent: 0
+      addInputComponent: 0,
+      openRecordSuccessfulBox: true
     });
     let emptyValue = [];
     this.props.clearValues(emptyValue);
@@ -731,6 +735,12 @@ class MainForm extends React.Component {
     // () => {
 
     // };
+    setTimeout(
+      function() {
+        this.setState({ openRecordSuccessfulBox: false });
+      }.bind(this),
+      1000
+    );
   };
 
   searchKeywords = e => {
@@ -825,6 +835,8 @@ class MainForm extends React.Component {
         // </ClickAwayListener>
       );
     }
+
+    const openRecordSuccessfulBox = this.state.openRecordSuccessfulBox;
     return (
       <div className="main-form">
         <form className="main-input" id="0">
@@ -878,6 +890,16 @@ class MainForm extends React.Component {
         <button className="add-record" onClick={this.sendDataToFirebase}>
           新增紀錄
         </button>
+        {openRecordSuccessfulBox ? (
+          <div className="backgroundSentRecordSuccess">
+            <div className="sentRecordSuccessDetail">
+              <img src={`/${EatingMatch}`} className="eating-match" />
+              <p>飲食紀錄已經成功送出囉！</p>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

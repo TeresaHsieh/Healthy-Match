@@ -17,7 +17,6 @@ class BasicInfo extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log("did mount", this.props.userInfo);
     if (this.props.userInfo.Name) {
       this.setState(this.props.userInfo);
     }
@@ -33,7 +32,7 @@ class BasicInfo extends React.Component {
       !prevState.Weight
     ) {
       console.log("set", this.props.userInfo);
-      this.setState(this.props.userInfo);
+      // this.setState(this.props.userInfo);
     }
   };
 
@@ -89,15 +88,6 @@ class BasicInfo extends React.Component {
   };
 
   render() {
-    if (
-      !this.state.Name &&
-      !this.state.Age &&
-      !this.state.Sexual &&
-      !this.state.Height &&
-      !this.state.Weight
-    ) {
-      return <div> Loading (｡･ω･｡)ﾉ </div>;
-    }
     const disabled = this.state.disabled;
     let editButtons;
 
@@ -128,85 +118,176 @@ class BasicInfo extends React.Component {
       );
     }
 
-    return (
-      <div className="more-info-basic">
-        <div className="titleTitle">
-          <div className="titlewords">用戶資料</div>
-          <div className="divideLine"></div>
-          {editButtons}
+    // 初次註冊填寫紀錄
+    if (
+      this.props.userInfo &&
+      !this.state.Name &&
+      !this.state.Age &&
+      !this.state.Sexual &&
+      !this.state.Height &&
+      !this.state.Weight
+    ) {
+      return (
+        // <div> Loading (｡･ω･｡)ﾉ </div>;
+        <div className="more-info-basic">
+          <div className="titleTitle">
+            <div className="titlewords">用戶資料</div>
+            <div className="divideLine"></div>
+            {editButtons}
+          </div>
+          <div className="userName">
+            <div>用戶姓名</div>
+            <input
+              name="Name"
+              //placeholder={this.props.userInfo.Name}
+              value={this.state.Name}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userAge">
+            <div>用戶年齡</div>
+            <input
+              name="Age"
+              //placeholder={this.props.userInfo.Age}
+              value={this.state.Age}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+            歲
+          </div>
+          <div className="userSexual">
+            <div>用戶性別</div>
+            <input
+              name="Sexual"
+              //placeholder={this.props.userInfo.Sexual}
+              value={this.state.Sexual}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userHeight">
+            <div>用戶身高</div>
+            <input
+              name="Height"
+              //placeholder={this.props.userInfo.Height}
+              value={this.state.Height}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+            公分
+          </div>
+          <div className="userWeight">
+            <div>用戶體重</div>
+            <input
+              name="Weight"
+              // placeholder={this.props.userInfo.Weight}
+              value={this.state.Weight}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+            公斤
+          </div>
+          <div className="userMatchName">
+            <div>麻吉名字</div>
+            <input
+              name="MatchName"
+              // placeholder={this.props.userInfo.MatchName}
+              value={this.state.MatchName}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userMatchPic">
+            <div>麻吉照片</div>
+            <img
+              src={this.props.userInfo.MatchCharacterIMG}
+              className="ChefMatch2"
+            />
+          </div>
         </div>
-        <div className="userName">
-          <div>用戶姓名</div>
-          <input
-            name="Name"
-            //placeholder={this.props.userInfo.Name}
-            value={this.state.Name}
-            onChange={this.updateInfo}
-            disabled={this.state.disabled ? "disabled" : ""}
-          />
+      );
+    } else {
+      return (
+        <div className="more-info-basic">
+          <div className="titleTitle">
+            <div className="titlewords">用戶資料</div>
+            <div className="divideLine"></div>
+            {editButtons}
+          </div>
+          <div className="userName">
+            <div>用戶姓名</div>
+            <input
+              name="Name"
+              //placeholder={this.props.userInfo.Name}
+              value={this.state.Name}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userAge">
+            <div>用戶年齡</div>
+            <input
+              name="Age"
+              //placeholder={this.props.userInfo.Age}
+              value={this.state.Age}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+            歲
+          </div>
+          <div className="userSexual">
+            <div>用戶性別</div>
+            <input
+              name="Sexual"
+              //placeholder={this.props.userInfo.Sexual}
+              value={this.state.Sexual}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userHeight">
+            <div>用戶身高</div>
+            <input
+              name="Height"
+              //placeholder={this.props.userInfo.Height}
+              value={this.state.Height}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+            公分
+          </div>
+          <div className="userWeight">
+            <div>用戶體重</div>
+            <input
+              name="Weight"
+              // placeholder={this.props.userInfo.Weight}
+              value={this.state.Weight}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+            公斤
+          </div>
+          <div className="userMatchName">
+            <div>麻吉名字</div>
+            <input
+              name="MatchName"
+              // placeholder={this.props.userInfo.MatchName}
+              value={this.state.MatchName}
+              onChange={this.updateInfo}
+              disabled={this.state.disabled ? "disabled" : ""}
+            />
+          </div>
+          <div className="userMatchPic">
+            <div>麻吉照片</div>
+            <img
+              src={this.props.userInfo.MatchCharacterIMG}
+              className="ChefMatch2"
+            />
+          </div>
         </div>
-        <div className="userAge">
-          <div>用戶年齡</div>
-          <input
-            name="Age"
-            //placeholder={this.props.userInfo.Age}
-            value={this.state.Age}
-            onChange={this.updateInfo}
-            disabled={this.state.disabled ? "disabled" : ""}
-          />
-          歲
-        </div>
-        <div className="userSexual">
-          <div>用戶性別</div>
-          <input
-            name="Sexual"
-            //placeholder={this.props.userInfo.Sexual}
-            value={this.state.Sexual}
-            onChange={this.updateInfo}
-            disabled={this.state.disabled ? "disabled" : ""}
-          />
-        </div>
-        <div className="userHeight">
-          <div>用戶身高</div>
-          <input
-            name="Height"
-            //placeholder={this.props.userInfo.Height}
-            value={this.state.Height}
-            onChange={this.updateInfo}
-            disabled={this.state.disabled ? "disabled" : ""}
-          />
-          公分
-        </div>
-        <div className="userWeight">
-          <div>用戶體重</div>
-          <input
-            name="Weight"
-            // placeholder={this.props.userInfo.Weight}
-            value={this.state.Weight}
-            onChange={this.updateInfo}
-            disabled={this.state.disabled ? "disabled" : ""}
-          />
-          公斤
-        </div>
-        <div className="userMatchName">
-          <div>麻吉名字</div>
-          <input
-            name="MatchName"
-            // placeholder={this.props.userInfo.MatchName}
-            value={this.state.MatchName}
-            onChange={this.updateInfo}
-            disabled={this.state.disabled ? "disabled" : ""}
-          />
-        </div>
-        <div className="userMatchPic">
-          <div>麻吉照片</div>
-          <img
-            src={this.props.userInfo.MatchCharacterIMG}
-            className="ChefMatch2"
-          />
-        </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

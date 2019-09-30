@@ -29,10 +29,10 @@ class AuthInfo extends React.Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     console.log("成功吧！", this.props.userInfo);
-    // if (!prevState.Photo) {
-    //   console.log("set", this.props.userInfo);
-    //   this.setState(this.props.userInfo);
-    // }
+    if (!prevState.Photo) {
+      console.log("set", this.props.userInfo);
+      this.setState(this.props.userInfo);
+    }
   };
 
   handleSelectPic = e => {
@@ -77,7 +77,7 @@ class AuthInfo extends React.Component {
     //   return <div> Loading (｡･ω･｡)ﾉ </div>;
     // }
     return (
-      <div>
+      <div className="userPhotoAndID">
         <div className="userPic">
           <img
             src={this.state.Photo}
@@ -86,10 +86,18 @@ class AuthInfo extends React.Component {
             height="50px"
           />
         </div>
-        <input type="file" onChange={this.handleSelectPic} />
+
+        <label className="uploadPicture">
+          <input
+            type="file"
+            onChange={this.handleSelectPic}
+            // style="display:none;"
+          />
+        </label>
+
+        {/* <input type="file" onChange={this.handleSelectPic} /> */}
         <button onClick={this.handleUpload}>上傳個人照片</button>
         <div className="userID">
-          {/* <div>用戶帳號</div> */}
           <input name="ID" value={this.props.auth.email} />
         </div>
       </div>

@@ -55,75 +55,113 @@ class SignUp extends React.Component {
     //if (auth.uid) return <Redirect to="./" />;
 
     return (
-      <form className="sign-up">
-        <div className="sign-up-user-name">
-          <span>姓名：</span>
-          <input
-            placeholder="輸入姓名"
-            id="name"
-            onChange={this.handleChange}
-          ></input>
-        </div>
-        <div className="sign-up-user-email">
-          <span>信箱：</span>
-          <input
-            placeholder="輸入信箱"
-            type="email"
-            id="email"
-            onChange={this.handleChange}
-          ></input>
-        </div>
-        {/* <div className="sign-up-user-sexual">
-          <span>性別：</span>
-          <input type="radio" name="gender" value="male" />
-          男生
-          <input type="radio" name="gender" value="female" />
-          女生
-        </div>
-        <div className="sign-up-user-tall">
-          <span>身高：</span>
-          <input
-            placeholder="單位：公分"
-            id="email"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="sign-up-user-weight">
-          <span>體重：</span>
-          <input
-            placeholder="單位：公斤"
-            id="email"
-            onChange={this.handleChange}
-          />
-        </div> */}
-        <div className="sign-up-user-password">
-          <span>密碼：</span>
-          <input
-            placeholder="輸入密碼"
-            type="password"
-            id="password"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="sign-up-user-checked-password">
-          <span>確認密碼：</span>
-          <input
-            placeholder="確認密碼"
-            type="password"
-            id="passwordCheck"
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="sign-up-matchSelect">
-          <div>
-            <p className="select-title">挑選麻吉：</p>
+      // <form className="sign-up">
+      //   <div className="sign-up-user-name">
+      //     <span>姓名：</span>
+      //     <input
+      //       placeholder="輸入姓名"
+      //       id="name"
+      //       onChange={this.handleChange}
+      //     ></input>
+      //   </div>
+      //   <div className="sign-up-user-email">
+      //     <span>信箱：</span>
+      //     <input
+      //       placeholder="輸入信箱"
+      //       type="email"
+      //       id="email"
+      //       onChange={this.handleChange}
+      //     ></input>
+      //   </div>
+      //   <div className="sign-up-user-password">
+      //     <span>密碼：</span>
+      //     <input
+      //       placeholder="輸入密碼"
+      //       type="password"
+      //       id="password"
+      //       onChange={this.handleChange}
+      //     />
+      //   </div>
+      //   <div className="sign-up-user-checked-password">
+      //     <span>確認密碼：</span>
+      //     <input
+      //       placeholder="確認密碼"
+      //       type="password"
+      //       id="passwordCheck"
+      //       onChange={this.handleChange}
+      //     />
+      //   </div>
+      //   <div className="sign-up-matchSelect">
+      //     <div>
+      //       <p className="select-title">挑選麻吉：</p>
 
+      //       <div className="boymatch">
+      //         <input
+      //           type="radio"
+      //           id="matchGender"
+      //           value="boyMatch"
+      //           onChange={this.handleChange}
+      //         />
+      //         <span>活潑麻糬</span>
+      //         <img src={`/${boyMatch}`} className="boyMatch" />
+      //       </div>
+      //       <div className="girlmatch">
+      //         <input
+      //           type="radio"
+      //           id="matchGender"
+      //           value="girlMatch"
+      //           onChange={this.handleChange}
+      //         />
+      //         <span>氣質麻糬</span>
+      //         <img src={`/${girlMatch}`} className="girlMatch" />
+      //       </div>
+      //     </div>
+      //   </div>
+      //   <button className="register" onClick={this.handleSubmit}>
+      //     <NavLink to="/info">確認註冊！</NavLink>
+      //   </button>
+      // </form>
+      <div className="sign-up">
+        <form>
+          <div className="sign-up-item-name">
+            <div>姓名：</div>
+            <div>信箱：</div>
+            <div>密碼：</div>
+            <div>確認密碼：</div>
+            <div>挑選麻吉：</div>
+          </div>
+          <div className="sign-up-item-value">
+            <input
+              placeholder="輸入姓名"
+              id="name"
+              onChange={this.handleChange}
+            ></input>
+            <input
+              placeholder="輸入信箱"
+              type="email"
+              id="email"
+              onChange={this.handleChange}
+            ></input>
+            <input
+              placeholder="輸入密碼"
+              type="password"
+              id="password"
+              onChange={this.handleChange}
+            />
+            <input
+              placeholder="確認密碼"
+              type="password"
+              id="passwordCheck"
+              onChange={this.handleChange}
+            />
+            <p className="mobileHint">請選擇一隻麻吉</p>
             <div className="boymatch">
               <input
                 type="radio"
                 id="matchGender"
                 value="boyMatch"
                 onChange={this.handleChange}
+                className="boymatchInput"
               />
               <span>活潑麻糬</span>
               <img src={`/${boyMatch}`} className="boyMatch" />
@@ -134,16 +172,17 @@ class SignUp extends React.Component {
                 id="matchGender"
                 value="girlMatch"
                 onChange={this.handleChange}
+                className="girlmatchInput"
               />
               <span>氣質麻糬</span>
               <img src={`/${girlMatch}`} className="girlMatch" />
             </div>
           </div>
-        </div>
+        </form>
         <button className="register" onClick={this.handleSubmit}>
-          <NavLink to="/daily-record">確認註冊！</NavLink>
+          <NavLink to="/info">確認註冊！</NavLink>
         </button>
-      </form>
+      </div>
     );
   }
 }

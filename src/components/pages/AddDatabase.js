@@ -5,6 +5,7 @@ import { sentDataToNutritionDatbase } from "../../store/actions/dailyAction";
 import { personalNutritionContribution } from "../../store/actions/dailyAction";
 
 import { Route, NavLink, Redirect } from "react-router-dom";
+import ListMatch from "../../imgs/list-match.png";
 
 // App Components
 import Header from "../common/Header";
@@ -12,7 +13,7 @@ import Header from "../common/Header";
 class CustomForm extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = { openContributionSuccessfulBox: false };
   }
 
   handleChange = e => {
@@ -31,10 +32,23 @@ class CustomForm extends React.Component {
     e.preventDefault();
     this.props.sentDataToNutritionDatbase(this.state);
     this.props.personalNutritionContribution(this.props.auth.uid, this.state);
+
+    this.setState({
+      openContributionSuccessfulBox: true
+    });
+    setTimeout(
+      function() {
+        this.setState({ openContributionSuccessfulBox: false });
+      }.bind(this),
+      1000
+    );
   };
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="./member" />;
+
+    const openContributionSuccessfulBox = this.state
+      .openContributionSuccessfulBox;
 
     return (
       <div>
@@ -160,6 +174,16 @@ class CustomForm extends React.Component {
             送出營養素！
           </button>
         </div>
+        {openContributionSuccessfulBox ? (
+          <div className="backgroundContributionSuccessful">
+            <div className="sentContributionSuccessfulDetail">
+              <img src={ListMatch} className="list-match" />
+              <p>營養素紀錄已經成功送出囉！謝謝你的貢獻！</p>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

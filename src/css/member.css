@@ -97,7 +97,130 @@
 }
 
 /* sign-up */
+.sign-up form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
 
+.sign-up-item-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100px;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.sign-up-item-name div {
+  font-size: 15px;
+  color: grey;
+  height: 35px;
+  margin: 30px auto 15px auto;
+  width: 100%;
+  vertical-align: middle;
+  line-height: 35px;
+  display: inline-block;
+}
+
+.sign-up-item-value {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.sign-up-item-value input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: lightgray;
+  background-size: 30px 30px;
+  width: 300px;
+  height: 35px;
+  text-indent: 15px;
+  border-radius: 5px;
+  margin: 30px auto 15px auto;
+}
+
+.boyMatch,
+.girlMatch {
+  width: 100px;
+  margin-left: 30px;
+}
+
+.boymatchInput.boymatchInput,
+.girlmatchInput.girlmatchInput {
+  width: 20px;
+  height: 20px;
+}
+
+.boymatch,
+.girlmatch {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.boymatch span,
+.girlmatch span {
+  font-size: 15px;
+  color: grey;
+  margin-left: 20px;
+  /* height: 35px;
+  margin: 10px auto 5px auto;
+  width: 100%;
+  vertical-align: middle;
+  line-height: 35px;
+  display: inline-block; */
+}
+.mobileHint {
+  display: none;
+}
+
+.register {
+  display: inline-block;
+  margin: 10px, auto;
+  border-radius: 8px;
+  background: #f7ed97;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  margin-left: calc(38vw - 100px / 2);
+}
+
+@media (max-width: 615px) {
+  .mobileHint {
+    display: inline-block;
+    font-size: 15px;
+    color: grey;
+    height: 35px;
+    margin: 30px auto 15px auto;
+    width: 100%;
+    vertical-align: middle;
+    line-height: 35px;
+  }
+  .sign-up-item-name {
+    display: none;
+  }
+}
+
+@media (max-width: 440px) {
+  .sign-up-item-value input {
+    width: 250px;
+  }
+}
+
+/* 
 .sign-up {
   display: flex;
   flex-direction: column;
@@ -189,7 +312,7 @@
 .girlMatch {
   width: 100px;
   margin-left: 30px;
-}
+} */
 
 /* log-out */
 .log-out {
@@ -215,7 +338,6 @@
 }
 
 .login-button,
-.register,
 .exit-buttons button {
   display: inline-block;
   border-radius: 8px;
@@ -236,3 +358,29 @@
   z-index: -1;
   background-color: rgba(0, 0, 0, 0.116);
 } */
+
+@media (max-width: 785px) {
+  .log-out {
+    width: 400px;
+  }
+
+  .bye-match {
+    width: 150px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .log-out {
+    width: 300px;
+  }
+}
+
+@media (max-width: 370px) {
+  .log-out {
+    width: 250px;
+  }
+  .exit-buttons {
+    margin: 30px 5px;
+  }
+}

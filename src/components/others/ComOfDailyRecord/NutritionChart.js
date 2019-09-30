@@ -64,46 +64,6 @@ class NutritionChart extends React.Component {
                 </div>
               </div>
             </div>
-            {/* <div>
-              <div className="category">
-                <span className="categoryTitle">全穀雜糧類</span>
-                <span className="categoryServe">100g 約為半個拳頭</span>
-                <img src={`/${halffist}`} className="halffist" />
-              </div>
-              <div className="category">
-                <span className="categoryTitle">蛋豆魚肉類</span>
-                <span className="categoryServe">100g 約為一個手心</span>
-                <img src={`/${wholepalm}`} className="wholepalm" />
-              </div>
-              <div className="category">
-                <span className="categoryTitle">乳品類</span>
-                <span className="categoryServe">100g 約為兩個手心</span>
-                <img src={`/${leftwholepalm}`} className="leftwholepalm" />
-                <img src={`/${wholepalm}`} className="wholepalm" />
-              </div>
-              <div className="category">
-                <span className="categoryTitle">油脂類</span>
-                <span className="categoryServe">100g 約為一個指頭</span>
-                <img src={`/${onefinger}`} className="onefinger" />
-              </div>
-              <div className="category">
-                <span className="categoryTitle">堅果種子類</span>
-                <span className="categoryServe">100g 約為一個手心</span>
-                <img src={`/${halfpalm}`} className="halfpalm" />
-              </div>
-              <div className="category">
-                <span className="categoryTitle">蔬菜類</span>
-                <span className="categoryServe">100g 約為兩個手心</span>
-                <img src={`/${leftwholepalm}`} className="leftwholepalm" />
-                <img src={`/${wholepalm}`} className="wholepalm" />
-              </div>
-              <div className="category">
-                <span className="categoryTitle">水果類</span>
-                <span className="categoryServe">100g 約為兩個手心</span>
-                <img src={`/${leftwholepalm}`} className="leftwholepalm" />
-                <img src={`/${wholepalm}`} className="wholepalm" />
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

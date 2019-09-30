@@ -70,13 +70,13 @@ class ContributionInfo extends React.Component {
           console.log(key, contributionDetails[key]);
           // return [Number(key), contributionDetails[key]];
           details = (
-            <div>
-              <div>
+            <div className="contributionEachFoodDetails">
+              <div className="contributionEachNutritionName">
                 {keyArray.map(detailsName => (
                   <p>{detailsName}</p>
                 ))}
               </div>
-              <div>
+              <div className="contributionEachNutritionNumber">
                 {valueArray.map(detailsName => (
                   <p>{detailsName}</p>
                 ))}
@@ -109,8 +109,7 @@ class ContributionInfo extends React.Component {
             <div className="divideLine"></div>
           </div>
           <div className="userMatchName">
-            <div>麻吉名字</div>
-            <div>
+            <div className="contributionEachFoodName">
               {contributeData.map(data => (
                 <p
                   className="contributionEachFood"
@@ -140,7 +139,16 @@ class ContributionInfo extends React.Component {
             ))}
           </div>
         </div> */}
-          <p>LOADING</p>
+          <div className="more-info-match">
+            <div className="titleTitle">
+              <div className="titlewords">營養素貢獻紀錄</div>
+
+              <div className="divideLine"></div>
+            </div>
+            <div className="userMatchName">
+              <div>目前尚未有紀錄</div>
+            </div>
+          </div>
         </div>
       );
     }
