@@ -195,3 +195,9 @@ export const getContributionDetails = (userUID, contributionFoodName) => {
       });
   };
 };
+
+export const removeIMGandDescription = () => {
+  return {
+    type: "REMOVE_IMG_AND_DESCRIPTION"
+  };
+};

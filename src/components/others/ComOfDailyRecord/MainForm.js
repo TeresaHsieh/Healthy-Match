@@ -536,6 +536,7 @@ class MainForm extends React.Component {
     };
     this.nameInput = React.createRef();
     this.serveInput = React.createRef();
+    this.otherServeInput = React.createRef();
     this.areaOutsideDiv = React.createRef();
   }
   // submit state to the firebase
@@ -700,6 +701,8 @@ class MainForm extends React.Component {
             onBlur={this.inputServeChange}
             id={i}
             type="number"
+            min="0"
+            ref={this.otherServeInput}
           ></input>
           {/* <img
             src={`/${Delete}`}
@@ -767,7 +770,26 @@ class MainForm extends React.Component {
 
   componentDidMount() {
     document.addEventListener("click", this.hideSuggestion);
+    let firstServeInput = this.serveInput.current;
+    firstServeInput.addEventListener("keydown", function(e) {
+      // prevent: "e", "=", ",", "-", "."
+      if ([69, 187, 188, 189, 190].includes(e.keyCode)) {
+        e.preventDefault();
+      }
+    });
   }
+
+  componentDidUpdate = () => {
+    if (this.otherServeInput.current) {
+      let otherServeInput = this.otherServeInput.current;
+      otherServeInput.addEventListener("keydown", function(e) {
+        // prevent: "e", "=", ",", "-", "."
+        if ([69, 187, 188, 189, 190].includes(e.keyCode)) {
+          e.preventDefault();
+        }
+      });
+    }
+  };
 
   hideSuggestion = e => {
     if (this.areaOutsideDiv.current.contains(e.target)) {
@@ -865,6 +887,7 @@ class MainForm extends React.Component {
             // value={this.state.originalInput}
             id="0"
             type="number"
+            min="0"
             ref={this.serveInput}
           ></input>
           {/* <img

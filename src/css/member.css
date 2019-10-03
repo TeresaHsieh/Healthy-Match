@@ -1,386 +1,298 @@
 @import "./common.css";
+@import url("https://fonts.googleapis.com/css?family=Capriola&display=swap");
 
 .main-member {
-  /* left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%); */
-  margin: 30px auto auto auto;
-  background-color: #f6ec8a;
-  width: 75%;
-  align-items: center;
-  padding: 0;
-  border-radius: 10px 10px 0 0;
   display: flex;
   flex-direction: row;
+  margin: 60px auto auto auto;
+  width: 80%;
 }
 
-.main-member a {
+.main-member-nav {
+  margin-top: 40px;
+  margin-left: 60px;
+}
+
+/* left-side */
+.left-main-member {
+  width: 50%;
+  background: #fffbd5;
+  position: relative;
+}
+
+.left-main-member > div {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 350px;
+  top: 20%;
+}
+
+.basket-match {
+  width: 400px;
+  top: 350px;
+}
+
+.container {
+  font-family: "Capriola", sans-serif;
+  color: #999;
+  text-transform: uppercase;
+  font-size: 36px;
+  font-weight: bold;
+  padding-top: 50px;
+  width: 600px;
+  bottom: 45%;
+  display: block;
+}
+
+.flip {
+  height: 50px;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+
+.flip > div > div {
+  color: #f9e10a;
+  padding: 4px 12px;
+  height: 45px;
+  margin-bottom: 45px;
+  display: inline-block;
+  width: 100%;
+}
+
+.flip div:first-child {
+  animation: show 8s linear infinite;
+}
+
+.flip div div {
+  background: #f6ed9c00;
+  width: 100%;
+}
+.flip div:first-child div {
+  background: #f6ed9c00;
+  width: 100%;
+}
+.flip div:last-child div {
+  background: #f6ed9c00;
+  width: 100%;
+}
+
+@keyframes show {
+  0% {
+    margin-top: -270px;
+  }
+  5% {
+    margin-top: -180px;
+  }
+  33% {
+    margin-top: -180px;
+  }
+  38% {
+    margin-top: -90px;
+  }
+  66% {
+    margin-top: -90px;
+  }
+  71% {
+    margin-top: 0px;
+  }
+  99.99% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: -270px;
+  }
+}
+
+/* right-side */
+.right-main-member {
+  width: 50%;
+}
+
+.main-member-nav {
+  margin-left: 60px;
+}
+
+.main-member-nav a {
   font-size: 18px;
-  color: grey;
-  margin: 10px 10px 10px 10px;
-  padding: 0;
+  text-align: center;
+  color: lightgrey;
+  padding: 10px 25px;
+  margin: auto 10px 10px 10px;
+  letter-spacing: 5px;
   cursor: pointer;
 }
 
-.square {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background-color: #fdf9d7;
-  margin: 10px 10px;
+.main-member-nav .active {
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background: #f9e10a;
+  border-radius: 50px;
+  padding: 10px 25px;
+  margin: 30px 10px 10px 10px;
+  letter-spacing: 5px;
+  cursor: pointer;
 }
 
 .log-in,
 .sign-up {
-  background-color: #fdf9d7;
-  width: 75%;
-  border-radius: 0 0 10px 10px;
-  margin: auto;
+  width: 100%;
 }
 
-/* log-in */
-
-.log-in {
+/* log-in & sign-up */
+.log-in,
+.sign-up form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 40px;
+  margin-left: 70px;
 }
 
-.log-in-user-email,
-.log-in-user-password {
-  outline: 0;
-  border-width: 0 0 2px;
-  border-color: lightgray;
-  background-size: 30px 30px;
-  background-repeat: no-repeat;
-  background-position: 10px 11px;
-  text-indent: 50px;
-  width: 300px;
+.log-in div,
+.sign-up form div {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.log-in div p,
+.sign-up form div p {
+  font-size: 16px;
+  color: rgb(100, 75, 66);
+  letter-spacing: 5px;
+}
+
+.log-in div input,
+.sign-up form div input {
+  width: 75%;
   height: 50px;
-  border-radius: 5px;
+  border-bottom: 2px solid lightslategray;
+  background-color: white;
+  font-size: 15px;
+  letter-spacing: 3px;
 }
 
-.log-in-user-email {
-  margin: 30px auto 15px auto;
+.log-in div input::placeholder,
+.sign-up form div input::placeholder {
+  letter-spacing: 3px;
+  color: lightgray;
 }
 
-.log-in-user-password {
-  margin: 10px auto 15px auto;
+.login-button,
+.register-button {
+  display: inline-block;
+  border: none;
+  width: 190px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  background: #f9e10a;
+  border-radius: 50px;
+  padding: 10px;
+  margin: auto 10px 10px 10px;
+  letter-spacing: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 
-.log-in-user-email {
-  background-image: url(../imgs/envelope.png);
+.login-button {
+  margin-top: 80px;
 }
 
-.log-in-user-password {
-  background-image: url(../imgs/password.png);
+.test-login-button {
+  display: inline-block;
+  border: none;
+  width: 190px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  background: #f9910a;
+  border-radius: 50px;
+  padding: 10px;
+  margin: auto 10px 10px 10px;
+  letter-spacing: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 
-@media (max-width: 520px) {
-  .log-in-user-email,
-  .log-in-user-password {
-    width: 250px;
-    height: 50px;
-  }
-  .main-member a {
-    font-size: 15px;
-  }
+.register-button {
+  margin-top: 30px;
 }
 
-@media (max-width: 480px) {
-  .log-in-user-email,
-  .log-in-user-password {
-    width: 220px;
-  }
+.login-button span,
+.register-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  letter-spacing: 1px;
+}
+
+.login-button span:after,
+.register-button span:after {
+  content: "\00bb ";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.login-button:hover span,
+.register-button:hover span {
+  padding-right: 25px;
+}
+
+.login-button:hover span:after,
+.register-button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 /* sign-up */
-.sign-up form {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
+.login-warning.login-warning,
+.email-bad-format-error.email-bad-format-error,
+.name-did-not-filled-error.name-did-not-filled-error,
+.email-did-not-filled-error.email-did-not-filled-error,
+.password-did-not-filled-error.password-did-not-filled-error,
+.password-not-same-error.password-not-same-error {
+  color: red;
+  font-size: 16px;
+  letter-spacing: 3px;
+  margin-bottom: -20px;
 }
 
-.sign-up-item-name {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100px;
-  vertical-align: middle;
-  line-height: normal;
-}
-
-.sign-up-item-name div {
-  font-size: 15px;
-  color: grey;
-  height: 35px;
-  margin: 30px auto 15px auto;
-  width: 100%;
-  vertical-align: middle;
-  line-height: 35px;
-  display: inline-block;
-}
-
-.sign-up-item-value {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.sign-up-item-value input {
-  outline: 0;
-  border-width: 0 0 2px;
-  border-color: lightgray;
-  background-size: 30px 30px;
-  width: 300px;
-  height: 35px;
-  text-indent: 15px;
-  border-radius: 5px;
-  margin: 30px auto 15px auto;
-}
-
-.boyMatch,
-.girlMatch {
-  width: 100px;
-  margin-left: 30px;
+.boyMatch {
+  margin-top: 20px;
 }
 
 .boymatchInput.boymatchInput,
 .girlmatchInput.girlmatchInput {
   width: 20px;
   height: 20px;
-}
-
-.boymatch,
-.girlmatch {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  margin-right: 10px;
 }
 
 .boymatch span,
 .girlmatch span {
-  font-size: 15px;
-  color: grey;
+  font-size: 16px;
+  color: lightslategray;
   margin-left: 20px;
-  /* height: 35px;
-  margin: 10px auto 5px auto;
-  width: 100%;
-  vertical-align: middle;
-  line-height: 35px;
-  display: inline-block; */
-}
-.mobileHint {
-  display: none;
-}
-
-.register {
-  display: inline-block;
-  margin: 10px, auto;
-  border-radius: 8px;
-  background: #f7ed97;
-  border: none;
-  color: black;
-  text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  width: 100px;
-  cursor: pointer;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  position: relative;
-  margin-left: calc(38vw - 100px / 2);
-}
-
-@media (max-width: 615px) {
-  .mobileHint {
-    display: inline-block;
-    font-size: 15px;
-    color: grey;
-    height: 35px;
-    margin: 30px auto 15px auto;
-    width: 100%;
-    vertical-align: middle;
-    line-height: 35px;
-  }
-  .sign-up-item-name {
-    display: none;
-  }
-}
-
-@media (max-width: 440px) {
-  .sign-up-item-value input {
-    width: 250px;
-  }
-}
-
-/* 
-.sign-up {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.sign-up-user-email,
-.sign-up-user-sexual,
-.sign-up-user-tall,
-.sign-up-user-weight,
-.sign-up-user-password,
-.sign-up-user-checked-password,
-.sign-up-matchSelect {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 15px auto;
-  width: 400px;
-}
-
-.sign-up-user-name {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 30px auto 15px auto;
-  width: 400px;
-}
-
-.sign-up-matchSelect {
-  margin: 30px auto;
-}
-
-.sign-up-matchSelect p {
-  display: block;
-}
-
-.sign-up-user-name input,
-.sign-up-user-email input,
-.sign-up-user-tall input,
-.sign-up-user-weight input,
-.sign-up-user-password input,
-.sign-up-user-checked-password input,
-.sign-up-user-sexual input {
-  outline: 0;
-  border-width: 0 0 2px;
-  border-color: lightgray;
-  background-size: 30px 30px;
-  width: 300px;
-  height: 35px;
-  text-indent: 15px;
-  border-radius: 5px;
-}
-
-.sign-up-user-name span,
-.sign-up-user-email span,
-.sign-up-user-sexual span,
-.sign-up-user-tall span,
-.sign-up-user-weight span,
-.sign-up-user-password span,
-.sign-up-user-checked-password span,
-.sign-up-matchSelect span,
-.sign-up-matchSelect p,
-.select-title {
-  font-size: 15px;
-  color: grey;
-}
-
-.sign-up-matchSelect input {
-  outline: 0;
-  border-width: 0 0 2px;
-  border-color: lightgray;
-  background-size: 30px 30px;
-  width: 20px;
-  height: 20px;
-  text-indent: 20px;
-}
-
-.sign-up-matchSelect {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .boyMatch,
 .girlMatch {
-  width: 100px;
-  margin-left: 30px;
-} */
-
-/* log-out */
-.log-out {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 5px solid #f9e10a;
-  border-radius: 5px;
-  width: 500px;
-  box-shadow: 0px 0px 0px 10px #f7ed97;
-  margin: 100px auto 0;
+  width: 150px;
+  margin-left: 50px;
 }
 
-.bye-match {
-  width: 200px;
-  margin-top: 10px;
-}
-
-.exit-buttons {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
-}
-
-.login-button,
-.exit-buttons button {
-  display: inline-block;
-  border-radius: 8px;
-  background: #f7ed97;
-  border: none;
-  color: black;
-  text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  width: 100px;
-  cursor: pointer;
-  margin: 30px 10px;
-}
-/* 
-.black-screen {
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 0.116);
-} */
-
-@media (max-width: 785px) {
-  .log-out {
-    width: 400px;
-  }
-
-  .bye-match {
-    width: 150px;
-    margin-top: 30px;
-  }
-}
-
-@media (max-width: 500px) {
-  .log-out {
+@media (max-width: 1180px) {
+  .basket-match {
     width: 300px;
-  }
-}
-
-@media (max-width: 370px) {
-  .log-out {
-    width: 250px;
-  }
-  .exit-buttons {
-    margin: 30px 5px;
   }
 }

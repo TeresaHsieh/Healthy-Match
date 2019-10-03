@@ -16,10 +16,11 @@ import Header from "../common/Header";
 
 class History extends React.Component {
   // componentDidMount = () => {
-  //   let userWeight = this.props.userInfo.Weight;
-  //   if (userWeight == undefined || userWeight == null || isNaN(userWeight)) {
-  //     alert("尚未輸入體重，這樣會無法給予部分營養素建議喔～");
-  //   }
+  //   // let userWeight = this.props.userInfo.Weight;
+  //   // if (userWeight == undefined || userWeight == null || isNaN(userWeight)) {
+  //   //   alert("尚未輸入體重，這樣會無法給予部分營養素建議喔～");
+  //   // }
+  //   console.log("輿論壓力");
   // };
   render() {
     const { auth } = this.props;

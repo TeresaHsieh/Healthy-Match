@@ -7,6 +7,7 @@ import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyActio
 import { changePropsStartDate } from "../../../store/actions/dailyAction";
 import { changePropsEndDate } from "../../../store/actions/dailyAction";
 import { usingFilterTimeFunction } from "../../../store/actions/dailyAction";
+import Calendar from "react-calendar";
 
 class DateSearch extends React.Component {
   constructor() {
@@ -132,6 +133,12 @@ class DateSearch extends React.Component {
           篩選日期！
         </button>
         {warning}
+        {/* === === === === */}
+        <Calendar
+        // onChange={this.onChange}
+        // value={this.state.date}
+        />
+        {/* === === === === */}
       </div>
     );
   }

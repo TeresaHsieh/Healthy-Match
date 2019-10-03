@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useImperativeHandle } from "react";
 import "../../css/status.css";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { checkFirestoreNutritionRecord } from "../../store/actions/dailyAction";
 import { sentLastImgToReduxStore } from "../../store/actions/authAction";
 import { sentDescriptionToReduxStore } from "../../store/actions/authAction";
+import { removeIMGandDescription } from "../../store/actions/authAction";
 
 // App Components
 import Header from "../common/Header";
@@ -106,12 +107,15 @@ class MatchStatus extends React.Component {
       let endDate = yearString + monthString + dayString; // default : today
 
       let userUID = this.props.auth.uid;
-      console.log("慘");
       if (userUID) {
         this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
       }
       // this.setState({ imgSrc: this.props.userInfo.MatchCharacterIMG });
     }
+  };
+
+  componentWillUnmount = () => {
+    this.props.removeIMGandDescription();
   };
 
   componentDidUpdate = () => {
@@ -120,7 +124,9 @@ class MatchStatus extends React.Component {
       this.props.recordTotalNutrition &&
       this.props.userInfo &&
       this.props.recordTotalName &&
-      this.state.changeIMG == false
+      this.state.changeIMG == false &&
+      this.props.description == undefined &&
+      this.props.userInfo.MatchCharacterIMG == undefined
     ) {
       let historyRecord = this.props.recordTotalNutrition;
       let recordDays = Object.keys(historyRecord).map(function(key) {
@@ -406,6 +412,9 @@ const mapDispatchToProps = dispatch => {
     },
     sentDescriptionToReduxStore: stateDescription => {
       dispatch(sentDescriptionToReduxStore(stateDescription));
+    },
+    removeIMGandDescription: () => {
+      dispatch(removeIMGandDescription());
     }
   };
 };
