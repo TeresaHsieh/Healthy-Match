@@ -1,173 +1,282 @@
-import React from "react";
-import "../../../css/history.css";
+// All imports
+import React, { createRef, useRef } from "react";
+import { connect } from "react-redux";
 
-var moment = require("moment");
+// App Components, Actions and CSS
+import { changePropsStartDate } from "../../../store/actions/dailyAction";
+import { changePropsEndDate } from "../../../store/actions/dailyAction";
+import "../../../css/calendar.css";
+
+let moment = require("moment");
 moment().format();
+
+const Heading = ({ date, changeMonth, resetDate }) => (
+  <nav className="calendar--nav">
+    <a onClick={() => changeMonth(date.month() - 1)}>&#8249;</a>
+    <h1 onClick={() => resetDate()}>
+      {date.format("MMMM")} <small>{date.format("YYYY")}</small>
+    </h1>
+    <a onClick={() => changeMonth(date.month() + 1)}>&#8250;</a>
+  </nav>
+);
+
+const Day = ({ currentDate, date, startDate, endDate, onClick }) => {
+  let className = [];
+
+  if (moment().isSame(date, "day")) {
+    className.push("active");
+  }
+  if (date.isSame(startDate, "day")) {
+    className.push("start");
+  }
+  if (date.isBetween(startDate, endDate, "day")) {
+    className.push("between");
+  }
+  if (date.isSame(endDate, "day")) {
+    className.push("end");
+  }
+  if (!date.isSame(currentDate, "month")) {
+    className.push("muted");
+  }
+  return (
+    <span
+      onClick={() => onClick(date)}
+      currentDate={date}
+      className={className.join(" ")}
+    >
+      {date.date()}
+    </span>
+  );
+};
+
+const Days = ({ date, startDate, endDate, onClick }) => {
+  const thisDate = moment(date);
+  const daysInMonth = moment(date).daysInMonth();
+  const firstDayDate = moment(date).startOf("month");
+  const previousMonth = moment(date).subtract(1, "month");
+  const previousMonthDays = previousMonth.daysInMonth();
+  const nextsMonth = moment(date).add(1, "month");
+  let days = [];
+  let labels = [];
+
+  for (let i = 1; i <= 7; i++) {
+    labels.push(
+      <span className="label">
+        {moment()
+          .day(i)
+          .format("ddd")}
+      </span>
+    );
+  }
+
+  for (let i = firstDayDate.day() + 7; i > 1; i--) {
+    previousMonth.date(previousMonthDays - i + 2);
+
+    days.push(
+      <Day
+        key={moment(previousMonth).format("DD MM YYYY")}
+        onClick={date => onClick(date)}
+        currentDate={date}
+        date={moment(previousMonth)}
+        startDate={startDate}
+        endDate={endDate}
+      />
+    );
+  }
+
+  for (let i = 1; i <= daysInMonth; i++) {
+    thisDate.date(i);
+
+    days.push(
+      <Day
+        key={moment(thisDate).format("DD MM YYYY")}
+        onClick={date => onClick(date)}
+        currentDate={date}
+        date={moment(thisDate)}
+        startDate={startDate}
+        endDate={endDate}
+      />
+    );
+  }
+
+  const daysCount = days.length;
+  for (let i = 1; i <= 45 - daysCount; i++) {
+    nextsMonth.date(i);
+    days.push(
+      <Day
+        key={moment(nextsMonth).format("DD MM YYYY")}
+        onClick={date => onClick(date)}
+        currentDate={date}
+        date={moment(nextsMonth)}
+        startDate={startDate}
+        endDate={endDate}
+      />
+    );
+  }
+
+  return (
+    <nav className="calendar--days">
+      {labels.concat()}
+      {days.concat()}
+    </nav>
+  );
+};
 
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      month: moment(),
-      selected: moment().startOf("day")
+      date: moment(),
+      startDate: moment().subtract(3, "day"),
+      endDate: moment().add(3, "day")
     };
   }
 
-  previous = () => {
-    const { month } = this.state;
+  componentDidUpdate = () => {
+    //startDate
+    let startDatesValue = this.state.startDate._d;
+    let startYear = startDatesValue.getFullYear();
+    let startMonth = startDatesValue.getMonth() + 1;
+    let startDay = startDatesValue.getDate();
+    // endDate
+    let endDatesValue = this.state.endDate._d;
+    let endYear = endDatesValue.getFullYear();
+    let endMonth = endDatesValue.getMonth() + 1;
+    let endDay = endDatesValue.getDate();
 
-    this.setState({
-      month: month.subtract(1, "month")
-    });
-  };
+    let startYearString = startYear.toString();
 
-  next = () => {
-    const { month } = this.state;
-
-    this.setState({
-      month: month.add(1, "month")
-    });
-  };
-
-  select = day => {
-    this.setState({
-      selected: day.date,
-      month: day.date.clone()
-    });
-  };
-
-  renderWeeks = () => {
-    let weeks = [];
-    let done = false;
-    let date = this.state.month
-      .clone()
-      .startOf("month")
-      .add("w" - 1)
-      .day("Sunday");
-    let count = 0;
-    let monthIndex = date.month();
-
-    const { selected, month } = this.state;
-
-    while (!done) {
-      weeks.push(
-        <Week
-          key={date}
-          date={date.clone()}
-          month={month}
-          select={day => this.select(day)}
-          selected={selected}
-        />
-      );
-
-      date.add(1, "w");
-
-      done = count++ > 2 && monthIndex !== date.month();
-      monthIndex = date.month();
+    let startMonthString = "";
+    if (startMonth < 10) {
+      startMonthString = "0" + startMonth.toString();
+    } else {
+      startMonthString = startMonth.toString();
     }
 
-    return weeks;
+    let startDayString = "";
+    if (startDay < 10) {
+      startDayString = "0" + startDay.toString();
+    } else {
+      startDayString = startDay.toString();
+    }
+
+    let endYearString = endYear.toString();
+
+    let endMonthString = "";
+    if (endMonth < 10) {
+      endMonthString = "0" + endMonth.toString();
+    } else {
+      endMonthString = endMonth.toString();
+    }
+
+    let endDayString = "";
+    if (endDay < 10) {
+      endDayString = "0" + endDay.toString();
+    } else {
+      endDayString = endDay.toString();
+    }
+
+    let startDate = startYearString + startMonthString + startDayString;
+    let endDate = endYearString + endMonthString + endDayString;
+
+    this.props.changePropsStartDate(startDate);
+    this.props.changePropsEndDate(endDate);
   };
 
-  renderMonthLabel = () => {
-    const { month } = this.state;
-
-    return <span className="month-label">{month.format("MMMM YYYY")}</span>;
+  componentWillUnmount = () => {
+    // this.props.getSelectDateRange();
   };
 
-  render = () => {
+  resetDate() {
+    this.setState({
+      date: moment()
+    });
+  }
+
+  changeMonth(month) {
+    const { date } = this.state;
+    date.month(month);
+    this.setState(date);
+  }
+
+  changeDate(date) {
+    let { startDate, endDate } = this.state;
+    if (
+      startDate === null ||
+      date.isBefore(startDate, "day") ||
+      !startDate.isSame(endDate, "day")
+    ) {
+      startDate = moment(date);
+      endDate = moment(date);
+    } else if (date.isSame(startDate, "day") && date.isSame(endDate, "day")) {
+      startDate = null;
+      endDate = null;
+    } else if (date.isAfter(startDate, "day")) {
+      endDate = moment(date);
+    }
+    this.setState({
+      startDate,
+      endDate
+    });
+  }
+
+  render() {
+    const { date, startDate, endDate } = this.state;
     return (
       <div className="calendar">
-        <div className="calendarHeader">
-          <div className="monthRow">
-            <button className="beforeArrow" onClick={this.previous}>
-              {" "}
-              -{" "}
-            </button>
-            {this.renderMonthLabel()}
-            <button className="futureArrow" onClick={this.next}>
-              {" "}
-              +{" "}
-            </button>
-          </div>
-          <DayNames />
-        </div>
-        {this.renderWeeks()}
+        <Heading
+          date={date}
+          changeMonth={month => this.changeMonth(month)}
+          resetDate={() => this.resetDate()}
+        />
+        <Days
+          onClick={date => this.changeDate(date)}
+          date={date}
+          startDate={startDate}
+          endDate={endDate}
+        />
       </div>
     );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    date: new Date().toLocaleDateString(),
+    recordTotalNutrition: state.daily.recordTotalNutrition,
+    recordTotalName: state.daily.recordTotalName,
+    recordTotalServe: state.daily.recordTotalServe,
+    recordTotalMeal: state.daily.recordTotalMeal,
+    auth: state.firebase.auth,
+    userInfo: state.firebase.profile,
+    startDate: state.daily.startDate,
+    endDate: state.daily.endDate,
+    usingFilterFunction: state.daily.usingFilterFunction
   };
-}
+};
 
-class DayNames extends React.Component {
-  render() {
-    return (
-      <div className="dayRow">
-        <span className="day">Sun</span>
-        <span className="day">Mon</span>
-        <span className="day">Tue</span>
-        <span className="day">Wed</span>
-        <span className="day">Thu</span>
-        <span className="day">Fri</span>
-        <span className="day">Sat</span>
-      </div>
-    );
-  }
-}
-
-class Week extends React.Component {
-  render() {
-    let days = [];
-    let { date } = this.props;
-
-    const { month, selected, select } = this.props;
-
-    for (var i = 0; i < 7; i++) {
-      let day = {
-        name: date.format("dd").substring(0, 1),
-        number: date.date(),
-        isCurrentMonth: date.month() === month.month(),
-        isToday: date.isSame(new Date(), "day"),
-        date: date
-      };
-      days.push(<Day day={day} selected={selected} select={select} />);
-
-      date = date.clone();
-      date.add(1, "day");
+const mapDispatchToProps = dispatch => {
+  return {
+    // create a method
+    makeSelectedDatesToProps: (startDate, endDate) => {
+      dispatch(makeSelectedDatesToProps(startDate, endDate));
+    },
+    checkFirestoreNutritionRecord: (startDate, endDate, userUID) => {
+      dispatch(checkFirestoreNutritionRecord(startDate, endDate, userUID));
+    },
+    changePropsStartDate: startDatesValue => {
+      dispatch(changePropsStartDate(startDatesValue));
+    },
+    changePropsEndDate: endDatesValue => {
+      dispatch(changePropsEndDate(endDatesValue));
+    },
+    usingFilterTimeFunction: () => {
+      dispatch(usingFilterTimeFunction());
     }
+  };
+};
 
-    return (
-      <div className="weekRow" key={days[0]}>
-        {days}
-      </div>
-    );
-  }
-}
-
-class Day extends React.Component {
-  render() {
-    const {
-      day,
-      day: { date, isCurrentMonth, isToday, number },
-      select,
-      selected
-    } = this.props;
-
-    return (
-      <span
-        key={date.toString()}
-        className={
-          "day" +
-          (isToday ? " today" : "") +
-          (isCurrentMonth ? "" : " different-month") +
-          (date.isSame(selected) ? " selected" : "")
-        }
-        onClick={() => select(day)}
-      >
-        {number}
-      </span>
-    );
-  }
-}
-
-export default Calendar;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Calendar);

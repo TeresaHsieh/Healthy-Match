@@ -148,13 +148,13 @@ class FatChart extends React.Component {
         labels: theDays,
         datasets: [
           {
-            label: "average",
+            label: "Average",
             borderColor: "rgb(255, 184, 3)",
             backgroundColor: "rgb(255, 184, 3)",
             data: averageArray
           },
           {
-            label: "week-protein",
+            label: "Weekly-Fat",
             borderColor: "rgb(247, 237, 151)",
             backgroundColor: "rgb(247, 237, 151)",
             data: dataFatArray

@@ -1,3 +1,4 @@
+// All imports
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -8,7 +9,7 @@ import { reduxFirestore, getFirestore } from "redux-firestore";
 import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 import firebaseConfig from "./config/firebaseConfig";
 
-//App Component
+//App Components
 import App from "./components/App";
 
 const store = createStore(

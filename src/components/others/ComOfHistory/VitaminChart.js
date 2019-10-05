@@ -1,11 +1,12 @@
+// All imports
 import React from "react";
-import { Line } from "react-chartjs-2";
-
 import { connect } from "react-redux";
+
+// App Components, Actions and CSS
+import { Line } from "react-chartjs-2";
 import { checkFirestoreNutritionRecord } from "../../../store/actions/dailyAction";
-import "../../../css/history.css";
-import { DH_CHECK_P_NOT_SAFE_PRIME } from "constants";
 import { removeUsingFilterFunction } from "../../../store/actions/dailyAction";
+import "../../../css/history.css";
 
 class VitaminChart extends React.Component {
   constructor() {
@@ -19,60 +20,7 @@ class VitaminChart extends React.Component {
     this.props.removeUsingFilterFunction();
   };
 
-  // componentDidMount = () => {
-  //   // count end date
-  //   let today = new Date();
-  //   let year = today.getFullYear();
-  //   let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
-  //   let day = today.getDate();
-
-  //   let yearString = year.toString();
-
-  //   let monthString = "";
-  //   if (month < 10) {
-  //     monthString = "0" + month.toString();
-  //   } else {
-  //     monthString = month.toString();
-  //   }
-
-  //   let dayString = "";
-  //   if (day < 10) {
-  //     dayString = "0" + day.toString();
-  //   } else {
-  //     dayString = day.toString();
-  //   }
-
-  //   // count 7 days ago
-  //   let weekAgoDate = new Date();
-  //   weekAgoDate.setDate(weekAgoDate.getDate() - 6);
-  //   let weekAgoYear = weekAgoDate.getFullYear();
-  //   let weekAgoMonth = weekAgoDate.getMonth() + 1;
-  //   let weekAgoDay = weekAgoDate.getDate();
-
-  //   let weekAgoYearString = weekAgoYear.toString();
-  //   let weekAgoMonthString = "";
-
-  //   if (weekAgoMonth < 10) {
-  //     weekAgoMonthString = "0" + weekAgoMonth.toString();
-  //   } else {
-  //     weekAgoMonthString = weekAgoMonth.toString();
-  //   }
-
-  //   let weekAgoDayString = "";
-  //   if (weekAgoDay < 10) {
-  //     weekAgoDayString = "0" + weekAgoDay.toString();
-  //   } else {
-  //     weekAgoDayString = weekAgoDay.toString();
-  //   }
-
-  //   let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
-  //   let endDate = yearString + monthString + dayString; // default : today
-  //   let userUID = this.props.auth.uid;
-  //   this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
-  // };
-
   render() {
-    //const getChartDataProtein = canvas => {
     if (
       this.props.recordTotalNutrition == undefined &&
       this.props.recordTotalName == undefined &&
@@ -148,15 +96,6 @@ class VitaminChart extends React.Component {
             // dataVitaminArrayC[t] +
             dataVitaminArrayE[t]
         );
-        console.log(
-          "為什麼不行",
-          dataVitaminArrayTE,
-          dataVitaminArrayB1,
-          dataVitaminArrayB2,
-          dataVitaminArrayB12,
-          dataVitaminArrayC,
-          dataVitaminArrayE
-        );
       }
 
       // sum of B1 + B2 + B6 + B12 + C + E
@@ -184,17 +123,6 @@ class VitaminChart extends React.Component {
           theDays.push(theDaysResult[t][0].toString());
         }
       } else {
-        // let startDay = Number(this.props.startDate);
-        // let endDay = Number(this.props.endDate);
-        // theDays.push(
-        //   startDay.toString(),
-        //   (startDay + 1).toString(),
-        //   (startDay + 2).toString(),
-        //   (startDay + 3).toString(),
-        //   (startDay + 4).toString(),
-        //   (startDay + 5).toString(),
-        //   endDay.toString()
-        // );
         let daysInProps = this.props.recordTotalNutrition;
         let theDaysResult = Object.keys(daysInProps).map(function(key) {
           return [Number(key), daysInProps[key]];
@@ -208,14 +136,14 @@ class VitaminChart extends React.Component {
         labels: theDays,
         datasets: [
           {
-            label: "average",
+            label: "Average",
             backgroundColor: "rgba(255, 184, 3,0.75)",
             borderColor: "rgb(255, 184, 3)",
             backgroundColor: "rgb(255, 184, 3)",
             data: averageArray
           },
           {
-            label: "week-protein",
+            label: "Weekly-Vitamin",
             backgroundColor: "rgba(247, 237, 151,0.75)",
             borderColor: "rgb(247, 237, 151)",
             backgroundColor: "rgb(247, 237, 151)",

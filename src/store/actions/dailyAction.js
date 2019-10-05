@@ -1,14 +1,10 @@
-import { firestore } from "firebase";
-// import * as ActionTypes from "../actions/actionTypes";
-
 export const searchKeywords = keyword => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // make async call to database
     const firestore = getFirestore();
 
     // check all food that correspond to keywords
     let keywords = [];
-    if (keyword !== "") {
+    if (keyword.trim() !== "") {
       let theRecord = firestore
         .collection("nutrition")
         .where("搜尋關鍵字", "array-contains", keyword)
@@ -17,10 +13,8 @@ export const searchKeywords = keyword => {
           querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
             keywords.push(doc.id);
-            console.log(doc.id);
           });
-          console.log("i'm typing:", keyword);
-          console.log(keywords);
+
           dispatch({ type: "SEARCH_KEYWORDS", keywords });
         })
         .catch(function(error) {
@@ -32,7 +26,6 @@ export const searchKeywords = keyword => {
 
 export const clearValues = emptyValue => {
   return dispatch => {
-    console.log(emptyValue);
     dispatch({ type: "CLEAR_VALUES", emptyValue });
   };
 };
@@ -79,8 +72,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
           mealTypes.docs.forEach(mealAndNameTypes => {
             theName = mealAndNameTypes.get("Name"); // all foodName of the giving time
             theDate = mealAndNameTypes.get("Date");
-
-            console.log("andyyyyyyyy", mealAndNameTypes);
 
             foodNumber.push(theName.length); // knowing the number of foods in daily
             const add = (a, b) => a + b;
@@ -266,8 +257,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
     let meal = window.location.pathname.split("/")[2];
     let mealString = meal.toString();
     let userUid = userUID.toString();
-    console.log("UID", userUID);
-    console.log("UID", userUid);
     let today = new Date();
     let year = today.getFullYear();
     let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
@@ -357,13 +346,10 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
       //================================================================================================
       if (meal == "breakfast") {
         if (doc.exists) {
-          console.log("see", doc);
-
           let prevName = doc.data().Name;
           let prevServe = doc.data().Serve;
           let combineName = stateName.concat(prevName);
           let combineServe = stateServe.concat(prevServe);
-          console.log("series", prevName, prevServe, combineName, combineServe);
 
           firestore
             .collection("member")
@@ -531,7 +517,6 @@ export const makeSelectedDatesToProps = (startDate, endDate) => {
 };
 
 export const changePropsStartDate = startDatesValue => {
-  console.log(startDatesValue);
   return {
     type: "CHANGE_PROPS_START_DATE",
     startDatesValue
@@ -568,7 +553,6 @@ export const sentDataToNutritionDatbase = newNutrition => {
 
 export const deleteRecord = objectIndex => {
   // return (dispatch, getState, { getFirebase, getFirestore }) => {
-  console.log("進來囉！", objectIndex);
   //   console.log("進來囉！", recordName);
   // };
   return {
@@ -590,7 +574,6 @@ export const removeUsingFilterFunction = () => {
 };
 
 export const personalNutritionContribution = (useruid, newNutrition) => {
-  console.log(useruid, newNutrition);
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
 

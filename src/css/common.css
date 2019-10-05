@@ -15,7 +15,6 @@ body {
 body {
   font-size: 20px;
   font-family: "Noto Sans TC", "微軟正黑體", "新細明體", arial, sans-serif;
-  /* color:rgb(112, 112, 112); */
 }
 
 form {
@@ -42,9 +41,6 @@ img {
   align-items: center;
   justify-content: space-around;
   height: 120px;
-  /* position: fixed;
-  top: 0;
-  width: 100%; */
 }
 
 .logo {
@@ -59,12 +55,35 @@ img {
   justify-content: flex-end;
 }
 
-.main-nav a {
-  margin: 0px 20px;
+.main-nav .active {
+  color: black;
+  border-bottom: 2px solid #f9e10a;
 }
 
-.main-nav .active {
-  color: darkgray;
+.main-nav a {
+  margin: 0px 20px;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+.main-nav a:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #f9e10a;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+
+.main-nav a:hover:after {
+  transform-origin: bottom left;
+  transform: scaleX(1);
 }
 
 .hamburger-button {
@@ -138,17 +157,17 @@ img {
   }
 }
 
-@media (max-width: 1120px) {
-  .main-nav {
-    width: 60%;
-  }
-}
-
 @media (max-width: 1125px) {
   .header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+@media (max-width: 1120px) {
+  .main-nav {
+    width: 60%;
   }
 }
 

@@ -171,7 +171,7 @@
 .sign-up form div input {
   width: 75%;
   height: 50px;
-  border-bottom: 2px solid lightslategray;
+  border-bottom: 2px solid #f9e10d;
   background-color: white;
   font-size: 15px;
   letter-spacing: 3px;
@@ -214,7 +214,7 @@
   background: #f9910a;
   border-radius: 50px;
   padding: 10px;
-  margin: auto 10px 10px 10px;
+  margin: auto 10px 30px 10px;
   letter-spacing: 5px;
   transition: all 0.5s;
   cursor: pointer;
