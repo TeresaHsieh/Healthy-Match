@@ -1,12 +1,9 @@
-// import * as ActionTypes from "../actions/actionTypes";
-
 const initState = {
   date: new Date().toLocaleDateString(),
   meals: "breakfast" // status default is breakfast
 };
 
 const dailyReducer = (state = initState, action) => {
-  let meal = state.meals;
   switch (action.type) {
     case "SEARCH_KEYWORDS":
       return {
@@ -28,6 +25,7 @@ const dailyReducer = (state = initState, action) => {
         ...state,
         recordName: action.newRecord
       };
+
     case "UPDATE_DAILY_RECORDS_SERVE":
       return {
         ...state,
@@ -39,6 +37,7 @@ const dailyReducer = (state = initState, action) => {
         ...state,
         recordName: state.recordName.concat(action.nextInputName)
       };
+
     case "ADD_RECORD_INPUT_SERVE":
       return {
         ...state,
@@ -47,11 +46,6 @@ const dailyReducer = (state = initState, action) => {
 
     case "ADJUST_RECORD_INPUT_NAME":
       let names = state.recordName.slice();
-      /*
-      for (let i = 0; i < state.recordName.length; i++) {
-        names[i] = state.recordName[i];
-      }
-      */
       names.splice(action.adjustIndex, 1, action.newInputName);
       return {
         ...state,
@@ -98,7 +92,6 @@ const dailyReducer = (state = initState, action) => {
       };
 
     case "DELETE_RECORD":
-      console.log(state.recordName, state.recordServe, action.objectIndex);
       let deleteName = state.recordName.splice(action.objectIndex, 1);
       let deleteServe = state.recordServe.splice(action.objectIndex, 1);
       return {
@@ -127,8 +120,8 @@ const dailyReducer = (state = initState, action) => {
       };
 
     case "ADD_RECORD_INPUT_ERR":
-      console.log("add input error", action.err);
       return state;
+
     default:
       return state;
   }

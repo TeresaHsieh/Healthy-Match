@@ -13,13 +13,15 @@ class LogOut extends React.Component {
         <img src={ByeMatch} className="bye-match" />
         <p>確定登出嗎～？</p>
         <div className="exit-buttons">
-          <button>
+          <button className="log-out-button">
             <NavLink to="/" onClick={this.props.signOut}>
-              我先走囉！
+              <span>我先走囉！</span>
             </NavLink>
           </button>
-          <button>
-            <NavLink to="/daily-record">再玩耍一下</NavLink>
+          <button className="stay-button">
+            <NavLink to="/daily-record">
+              <span>再玩耍一下</span>
+            </NavLink>
           </button>
         </div>
       </div>

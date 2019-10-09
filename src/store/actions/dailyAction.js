@@ -2,7 +2,6 @@ export const searchKeywords = keyword => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
 
-    // check all food that correspond to keywords
     let keywords = [];
     if (keyword.trim() !== "") {
       let theRecord = firestore
@@ -11,14 +10,12 @@ export const searchKeywords = keyword => {
         .get()
         .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
             keywords.push(doc.id);
           });
-
           dispatch({ type: "SEARCH_KEYWORDS", keywords });
         })
         .catch(function(error) {
-          console.log("Error getting documents: ", error);
+          // console.log("Error getting documents: ", error);
         });
     }
   };
@@ -30,30 +27,19 @@ export const clearValues = emptyValue => {
   };
 };
 
-// 先寫期待的 result 形式（依照日期分類，把每天吃的各式營養加總）
-// 把日期一樣的文件挑起來，找到裡面的細節（吃了什麼）去資料庫裡面抓出營養
-// 把營養值乘上份數（這一樣要先把日期一樣的文件挑起來，找到裡面的細節（份數））
-// 把上步驟的各式營養量塞到 result 的 object 裡面
-
-// 會有重複算的問題，當一餐有吃兩種以上食物、份數的時候
-// 乘上份數
-// 知道什麼時候要停下來
-// 時時刻刻注意「非同步的問題」
-// 少吃某餐要是零（好像不用，因為都是用加總的）
-// 注意現在抓的都是一個區間的量
-
 export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // step 1: find foods' name and serve in specific time
+    // step 1: find all the data(foodname and serving) that record in the giving inerval of time
     let userUid = userUID.toString();
-    console.log("surprise", userUid);
+
     const firestore = getFirestore();
-    let allRecord = firestore // "allRecord" is all the data that happens in the giving inerval of time
+    let allRecord = firestore
       .collection("member")
       .doc(userUid)
       .collection("nutritionRecord")
       .where("Date", ">=", Number(startDate))
       .where("Date", "<=", Number(endDate));
+
     let names = [];
 
     let getNameNutrition = new Promise((resolve, reject) => {
@@ -63,7 +49,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
       let data = [];
       let sum;
       let test = [];
-      let teresa = [];
 
       let test_3 = [];
       allRecord
@@ -158,8 +143,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
         let foodServes = nutritionAndServes[1];
 
         for (let m = 0; m < foodNutrition.length; m++) {
-          //for (let key in foodNutrition[m]) {
-          // if data is an array, key will be the index number of element in it. if data is an object, key will be the key in it
           let yoyo = foodNutrition[m].data;
 
           for (let key in yoyo) {
@@ -263,12 +246,8 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
     let day = today.getDate();
 
     let yearString = year.toString();
-    //let monthString = month.toString();
-    //let dayString = day.toString();
-    //let dateString = yearString + monthString + dayString;
 
     let monthString = "";
-
     if (month < 10) {
       monthString = "0" + month.toString();
     } else {
@@ -276,7 +255,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
     }
 
     let dayString = "";
-
     if (day < 10) {
       dayString = "0" + day.toString();
     } else {
@@ -284,12 +262,8 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
     }
 
     let dateString = yearString + monthString + dayString;
-    // let dateString = "20190911";
 
-    // make async call to database
     const firestore = getFirestore();
-
-    // check if firestore has record, if there are some previous record, then push new data
 
     let theRecord = firestore
       .collection("member")
@@ -552,9 +526,6 @@ export const sentDataToNutritionDatbase = newNutrition => {
 };
 
 export const deleteRecord = objectIndex => {
-  // return (dispatch, getState, { getFirebase, getFirestore }) => {
-  //   console.log("進來囉！", recordName);
-  // };
   return {
     type: "DELETE_RECORD",
     objectIndex

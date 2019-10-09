@@ -589,7 +589,7 @@ class MainForm extends React.Component {
       let adjustIndex = Number(e.target.id);
       let meal = window.location.pathname.split("/")[2]; // checking by url subpath
       let obj = {};
-      let foodServe = e.target.value;
+      let foodServe = e.target.value.replace(/[^0-9]+/g, "");
       if (foodServe.trim() !== "") {
         // when no state in Redux store, add first data
         if (this.props.recordServe == undefined) {

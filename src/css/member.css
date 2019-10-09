@@ -296,3 +296,158 @@
     width: 300px;
   }
 }
+
+/* log-out */
+.log-out {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 7px solid #f9e10a;
+  border-radius: 5px;
+  width: 500px;
+  box-shadow: 0px 0px 0px 15px #f7ed97;
+  margin: 60px auto 0 auto;
+  padding: 30px 50px;
+}
+
+.bye-match {
+  width: 200px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.exit-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.log-out-button,
+.stay-button {
+  display: inline-block;
+  border: none;
+  width: 190px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  background: #f9e10a;
+  border-radius: 50px;
+  padding: 10px;
+  margin: auto 10px 10px 10px;
+  letter-spacing: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.log-out-button span,
+.stay-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.log-out-button span:after,
+.stay-button span:after {
+  content: "\00bb ";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.log-out-button:hover span,
+.stay-button:hover span {
+  padding-right: 25px;
+}
+
+.log-out-button:hover span:after,
+.stay-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+@media (max-width: 1000px) {
+  .log-out {
+    width: 300px;
+    margin: 60px auto 0 auto;
+    padding: 0px 90px;
+  }
+  .log-out-button,
+  .stay-button {
+    width: 130px;
+  }
+}
+
+@media (max-width: 700px) {
+  .log-out {
+    width: 200px;
+  }
+  .bye-match {
+    width: 150px;
+  }
+}
+
+@media (max-width: 550px) {
+  .bye-match {
+    margin-top: 30px;
+  }
+  .exit-buttons {
+    margin-bottom: 30px;
+  }
+  .log-out-button,
+  .stay-button {
+    font-size: 12px;
+  }
+  .log-out p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 550px) {
+  .bye-match {
+    margin-top: 30px;
+  }
+  .exit-buttons {
+    margin-bottom: 30px;
+  }
+  .log-out-button,
+  .stay-button {
+    font-size: 12px;
+  }
+  .log-out p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 530px) {
+  .log-out {
+    width: 170px;
+    padding: 0px 50px;
+  }
+  .log-out-button,
+  .stay-button {
+    width: 100px;
+  }
+}
+
+@media (max-width: 350px) {
+  .log-out {
+    width: 150px;
+    padding: 0px 50px;
+  }
+  .bye-match {
+    width: 100px;
+    margin-top: 20px;
+  }
+  .exit-buttons {
+    margin-bottom: 20px;
+  }
+  .log-out-button,
+  .stay-button {
+    width: 90px;
+  }
+}
