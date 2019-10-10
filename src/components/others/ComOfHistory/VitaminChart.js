@@ -204,7 +204,7 @@ class VitaminChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          text: "維他命（B1、B2、B6、B12、C、E）攝取紀錄",
+          // text: "維他命（B1、B2、B6、B12、C、E）攝取紀錄",
           fontSize: 12,
           fontColor: "grey"
         },

@@ -4,10 +4,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%); */
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
@@ -43,17 +39,18 @@
 
 .start-button {
   display: inline-block;
-  border-radius: 8px;
-  background: #f7ed97;
+  border-radius: 50px;
+  background: #f9e10a;
   border: none;
   color: black;
   text-align: center;
-  font-size: 15px;
-  padding: 20px;
+  font-size: 16px;
+  padding: 15px;
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 20px 10px 10px 0px;
+  letter-spacing: 5px;
 }
 
 .start-button span {
@@ -115,7 +112,6 @@
 
   .start-button {
     padding: 15px;
-    width: 180px;
   }
 
   .main-match {
@@ -161,6 +157,11 @@
   .home-main {
     margin-top: 60px;
   }
+
+  .start-button {
+    margin-top: 5px;
+    padding: 10 px;
+  }
 }
 
 @media (max-width: 530px) {
@@ -179,6 +180,11 @@
   .main-match {
     max-width: 300px;
   }
+  .start-button {
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 8px;
+  }
 }
 
 @media (max-width: 445px) {
@@ -196,5 +202,9 @@
   }
   .main-match {
     max-width: 250px;
+  }
+
+  .hamburger-button {
+    margin-right: 40px;
   }
 }

@@ -155,3 +155,21 @@
 .calendar--days span.start.end:after {
   display: none;
 }
+
+@media (max-width: 600px) {
+  .calendar {
+    width: 300px;
+    margin-left: -165px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calendar {
+    width: 250px;
+    margin-left: -135px;
+    height: 420px;
+  }
+  .calendar--days span {
+    margin: 5px 0;
+  }
+}

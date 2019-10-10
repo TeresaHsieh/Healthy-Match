@@ -153,26 +153,26 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
         }
       })
       .then(() => {
-        let yeah;
-        let dateeee;
+        let foodNutritionData;
+        let foodNutritionDate;
 
         for (let f = 0; f < foodNutrition.length; f++) {
-          yeah = foodNutrition[f].data;
-          dateeee = foodNutrition[f].date;
+          foodNutritionData = foodNutrition[f].data;
+          foodNutritionDate = foodNutrition[f].date;
 
-          for (let key in yeah) {
+          for (let key in foodNutritionData) {
             if (
-              yeah[key] != null &&
-              !isNaN(yeah[key]) &&
-              yeah[key] != undefined
+              foodNutritionData[key] != null &&
+              !isNaN(foodNutritionData[key]) &&
+              foodNutritionData[key] != undefined
             ) {
-              if (!results[dateeee]) {
-                results[dateeee] = {};
+              if (!results[foodNutritionDate]) {
+                results[foodNutritionDate] = {};
               }
-              if (results[dateeee][key]) {
-                results[dateeee][key] += yeah[key];
+              if (results[foodNutritionDate][key]) {
+                results[foodNutritionDate][key] += foodNutritionData[key];
               } else {
-                results[dateeee][key] = yeah[key];
+                results[foodNutritionDate][key] = foodNutritionData[key];
               }
             }
           }

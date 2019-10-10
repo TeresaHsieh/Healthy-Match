@@ -216,7 +216,7 @@ class CarbohydrateChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          text: "碳水化合物攝取紀錄",
+          // text: "碳水化合物攝取紀錄",
           fontSize: 12,
           fontColor: "grey"
         },

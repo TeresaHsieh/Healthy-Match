@@ -219,7 +219,7 @@ class ProteinChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          text: "蛋白質攝取紀錄",
+          // text: "蛋白質攝取紀錄",
           fontSize: 12,
           fontColor: "grey"
         },

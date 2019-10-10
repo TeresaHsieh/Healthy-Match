@@ -905,13 +905,13 @@ class MainForm extends React.Component {
             onClick={this.appendInput}
           ></img>
           <p className="add-input-word" onClick={this.appendInput}>
-            新增欄位
+            新增輸入欄位
           </p>
         </div>
         {/* <button className="add-input" onClick={this.appendInput}> */}
         {/* </button> */}
         <button className="add-record" onClick={this.sendDataToFirebase}>
-          新增紀錄
+          <span>送出紀錄</span>
         </button>
         {openRecordSuccessfulBox ? (
           <div className="backgroundSentRecordSuccess">

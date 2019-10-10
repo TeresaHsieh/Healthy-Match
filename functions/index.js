@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 const functions = require("firebase-functions");
-// const firestore = require("firestore");
 const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
 const cors = require("cors")({ origin: true });
@@ -22,7 +21,7 @@ exports.sendNutritionConfirmLetter = functions.firestore
     let contributerName = contributer.Name;
     let foodNameArray = contributer.foodContribute;
     let newFood = foodNameArray[foodNameArray.length - 1];
-    
+
     const db = admin.firestore();
     let foodDetails = db.collection("nutrition").doc(newFood);
 
@@ -32,42 +31,37 @@ exports.sendNutritionConfirmLetter = functions.firestore
         if (doc.exists) {
           console.log("Document data:", doc.data());
 
-          let newnutritionName = newnutrition["食品名稱"];
-    let newnutritionURL =
-      "https://console.firebase.google.com/u/0/project/healthy-match/database/firestore/data~2Fnutrition~2F"
-    +
-    newnutritionName.toString();
+          let newnutritionName = doc.data()["食品名稱"];
+          console.log("看一下這是什麼", newnutritionName);
+          let newnutritionURL =
+            "https://console.firebase.google.com/u/0/project/healthy-match/database/firestore/data~2Fnutrition~2F" +
+            encodeURIComponent(newnutritionName.toString());
 
-    const mailOptions = {
-      from: "HelloHealthyMatch@gmail.com",
-      to: "HelloHealthyMatch@gmail.com",
-      subject: "New Nutrition newnutritionName Is Added in Healthy Match Database!",
-      html: `<p>${newnutritionName}</p>`
-    };
+          const mailOptions = {
+            from: "HelloHealthyMatch@gmail.com",
+            to: "HelloHealthyMatch@gmail.com",
+            subject:
+              "New Nutrition newnutritionName Is Added in Healthy Match Database!",
+            html: `<p>${newnutritionName}</p><button><a href="${newnutritionURL}">查看營養紀錄</a></button>`
+          };
 
-    const mailTransport = nodemailer.createTransport({
-      // service: "gmail",
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: credential.user,
-        pass: credential.pass
-      }
-    });
+          const mailTransport = nodemailer.createTransport({
+            service: "gmail",
+            //host: "gmail.com",
+            //port: 465,
+            //secure: true,
+            auth: {
+              user: credential.user,
+              pass: credential.pass
+            }
+          });
 
-    try {
-      await mailTransport.sendMail(mailOptions);
-      return console.log("email has sent succesfully", newnutrition);
-    } catch (error) {
-      console.error("There was an error while sending the email:", error);
-    }
-
-
-
-
-
-
+          try {
+            mailTransport.sendMail(mailOptions);
+            return console.log("email has sent succesfully", doc);
+          } catch (error) {
+            console.error("There was an error while sending the email:", error);
+          }
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -77,8 +71,7 @@ exports.sendNutritionConfirmLetter = functions.firestore
         console.log("Error getting document:", error);
       });
 
-
-      return null
+    return null;
   });
 
 // exports.getContributer = functions.firestore

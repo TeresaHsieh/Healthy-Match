@@ -213,7 +213,7 @@ class FatChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          text: "脂肪攝取紀錄",
+          // text: "脂肪攝取紀錄",
           fontSize: 12,
           fontColor: "grey"
         },

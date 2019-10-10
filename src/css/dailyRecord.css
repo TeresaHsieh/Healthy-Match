@@ -42,16 +42,40 @@
   justify-content: flex-start;
   margin-bottom: 30px;
   position: relative;
+  width: 80%;
+  align-self: center;
 }
 
 .meals-nav a {
-  color: black;
+  color: grey;
   margin-right: 30px;
+  padding: 10px 0;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
 }
 
 .meals-nav .active {
-  color: grey;
-  border-bottom: 3px #f9e10a solid;
+  color: black;
+  border-bottom: 2px solid #f9e10a;
+}
+
+.meals-nav a:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #f9e10a;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+
+.meals-nav a:hover:after {
+  transform-origin: bottom left;
+  transform: scaleX(1);
 }
 
 .meal-navbar span {
@@ -66,8 +90,9 @@
   border-bottom: 1px grey solid;
   letter-spacing: 1px;
   position: absolute;
-  right: 10px;
+  right: -70px;
   top: 7px;
+  padding: 7px 0 3px 0;
 }
 
 .informationIcon {
@@ -93,12 +118,12 @@
 .nutritionInfoDetails {
   background-color: white;
   position: fixed;
-  width: 900px;
+  width: 500px;
   height: 300px;
   border-radius: 30px;
   padding: 20px;
   margin-top: calc(50vh - 300px / 2);
-  margin-left: calc(50vw - 900px / 2);
+  margin-left: calc(50vw - 500px / 2);
 }
 .teaching {
   margin-bottom: 30px;
@@ -109,8 +134,8 @@
 .halfpalm,
 .wholepalm,
 .onefinger {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
 }
 
 .allInformation {
@@ -124,7 +149,7 @@
   color: grey;
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 18px;
   width: 20%;
 }
 
@@ -133,7 +158,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 50px;
-  font-size: 20px;
+  font-size: 18px;
   width: 50%;
 }
 
@@ -147,26 +172,6 @@
   display: flex;
   flex-direction: column;
 }
-
-/* 
-.category {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 60%;
-}
-
-.categoryTitle {
-  color: grey;
-  margin-right: 15px;
-  font-size: 20px;
-}
-
-.categoryServe {
-  color: grey;
-  margin-right: 15px;
-  font-size: 18px;
-} */
 
 .food-icon {
   width: 15px;
@@ -198,16 +203,16 @@
   border-bottom: 1px solid lightgrey;
   height: 30px;
   margin: 15px 10px 15px 0px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .food-serve {
-  width: 250px;
+  width: 300px;
   text-indent: 10px;
   border-bottom: 1px solid lightgrey;
   height: 30px;
   margin: 15px 30px 15px 30px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .input-form span {
@@ -221,18 +226,46 @@
 }
 
 .add-record {
-  border-radius: 8px;
-  background: #f7ed97;
+  display: block;
+  border-radius: 50px;
+  background: #f9e10a;
   border: none;
   color: black;
   text-align: center;
-  font-size: 15px;
+  font-size: 16px;
   padding: 10px;
-  width: 100px;
+  width: 150px;
+  transition: all 0.5s;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 100px 40px 10px 0px;
+  letter-spacing: 5px;
   float: right;
-  margin-right: 30px;
+}
+
+.add-record span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  letter-spacing: 1px;
+}
+
+.add-record span:after {
+  content: "\00bb ";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.add-record:hover span {
+  padding-right: 25px;
+}
+
+.add-record:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .add-input {
@@ -250,6 +283,7 @@
 
 .add-input-word {
   font-size: 12px;
+  margin-left: 10px;
 }
 
 .main-form {
@@ -268,7 +302,7 @@
   list-style-type: none;
   background-color: #fbf3a8;
   padding: 0;
-  width: 320px;
+  width: 300px;
   z-index: 1;
 }
 
@@ -302,16 +336,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
   position: relative;
-  width: 500px;
-  height: 445;
+  margin-top: calc(50vh - 250px / 2);
+  margin-left: calc(50vw - 550px / 2);
+  height: 250px;
+  background-color: white;
+  border: 7px solid #f9e10a;
   border-radius: 5px;
-  padding: 20px;
-  margin-top: calc(50vh - 445px / 2);
-  margin-left: calc(50vw - 500px / 2);
-  border: 5px solid #f9e10a;
-  box-shadow: 0px 0px 0px 10px #f7ed97;
+  width: 500px;
+  box-shadow: 0px 0px 0px 15px #f7ed97;
+  margin: 60px auto 0 auto;
+  padding: 30px 50px;
 }
 
 .eating-match {
@@ -338,14 +373,20 @@
     width: 250px;
   }
   .nutritionInfoDetails {
-    width: 700px;
-    margin-left: calc(50vw - 700px / 2);
+    width: 500px;
+    margin-left: calc(50vw - 550px / 2);
   }
   .categoryTitle {
     width: 30%;
   }
   .categoryServe {
     width: 40%;
+  }
+  .nutritionCountTips {
+    right: -50px;
+  }
+  .add-record {
+    margin-right: 30px;
   }
 }
 
@@ -361,6 +402,9 @@
   .food-serve {
     width: 200px;
   }
+  .add-record {
+    margin-right: 45px;
+  }
 }
 
 @media (max-width: 935px) {
@@ -372,11 +416,13 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 10px;
+    margin-bottom: 15px;
   }
   .food-name,
   .searchSuggestion ul {
     text-indent: 0px;
     margin: 5px 10px 15px 0px;
+    width: 400px;
   }
 
   .searchSuggestion ul {
@@ -387,6 +433,10 @@
   .food-serve {
     text-indent: 0px;
     margin: 0 0 5px 0;
+    width: 400px;
+  }
+  .add-record {
+    margin-right: -30px;
   }
 }
 
@@ -400,33 +450,9 @@
     height: 200px;
     margin-right: -100px;
   }
-  .nutritionInfoDetails {
-    height: 300px;
-    width: 500px;
-    margin-top: calc(50vh - 300px / 2);
-    margin-left: calc(50vw - 500px / 2);
-  }
 
-  .categoryTitle {
-    font-size: 15px;
-    width: 15%;
-  }
-
-  .categoryServe {
-    font-size: 15px;
-    width: 30%;
-  }
-  .halffist,
-  .leftwholepalm,
-  .halfpalm,
-  .wholepalm,
-  .onefinger {
-    width: 17px;
-    height: 17px;
-  }
-
-  .categoryServeIMG div {
-    margin: 2px auto 2px 0px;
+  .nutritionCountTips {
+    right: -40px;
   }
 }
 
@@ -437,6 +463,21 @@
   .chef-match {
     margin-right: -80px;
   }
+  .food-name,
+  .searchSuggestion ul,
+  .food-serve {
+    width: 350px;
+  }
+  .add-record {
+    margin-right: 10px;
+  }
+  .sentRecordSuccessDetail {
+    margin-left: calc(50vw - 410px / 2);
+    width: 300px;
+  }
+  .sentRecordSuccessDetail p {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 635px) {
@@ -445,6 +486,15 @@
   }
   .add-record {
     margin-right: 0;
+  }
+  .food-name,
+  .searchSuggestion ul,
+  .food-serve {
+    width: 300px;
+  }
+  .sentRecordSuccessDetail {
+    margin-left: calc(50vw - 310px / 2);
+    width: 200px;
   }
 }
 @media (max-width: 620px) {
@@ -493,8 +543,18 @@
   .informationIcon {
     display: inline-block;
     position: absolute;
-    right: 5px;
+    right: -30px;
     top: 7px;
+    padding: 10px 0;
+  }
+  .sentRecordSuccessDetail {
+    margin-left: calc(50vw - 210px / 2);
+    width: 100px;
+    height: 150px;
+    margin-top: calc(50vw - 250px / 2);
+  }
+  .eating-match {
+    width: 100px;
   }
 }
 
@@ -511,11 +571,20 @@
   .searchSuggestion ul {
     width: 180px;
   }
+  .meals-nav {
+    align-self: auto;
+  }
+  .informationIcon {
+    right: -60px;
+  }
+  .add-record {
+    margin-right: -30px;
+  }
 }
 
 @media (max-width: 400px) {
   .meals {
-    width: 300px;
+    width: 290px;
   }
   .searchSuggestion ul {
     width: 130px;

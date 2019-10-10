@@ -143,12 +143,36 @@ class History extends React.Component {
             <Calendar />
           </div>
         ) : null}
+        <div>
+          <p className="nutrition-title">蛋白質攝取紀錄</p>
+          <ProteinChart />
+        </div>
 
-        <ProteinChart />
-        <FatChart />
-        <CarbohydrateChart />
-        <VitaminChart />
-        <MineralChart />
+        <div>
+          <p className="nutrition-title">脂肪攝取紀錄</p>
+          <FatChart />
+        </div>
+
+        <div>
+          <p className="nutrition-title">碳水化合物攝取紀錄</p>
+          <CarbohydrateChart />
+        </div>
+
+        <div>
+          {" "}
+          <p className="nutrition-title">
+            維他命（B1、B2、B6、B12、C、E）攝取紀錄
+          </p>
+          <VitaminChart />
+        </div>
+
+        <div>
+          {" "}
+          <p className="nutrition-title">
+            礦物質（磷、鈉、鈣、鉀、鋅、鎂、鐵）攝取紀錄
+          </p>
+          <MineralChart />
+        </div>
       </div>
     );
   }
