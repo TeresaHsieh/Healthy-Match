@@ -18,6 +18,7 @@
   width: 50%;
   background: #fffbd5;
   position: relative;
+  z-index: -2;
 }
 
 .left-main-member > div {
@@ -46,6 +47,8 @@
   width: 600px;
   bottom: 45%;
   display: block;
+  background-color: aqua;
+  z-index: -1;
 }
 
 .flip {
@@ -71,14 +74,17 @@
 .flip div div {
   background: #f6ed9c00;
   width: 100%;
+  background-color: aquamarine;
 }
 .flip div:first-child div {
   background: #f6ed9c00;
   width: 100%;
+  background-color: black;
 }
 .flip div:last-child div {
   background: #f6ed9c00;
   width: 100%;
+  background-color: #f9910a;
 }
 
 @keyframes show {
@@ -371,6 +377,36 @@
   right: 0;
 }
 
+@media (max-width: 1250px) {
+  .log-in div input,
+  .sign-up form div input {
+    width: 85%;
+  }
+}
+
+@media (max-width: 1120px) {
+  .left-main-member {
+    width: 40%;
+  }
+  .log-in div input,
+  .sign-up form div input {
+    width: 90%;
+  }
+  .container {
+    font-size: 25px;
+  }
+  .basket-match {
+    width: 250px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .log-in div input,
+  .sign-up form div input {
+    width: 100%;
+  }
+}
+
 @media (max-width: 1000px) {
   .log-out {
     width: 300px;
@@ -383,12 +419,64 @@
   }
 }
 
+@media (max-width: 980px) {
+  .basket-match {
+    width: 200px;
+  }
+  .container {
+    font-size: 20px;
+  }
+  .sign-up form div input {
+    width: 110%;
+  }
+  .left-main-member {
+    width: 35%;
+  }
+  .log-in,
+  .sign-up form {
+    margin-left: 50px;
+  }
+  .main-member-nav {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 840px) {
+  .basket-match {
+    width: 150px;
+  }
+  .container {
+    font-size: 18px;
+  }
+  .main-member {
+    width: 90%;
+  }
+}
+
+@media (max-width: 750px) {
+  .sign-up form div input {
+    width: 115%;
+  }
+  .right-main-member {
+    width: 55%;
+  }
+}
+
 @media (max-width: 700px) {
   .log-out {
     width: 200px;
   }
   .bye-match {
     width: 150px;
+  }
+}
+
+@media (max-width: 665px) {
+  .left-main-member {
+    display: none;
+  }
+  .right-main-member {
+    width: 80%;
   }
 }
 
@@ -431,6 +519,22 @@
   .log-out-button,
   .stay-button {
     width: 100px;
+  }
+}
+
+@media (max-width: 455px) {
+  .log-in,
+  .sign-up form {
+    margin-left: 20px;
+  }
+  .right-main-member {
+    width: 90%;
+  }
+  .sign-up form div input {
+    width: 100%;
+  }
+  .main-member-nav {
+    margin-left: 10px;
   }
 }
 
