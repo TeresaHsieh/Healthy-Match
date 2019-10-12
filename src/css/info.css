@@ -9,21 +9,6 @@
   border-radius: 10px;
 }
 
-.userPhotoAndID {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.userPic img {
-  width: 200px;
-  height: 200px;
-  margin-top: 50px;
-  margin-left: 1%;
-}
-
 .userID > input {
   background-color: #fbf6c7d7;
   color: grey;
@@ -51,39 +36,26 @@
   margin-left: 15px;
 }
 
-.simple-info {
-  height: 600px;
-}
-
-.simple-info h1 {
-  color: grey;
-  font-size: 30px;
-  margin-top: 60px;
-  font-weight: normal;
-  margin-right: 250px;
-}
-
-.simple-info,
 .more-info {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
+  width: 80%;
 }
 
-.more-info-match,
-.more-info-basic {
+.more-info-basic,
+.more-info-match {
   width: 100%;
-  margin: 10px auto 10px auto;
+  margin: 10px auto 10px 130px;
 }
 
 .titleTitle {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: #f6ec8a;
-  width: 80%;
-  margin: auto auto auto 40px;
+  color: #f9e10a;
+  width: 100%;
+  margin: auto 0px 20px 40px;
 }
 
 .ChefMatch {
@@ -91,20 +63,9 @@
 }
 
 .divideLine {
-  width: 50%;
-  border-bottom: 5px solid #f7ed97d7;
+  width: 60%;
+  border-bottom: 5px solid #f9e10a;
   margin-left: 20px;
-}
-
-.simple-info {
-  width: 30%;
-  background-color: #fbf6c7d7;
-  border-radius: 10px;
-}
-
-.more-info {
-  width: 50%;
-  /* margin: 60px auto auto auto; */
 }
 
 .userID,
@@ -135,7 +96,7 @@
 .userWeight,
 .userMatchName,
 .userMatchPic {
-  margin: 10px;
+  margin: 10px 0 10px 10px;
 }
 
 .userID div:first-of-type,
@@ -148,7 +109,7 @@
 .userWeight div:first-of-type,
 .userMatchName div:first-of-type,
 .userMatchPic div:first-of-type {
-  margin: 10px 30px;
+  margin: 10px 10px 10px 30px;
   color: black;
   font-size: 18px;
 }
@@ -161,8 +122,8 @@
 }
 
 .userName > input,
-.userEmail > input,
 .userAge > input,
+.userEmail > input,
 .userSexual > input,
 .userHeight > input,
 .userWeight > input,
@@ -171,26 +132,45 @@
   color: grey;
   font-size: 16px;
   letter-spacing: 3px;
-  width: 35%;
+  width: 65%;
+  margin-left: 50px;
 }
 
 /* contribution-info */
+.userContribution {
+  display: flex;
+  flex-direction: row;
+}
+
 .contributionEachFood {
-  background-color: #f6c372d7;
-  border-radius: 5px;
-  padding: 5px;
+  background-color: #f9910a;
+  border-radius: 20px;
+  padding: 5px 10px;
   color: white;
   cursor: pointer;
+  text-align: center;
+  font-size: 18px;
+  margin: 10px 100px 10px 30px;
+  letter-spacing: 3px;
 }
 
 .contributionEachFoodDetails {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #faf5c9;
   position: relative;
-  width: 280px;
+  width: 45%;
+  margin-right: 30px;
+}
+
+.contributionEachNutritionName {
+  margin-left: 25px;
+}
+
+.contributionEachNutritionNumber {
+  margin-left: 35px;
 }
 
 .contributionEachNutritionName p,
@@ -203,8 +183,9 @@
 .detailsCloseButton {
   display: inline-block;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 
 /* signup redirect box*/
@@ -226,26 +207,56 @@
   background-color: white;
   position: relative;
   width: 500px;
-  height: 445;
+  height: 445px;
   border-radius: 5px;
   padding: 20px;
   margin-top: calc(50vh - 445px / 2);
-  margin-left: calc(50vw - 500px / 2);
-  border: 5px solid #f9e10a;
-  box-shadow: 0px 0px 0px 10px #f7ed97;
+  margin-left: calc(50vw - 550px / 2);
+  border: 7px solid #f9e10a;
+  box-shadow: 0px 0px 0px 15px #f7ed97;
 }
+
 .signUpRedirectBox button {
   display: inline-block;
-  border-radius: 8px;
-  background: #f7ed97;
   border: none;
-  color: black;
+  width: 150px;
+  font-size: 16px;
   text-align: center;
-  font-size: 15px;
+  color: white;
+  background: #f9e10a;
+  border-radius: 50px;
   padding: 10px;
-  width: 100px;
+  margin: 30px 10px 10px 10px;
+  letter-spacing: 5px;
+  transition: all 0.5s;
   cursor: pointer;
-  margin: 30px 10px;
+}
+
+.signUpRedirectBox button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.signUpRedirectBox button span:after {
+  content: "\00bb ";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.signUpRedirectBox button:hover span {
+  padding-right: 25px;
+}
+
+.signUpRedirectBox button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 .signUpRedirectBoxDetails {
@@ -266,12 +277,11 @@
   width: 200px;
   margin-top: 10px;
 }
+.mobileContributionEachFoodDetails {
+  display: none;
+}
 
 @media (max-width: 1610px) {
-  .simple-info {
-    width: 20%;
-  }
-
   .userID,
   .userPassword,
   .userName,
@@ -287,9 +297,6 @@
 }
 
 @media (max-width: 1285px) {
-  .simple-info {
-    display: none;
-  }
   .more-info {
     width: 50%;
   }
@@ -309,11 +316,15 @@
 }
 
 @media (max-width: 1200px) {
-  .simple-info {
-    display: none;
-  }
   .more-info {
     width: 70%;
+  }
+}
+
+@media (max-width: 730px) {
+  .signUpRedirectBox {
+    width: 400px;
+    margin-left: calc(50vw - 450px / 2);
   }
 }
 
@@ -381,18 +392,238 @@
   }
 }
 
-@media (max-width: 460px) {
-  .titlewords,
-  .userID div:first-of-type,
-  .userPassword div:first-of-type,
-  .userName div:first-of-type,
-  .userEmail div:first-of-type,
-  .userAge div:first-of-type,
-  .userSexual div:first-of-type,
-  .userHeight div:first-of-type,
-  .userWeight div:first-of-type,
-  .userMatchName div:first-of-type,
-  .userMatchPic div:first-of-type {
+@media (max-width: 560px) {
+  .signUpRedirectBox {
+    width: 300px;
+    margin-left: calc(50vw - 350px / 2);
+    height: 350px;
+    margin-top: calc(50vh - 350px / 2);
+  }
+  .love-match {
+    width: 150px;
+  }
+  .signUpRedirectBoxDetails span {
+    font-size: 12px;
+  }
+  .signUpRedirectBox button span {
     font-size: 15px;
+  }
+}
+
+@media (max-width: 430px) {
+  .signUpRedirectBox {
+    width: 200px;
+    margin-left: calc(50vw - 250px / 2);
+    height: 300px;
+    margin-top: calc(50vh - 300px / 2);
+  }
+
+  .signUpRedirectBoxDetails p {
+    font-size: 15px;
+  }
+  .love-match {
+    width: 100px;
+  }
+  .signUpRedirectBoxDetails span {
+    font-size: 10px;
+  }
+  .signUpRedirectBox button span {
+    font-size: 10px;
+  }
+  .signUpRedirectBox button {
+    width: 150px;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 1660px) {
+  .more-info-basic,
+  .more-info-match {
+    margin: 10px auto 10px 100px;
+  }
+}
+
+@media (max-width: 1615px) {
+  .userName > input,
+  .userAge > input,
+  .userEmail > input,
+  .userSexual > input,
+  .userHeight > input,
+  .userWeight > input,
+  .userMatchName > input,
+  .userMatchPic > input {
+    width: 45%;
+  }
+}
+
+@media (max-width: 1410px) {
+  .more-info-basic,
+  .more-info-match {
+    margin: 10px auto 10px 90px;
+  }
+  .contributionEachFood {
+    margin: 10px 60px 10px 30px;
+  }
+}
+
+@media (max-width: 1285px) {
+  .more-info {
+    width: 100%;
+  }
+  .titleTitle {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1050px) {
+  .more-info-basic,
+  .more-info-match {
+    margin: 10px auto 10px 70px;
+  }
+}
+
+@media (max-width: 950px) {
+  .more-info-basic,
+  .more-info-match {
+    margin: 10px auto 10px 50px;
+  }
+  .contributionEachFood {
+    margin: 10px 30px 10px 30px;
+  }
+}
+
+@media (max-width: 875px) {
+  .main-info {
+    width: 100%;
+  }
+
+  .userID,
+  .userPassword,
+  .userName,
+  .userEmail,
+  .userAge,
+  .userSexual,
+  .userHeight,
+  .userWeight,
+  .userMatchName,
+  .userMatchPic {
+    width: 80%;
+  }
+  .more-info-basic,
+  .more-info-match {
+    width: 90%;
+  }
+  .contributionEachNutritionName,
+  .contributionEachNutritionNumber,
+  .contributionEachFood {
+    font-size: 16px;
+  }
+  .contributionEachFoodDetails {
+    width: 60%;
+  }
+  .divideLine {
+    width: 75%;
+  }
+}
+
+@media (max-width: 790px) {
+  .divideLine {
+    width: 60%;
+  }
+  .more-info-basic,
+  .more-info-match {
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .contributionEachFood {
+    margin: 10px 30px 10px 30px;
+  }
+  .more-info-basic,
+  .more-info-match {
+    margin: 10px auto 10px auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .mobileContributionEachFoodDetails {
+    display: inline-block;
+    margin: 10px 30px 10px 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #faf5c9;
+    position: relative;
+
+    margin-right: 30px;
+  }
+  .contributionEachFoodDetails {
+    display: none;
+  }
+
+  .mobileContributionEachNutritionName {
+    margin-left: 25px;
+  }
+
+  .mobileContributionEachNutritionNumber {
+    margin-left: 35px;
+  }
+
+  .mobileContributionEachNutritionName p,
+  .mobileContributionEachNutritionNumber p {
+    color: black;
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .mobileDetailsCloseButton {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 585px) {
+  .titleTitle,
+  .userName,
+  .userEmail,
+  .userAge,
+  .userSexual,
+  .userHeight,
+  .userWeight,
+  .userMatchName,
+  .userMatchPic {
+    margin: 10px auto 10px auto;
+  }
+  .userName > input,
+  .userAge > input,
+  .userEmail > input,
+  .userSexual > input,
+  .userHeight > input,
+  .userWeight > input,
+  .userMatchName > input,
+  .userMatchPic > input {
+    margin-left: 0px;
+    width: 80%;
+  }
+}
+
+@media (max-width: 445px) {
+  .divideLine {
+    width: 50%;
+  }
+  .mobileContributionEachNutritionNumber {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mobileContributionEachFoodDetails {
+    margin: 10px 30px 10px 20px;
   }
 }

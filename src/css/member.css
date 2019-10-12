@@ -4,7 +4,7 @@
 .main-member {
   display: flex;
   flex-direction: row;
-  margin: 60px auto auto auto;
+  margin: 60px auto 50px auto;
   width: 80%;
 }
 
@@ -47,7 +47,6 @@
   width: 600px;
   bottom: 45%;
   display: block;
-  background-color: aqua;
   z-index: -1;
 }
 
@@ -74,17 +73,14 @@
 .flip div div {
   background: #f6ed9c00;
   width: 100%;
-  background-color: aquamarine;
 }
 .flip div:first-child div {
   background: #f6ed9c00;
   width: 100%;
-  background-color: black;
 }
 .flip div:last-child div {
   background: #f6ed9c00;
   width: 100%;
-  background-color: #f9910a;
 }
 
 @keyframes show {

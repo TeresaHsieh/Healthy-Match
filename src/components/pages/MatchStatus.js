@@ -1,18 +1,16 @@
+// All imports
 import React, { useImperativeHandle } from "react";
-import "../../css/status.css";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+
+// App Components, Actions and CSS
+import Header from "../common/Header";
+import MainMatch from "../../imgs/main-match.png";
 import { checkFirestoreNutritionRecord } from "../../store/actions/dailyAction";
 import { sentLastImgToReduxStore } from "../../store/actions/authAction";
 import { sentDescriptionToReduxStore } from "../../store/actions/authAction";
 import { removeIMGandDescription } from "../../store/actions/authAction";
-
-// App Components
-import Header from "../common/Header";
-import MainMatch from "../../imgs/main-match.png";
-import Happy from "../../imgs/happy.png";
-import Unhappy from "../../imgs/unhappy.png";
-import Backpack from "../../imgs/backpack.png";
+import "../../css/status.css";
 
 class MatchStatus extends React.Component {
   constructor() {

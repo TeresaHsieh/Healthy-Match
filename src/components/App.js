@@ -1,9 +1,10 @@
+// All imports
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-// App Components
+// App Components, Actions and CSS
 import Home from "./pages/Home";
 import DailyRecord from "./pages/DailyRecord";
 import History from "./pages/History";
@@ -31,13 +32,12 @@ class App extends React.Component {
     const { loading } = this.state;
 
     if (loading) {
-      // if your component doesn't have to wait for an async action, remove this block
       return null; // render null when app is not ready
     }
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={DailyRecord} />
+          <Route exact path="/" component={Info} />
 
           {/* Home */}
 
@@ -48,7 +48,6 @@ class App extends React.Component {
           <Route path="/member" component={Member} />
           <Route path="/info" component={Info} />
           <Route path="/log-out" component={LogOut} />
-          {/* <LogOut /> */}
 
           <Route component={NotFound} />
         </Switch>
@@ -60,16 +59,5 @@ class App extends React.Component {
 function demoAsyncCall() {
   return new Promise(resolve => setTimeout(() => resolve(), 100));
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     auth: state.firebase.auth
-//   };
-// };
-
-// export default connect(
-//   null,
-//   mapStateToProps
-// )(App);
 
 export default App;

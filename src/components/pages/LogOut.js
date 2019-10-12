@@ -1,9 +1,10 @@
+// All imports
 import React from "react";
-import "../../css/member.css";
 
-// App Components
+// App Components, Actions and CSS
 import Header from "../common/Header";
 import LogOut from "../others/ComOfMember/LogOut";
+import "../../css/member.css";
 
 const Member = () => (
   <div>

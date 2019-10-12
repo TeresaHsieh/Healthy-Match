@@ -115,7 +115,7 @@ class CustomForm extends React.Component {
             <input
               placeholder="輸入食物「α-維生素E」總量（每 100g）"
               onChange={this.handleChange}
-              value={this.state["α - 維生素E當量(α - TE)(mg)"]}
+              value={this.state["α-維生素E當量(α-TE)(mg)"]}
               id="α-維生素E當量(α-TE)(mg)"
             ></input>
             <input

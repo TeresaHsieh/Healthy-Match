@@ -12,7 +12,6 @@ class Home extends React.Component {
     // <Redirect to="./daily-record" />;
     let path = "./daily-record";
     this.props.history.push(path);
-    console.log("開始！");
   };
   render() {
     return (

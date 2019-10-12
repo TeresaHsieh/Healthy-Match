@@ -100,7 +100,6 @@ export const signUp = newUser => {
 
 export const checkUserInfo = userUID => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // make async call to database
     const firestore = getFirestore();
     const firebase = getFirebase();
     let UserInfo;
@@ -119,26 +118,8 @@ export const checkUserInfo = userUID => {
       .then(() => {
         dispatch({ type: "CHECK_USER_INFO", UserInfo });
       });
-    // return {
-    //   type: "CHECK_USER_INFO",
-    //   UserInfo,
-    //   matchImgDownloadURL
-    // };
   };
 };
-
-// export const updateInfoToFirestore = (userUID, infoName, infoData) => {
-//   return (dispatch, getState, { getFirebase, getFirestore }) => {
-//     const firestore = getFirestore();
-
-//     firestore
-//       .collection("member")
-//       .doc(userUID)
-//       .update({
-//         [infoName]: infoData
-//       });
-//   };
-// };
 
 export const updateInfoToFirestore = (userUID, wholeState) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {

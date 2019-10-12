@@ -1,3 +1,4 @@
+// All imports
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -12,7 +13,7 @@ import SignUpRedirect from "../others/ComOfMember/SignUpRedirect";
 
 import LoveMatch from "../../imgs/love-match.png";
 
-// App Components
+// App Components, Actions and CSS
 import Header from "../common/Header";
 import { relativeTimeRounding } from "moment";
 
@@ -59,19 +60,14 @@ class Info extends React.Component {
             <div className="backgroundSignUpRedirectBox">
               <div className="signUpRedirectBox">
                 <SignUpRedirect />{" "}
-                <button onClick={this.closeFirstSignUpBox}>我知道了！</button>
+                <button onClick={this.closeFirstSignUpBox}>
+                  <span>我知道了！</span>
+                </button>
               </div>
             </div>
           ) : (
             ""
           )}
-          <div className="simple-info">
-            {/* <h1>
-              HELLO :)
-              <br /> {this.props.userInfo.Name}
-            </h1> */}
-            {/* <AuthInfo /> */}
-          </div>
           <div className="more-info">
             <BasicInfo />
             <ContributionInfo />
@@ -92,7 +88,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     checkUserInfo: userUID => {
       dispatch(checkUserInfo(userUID));
     }

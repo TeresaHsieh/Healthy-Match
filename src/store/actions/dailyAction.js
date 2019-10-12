@@ -48,9 +48,8 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
       let foodNumber = [];
       let data = [];
       let sum;
-      let test = [];
 
-      let test_3 = [];
+      let dateAndDetail = [];
       allRecord
         .get()
         .then(mealTypes => {
@@ -80,14 +79,13 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
               .get()
               .then(function(ref) {
                 if (ref.exists) {
-                  //test_3.push({ data: ref.data() });
-                  test_3.push({ date: names[i].date, data: ref.data() });
+                  dateAndDetail.push({ date: names[i].date, data: ref.data() });
                 }
               })
               .then(() => {
                 loaded++;
                 if (loaded === names.length) {
-                  resolve(test_3);
+                  resolve(dateAndDetail);
                 }
               });
           }
@@ -123,7 +121,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
     });
 
     let foodNutrition;
-    let check = [];
     let theDate;
     let data = {};
     let results = {};
@@ -143,11 +140,14 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
         let foodServes = nutritionAndServes[1];
 
         for (let m = 0; m < foodNutrition.length; m++) {
-          let yoyo = foodNutrition[m].data;
+          let FoodsNutritionData = foodNutrition[m].data;
 
-          for (let key in yoyo) {
-            if (yoyo[key] != null && !isNaN(yoyo[key])) {
-              yoyo[key] = yoyo[key] * foodServes[m];
+          for (let key in FoodsNutritionData) {
+            if (
+              FoodsNutritionData[key] != null &&
+              !isNaN(FoodsNutritionData[key])
+            ) {
+              FoodsNutritionData[key] = FoodsNutritionData[key] * foodServes[m];
             }
           }
         }
@@ -272,52 +272,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
       .doc(dateString + meal);
 
     theRecord.get().then(function(doc) {
-      // if (doc.exists) {
-      //   let prevName = doc.data().Name;
-      //   let prevServe = doc.data().Serve;
-      //   let combineName = stateName.concat(prevName);
-      //   let combineServe = stateServe.concat(prevServe);
-
-      //   firestore
-      //     .collection("member")
-      //     .doc("3Smynu8UzW2gPvJrZYOZ")
-      //     .collection("nutritionRecord")
-      //     .doc(dateString + meal)
-      //     // use "add" for collection, use set for document
-      //     .set({
-      //       Date: Number(dateString),
-      //       // [mealString]: {
-      //       Name: combineName,
-      //       Serve: combineServe
-      //       //  }
-      //     })
-
-      //     .then(() => {
-      //       dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
-      //     });
-      // } else {
-      //   // doc.data() will be undefined in this case
-      //   console.log("No previous document!");
-      //   firestore
-      //     .collection("member")
-      //     .doc("3Smynu8UzW2gPvJrZYOZ")
-      //     .collection("nutritionRecord")
-      //     .doc(dateString + meal)
-      //     // use "add" for collection, use set for document
-      //     .set({
-      //       Date: Number(dateString),
-      //       //[mealString]: {
-      //       Name: stateName,
-      //       Serve: stateServe
-      //       // }
-      //     })
-
-      //     .then(() => {
-      //       dispatch({ type: "SEND_DATA_TO_FIREBASE", stateName, stateServe });
-      //     });
-      // }
-
-      //================================================================================================
       if (meal == "breakfast") {
         if (doc.exists) {
           let prevName = doc.data().Name;
@@ -412,7 +366,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
               Meal: "lunch",
               Name: stateName,
               Serve: stateServe
-              // }
             })
 
             .then(() => {
@@ -477,7 +430,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
             });
         }
       }
-      //  ================================================================================================
     });
   };
 };

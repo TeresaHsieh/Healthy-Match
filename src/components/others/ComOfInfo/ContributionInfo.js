@@ -16,30 +16,7 @@ class ContributionInfo extends React.Component {
     };
   }
 
-  componentDidMount = () => {
-    // console.log("did mount", this.props.userInfo);
-    // if (this.props.userInfo.MatchName) {
-    //   this.setState(this.props.userInfo);
-    // }
-  };
-
-  componentDidUpdate = (prevProps, prevState) => {
-    // console.log("成功吧！", this.props.userInfo);
-    // if (!prevState.MatchName) {
-    //   console.log("set", this.props.userInfo);
-    //   this.setState(this.props.userInfo);
-    // }
-  };
-
-  // render() {
-  //   const data = [{ name: "test1" }, { name: "test2" }];
-  //   const listItems = data.map(d => <li key={d.name}>{d.name}</li>);
-
-  //   return <div>{listItems}</div>;
-  // }
-
   showContributionDetails = e => {
-    console.log(e.currentTarget.innerText);
     this.props.getContributionDetails(
       this.props.auth.uid,
       e.currentTarget.innerText
@@ -57,6 +34,7 @@ class ContributionInfo extends React.Component {
     const contributionDetails = this.props.contributionDetails;
     const openDetails = this.state.openDetails;
     let details;
+    let mobileDetails;
     let keyArray = [];
     let valueArray = [];
 
@@ -68,8 +46,6 @@ class ContributionInfo extends React.Component {
         key => {
           keyArray.push(key);
           valueArray.push(contributionDetails[key]);
-          console.log(key, contributionDetails[key]);
-          // return [Number(key), contributionDetails[key]];
           details = (
             <div className="contributionEachFoodDetails">
               <div className="contributionEachNutritionName">
@@ -87,18 +63,25 @@ class ContributionInfo extends React.Component {
               </div>
             </div>
           );
+          mobileDetails = (
+            <div className="mobileContributionEachFoodDetails">
+              <div className="mobileContributionEachNutritionName">
+                {keyArray.map(detailsName => (
+                  <p>{detailsName}</p>
+                ))}
+              </div>
+              <div className="mobileContributionEachNutritionNumber">
+                {valueArray.map(detailsName => (
+                  <p>{detailsName}</p>
+                ))}
+              </div>
+              <div onClick={this.closeDetails} className="detailsCloseButton">
+                X
+              </div>
+            </div>
+          );
         }
       );
-
-      // details = (
-      //   <div>
-      //     <div>
-      //       {key.map(detailsName => (
-      //         <p>{detailsName}</p>
-      //       ))}
-      //     </div>
-      //   </div>
-      // );
     }
 
     if (this.props.userInfo.foodContribute) {
@@ -109,7 +92,7 @@ class ContributionInfo extends React.Component {
 
             <div className="divideLine"></div>
           </div>
-          <div className="userMatchName">
+          <div className="userContribution">
             <div className="contributionEachFoodName">
               {contributeData.map(data => (
                 <p
@@ -119,6 +102,7 @@ class ContributionInfo extends React.Component {
                   {data}
                 </p>
               ))}
+              {mobileDetails}
             </div>
             {details}
           </div>
@@ -127,19 +111,6 @@ class ContributionInfo extends React.Component {
     } else {
       return (
         <div className="more-info-match">
-          {/* <div className="titleTitle">
-          <div className="titlewords">營養素貢獻紀錄</div>
-
-          <div className="divideLine"></div>
-        </div>
-        <div className="userMatchName">
-          <div>麻吉名字</div>
-          <div>
-            {contributeData.map(data => (
-              <p>{data}</p>
-            ))}
-          </div>
-        </div> */}
           <div className="more-info-match">
             <div className="titleTitle">
               <div className="titlewords">營養素貢獻紀錄</div>

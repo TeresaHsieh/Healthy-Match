@@ -31,24 +31,20 @@ class BasicInfo extends React.Component {
       !prevState.Height &&
       !prevState.Weight
     ) {
-      console.log("set", this.props.userInfo);
-      // this.setState(this.props.userInfo);
     }
   };
 
   // 按編輯按鈕
   handleInfoChange = () => {
-    console.log("調整基本資料");
     this.setState({ disabled: false }, () => {
-      console.log(this.state.disabled);
+      // console.log(this.state.disabled);
     });
   };
 
   // 按勾勾
   checkInfoChange = () => {
-    console.log("基本資料更新完畢");
     this.setState({ disabled: true }, () => {
-      console.log(this.state.disabled);
+      // console.log(this.state.disabled);
     });
     let userUID = this.props.auth.uid;
     let Name = this.state.Name;
@@ -70,20 +66,14 @@ class BasicInfo extends React.Component {
 
   // onchange 時
   updateInfo = e => {
-    // console.log("基本資料更新中");
     let infoName = e.target.name;
     let infoData = e.target.value;
-    // let userUID = this.props.auth.uid;
-    // this.props.updateInfoToFirestore(userUID, infoName, infoData);
     this.setState({ [infoName]: infoData });
   };
 
   // 按叉叉
   cancelInfoChange = () => {
-    console.log("取消更新基本資料");
-    this.setState({ disabled: true }, () => {
-      console.log(this.state.disabled);
-    });
+    this.setState({ disabled: true }, () => {});
     this.setState(this.props.userInfo);
   };
 
@@ -128,7 +118,6 @@ class BasicInfo extends React.Component {
       !this.state.Weight
     ) {
       return (
-        // <div> Loading (｡･ω･｡)ﾉ </div>;
         <div className="more-info-basic">
           <div className="titleTitle">
             <div className="titlewords">用戶資料</div>
@@ -139,7 +128,7 @@ class BasicInfo extends React.Component {
             <div>用戶姓名</div>
             <input
               name="Name"
-              //placeholder={this.props.userInfo.Name}
+              placeholder="輸入姓名"
               value={this.state.Name}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -149,7 +138,7 @@ class BasicInfo extends React.Component {
             <div>用戶信箱</div>
             <input
               name="Email"
-              //placeholder={this.props.userInfo.Name}
+              placeholder="輸入信箱"
               value={this.props.auth.email}
               onChange={this.updateInfo}
               disabled="disabled"
@@ -159,7 +148,7 @@ class BasicInfo extends React.Component {
             <div>用戶年齡</div>
             <input
               name="Age"
-              //placeholder={this.props.userInfo.Age}
+              placeholder="輸入年齡"
               value={this.state.Age}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -170,7 +159,7 @@ class BasicInfo extends React.Component {
             <div>用戶性別</div>
             <input
               name="Sexual"
-              //placeholder={this.props.userInfo.Sexual}
+              placeholder="輸入性別"
               value={this.state.Sexual}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -180,7 +169,7 @@ class BasicInfo extends React.Component {
             <div>用戶身高</div>
             <input
               name="Height"
-              //placeholder={this.props.userInfo.Height}
+              placeholder="輸入身高"
               value={this.state.Height}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -191,7 +180,7 @@ class BasicInfo extends React.Component {
             <div>用戶體重</div>
             <input
               name="Weight"
-              // placeholder={this.props.userInfo.Weight}
+              placeholder="輸入體重"
               value={this.state.Weight}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -202,7 +191,7 @@ class BasicInfo extends React.Component {
             <div>麻吉名字</div>
             <input
               name="MatchName"
-              // placeholder={this.props.userInfo.MatchName}
+              placeholder="輸入麻吉名字"
               value={this.state.MatchName}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -229,7 +218,6 @@ class BasicInfo extends React.Component {
             <div>用戶姓名</div>
             <input
               name="Name"
-              //placeholder={this.props.userInfo.Name}
               value={this.state.Name}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -239,7 +227,6 @@ class BasicInfo extends React.Component {
             <div>用戶信箱</div>
             <input
               name="Email"
-              //placeholder={this.props.userInfo.Name}
               value={this.props.auth.email}
               onChange={this.updateInfo}
               disabled="disabled"
@@ -249,7 +236,6 @@ class BasicInfo extends React.Component {
             <div>用戶年齡</div>
             <input
               name="Age"
-              //placeholder={this.props.userInfo.Age}
               value={this.state.Age}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -260,7 +246,6 @@ class BasicInfo extends React.Component {
             <div>用戶性別</div>
             <input
               name="Sexual"
-              //placeholder={this.props.userInfo.Sexual}
               value={this.state.Sexual}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -270,7 +255,6 @@ class BasicInfo extends React.Component {
             <div>用戶身高</div>
             <input
               name="Height"
-              //placeholder={this.props.userInfo.Height}
               value={this.state.Height}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -281,7 +265,6 @@ class BasicInfo extends React.Component {
             <div>用戶體重</div>
             <input
               name="Weight"
-              // placeholder={this.props.userInfo.Weight}
               value={this.state.Weight}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}
@@ -292,7 +275,6 @@ class BasicInfo extends React.Component {
             <div>麻吉名字</div>
             <input
               name="MatchName"
-              // placeholder={this.props.userInfo.MatchName}
               value={this.state.MatchName}
               onChange={this.updateInfo}
               disabled={this.state.disabled ? "disabled" : ""}

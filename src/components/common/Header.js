@@ -1,9 +1,10 @@
+// All imports
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import LogOut from "../others/ComOfMember/LogOut";
 
-// Components
+// App Components and CSS
+import LogOut from "../others/ComOfMember/LogOut";
 import logo from "../../imgs/logo.png";
 import Hamburger from "../common/Hamburger";
 
@@ -21,7 +22,6 @@ class Header extends React.Component {
   };
 
   checkForHeaderStyle = () => {
-    console.log(document.body.offsetWidth);
     if (document.body.offsetWidth < Number(1125)) {
       this.setState({ screenMobile: true });
     } else {
@@ -37,9 +37,8 @@ class Header extends React.Component {
         <NavLink to="/log-out"> 登出 </NavLink>
       </div>
     ) : (
-      <NavLink to="/member"> 註冊/登入 </NavLink>
+      <NavLink to="/member"> 註冊 / 登入 </NavLink>
     );
-    console.log(auth);
     if (this.state.screenMobile == true) {
       return (
         <header className="header">
@@ -60,8 +59,6 @@ class Header extends React.Component {
             <NavLink to="/history"> 營養歷史 </NavLink>
             <NavLink to="/add-data"> 添加營養 </NavLink>
             <NavLink to="/match-status"> 麻吉樂園 </NavLink>
-            {/* <NavLink to="/member"> 註冊/登入 </NavLink>
-    <NavLink to="/log-out"> 登出 </NavLink> */}
             {links}
           </div>
         </header>
@@ -71,7 +68,6 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile

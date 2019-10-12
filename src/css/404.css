@@ -3,11 +3,11 @@
 .main-404 {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 60%;
   justify-content: space-around;
   left: 50%;
   position: absolute;
-  top: 60%;
+  top: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -20,4 +20,39 @@
 
 .sad-match {
   width: 450px;
+}
+
+@media (max-width: 1300px) {
+  .main-404 {
+    width: 80%;
+  }
+}
+
+@media (max-width: 975px) {
+  .main-404 {
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sad-match {
+    width: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  .code404 {
+    font-size: 30px;
+  }
+  .main-404 h2 {
+    font-size: 20px;
+  }
+  .main-404 p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 415px) {
+  .sad-match {
+    width: 250px;
+  }
 }
