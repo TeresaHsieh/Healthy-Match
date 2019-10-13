@@ -4,8 +4,8 @@ A website that uses gamification to create a fun environment for incentivizing u
 
 Get started: https://healthy-match.firebaseapp.com
 
-![](https://i.imgur.com/zEX5idW.png)
-<img src="https://i.imgur.com/zEX5idW.png" width="600">
+<!-- ![](https://i.imgur.com/zEX5idW.png) -->
+<img src="https://i.imgur.com/zEX5idW.png" width="600" style="margin-left: auto; margin-right:auto">
 
 ## Technologies
 
