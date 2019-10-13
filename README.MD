@@ -4,6 +4,8 @@ A website that uses gamification to create a fun environment for incentivizing u
 
 Get started: https://healthy-match.firebaseapp.com
 
+![](https://i.imgur.com/zEX5idW.png)
+
 ## Technologies
 
 - React
@@ -29,7 +31,9 @@ Get started: https://healthy-match.firebaseapp.com
 
    With Healthy Match, you can record everything you eat in daily breakfast, lunch or dinner, including foods' name, serving, meal time, and date which will all be stored properly in database.
 
-   ![](https://i.imgur.com/64r047Q.png)
+   <!-- ![](https://i.imgur.com/64r047Q.png) -->
+
+   <img src="https://i.imgur.com/64r047Q.png" width="600">
 
 2. **Search Over 2 Thousand Accurate Food Facts In Database Which Were Imported From FDA.**
 
