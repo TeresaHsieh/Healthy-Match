@@ -269,7 +269,12 @@ class MatchStatus extends React.Component {
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGCarbohydrate;
         this.props.sentLastImgToReduxStore(LastIMG);
-      } else if (alhohol.length >= 3 && addUPFat < addUPCalorie * 0.35) {
+      } else if (
+        alhohol.length >= 3 &&
+        addUPFat < addUPCalorie * 0.35 &&
+        addUPProtein < addUPUserWeight &&
+        VitaminCEZNshouldTake > addUPAllVitaminCEandZn
+      ) {
         let state = {
           changeIMG: true
         };
@@ -279,7 +284,12 @@ class MatchStatus extends React.Component {
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGAlcohol;
         this.props.sentLastImgToReduxStore(LastIMG);
-      } else if (alhohol.length < 3 && addUPFat > addUPCalorie * 0.35) {
+      } else if (
+        alhohol.length < 3 &&
+        addUPFat >= addUPCalorie * 0.35 &&
+        addUPProtein < addUPUserWeight &&
+        VitaminCEZNshouldTake > addUPAllVitaminCEandZn
+      ) {
         let state = {
           changeIMG: true
         };
@@ -291,7 +301,12 @@ class MatchStatus extends React.Component {
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGFat;
         this.props.sentLastImgToReduxStore(LastIMG);
-      } else if (addUPProtein > addUPUserWeight) {
+      } else if (
+        alhohol.length < 3 &&
+        addUPFat < addUPCalorie * 0.35 &&
+        addUPProtein >= addUPUserWeight &&
+        VitaminCEZNshouldTake > addUPAllVitaminCEandZn
+      ) {
         let state = {
           changeIMG: true
         };
@@ -304,7 +319,12 @@ class MatchStatus extends React.Component {
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGProtein;
         this.props.sentLastImgToReduxStore(LastIMG);
-      } else if (VitaminCEZNshouldTake < addUPAllVitaminCEandZn) {
+      } else if (
+        alhohol.length < 3 &&
+        addUPFat < addUPCalorie * 0.35 &&
+        addUPProtein < addUPUserWeight &&
+        VitaminCEZNshouldTake < addUPAllVitaminCEandZn
+      ) {
         let state = {
           changeIMG: true
         };
