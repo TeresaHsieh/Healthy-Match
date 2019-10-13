@@ -11,15 +11,13 @@ exports.sendNutritionConfirmLetter = functions.firestore
   .onUpdate((change, context) => {
     const contributer = change.after.data();
 
-    console.log(contributer);
-
     let contributerName = contributer.Name;
     let foodNameArray = contributer.foodContribute;
     let newFood = foodNameArray[foodNameArray.length - 1];
 
     const db = admin.firestore();
     let foodDetails = db.collection("nutrition").doc(newFood);
-    console.log(foodDetails);
+
     foodDetails
       .get()
       .then(function(doc) {
@@ -28,9 +26,6 @@ exports.sendNutritionConfirmLetter = functions.firestore
           let newnutritionURL =
             "https://console.firebase.google.com/u/0/project/healthy-match/database/firestore/data~2Fnutrition~2F" +
             encodeURIComponent(newnutritionName.toString());
-          console.log(doc, doc.data());
-
-          console.log(contributerName);
 
           const mailOptions = {
             from: "HelloHealthyMatch@gmail.com",
