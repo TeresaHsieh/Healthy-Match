@@ -517,3 +517,10 @@ export const personalNutritionContribution = (useruid, newNutrition) => {
     }
   };
 };
+
+export const removePropsRecordTotalNutrition = () => {
+  console.log("移除進到action");
+  return {
+    type: "REMOVE_PROPS_RECORD_TOTAL_NUTRITION"
+  };
+};

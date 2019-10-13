@@ -178,6 +178,7 @@ export const getContributionDetails = (userUID, contributionFoodName) => {
 };
 
 export const removeIMGandDescription = () => {
+  console.log("進到action");
   return {
     type: "REMOVE_IMG_AND_DESCRIPTION"
   };

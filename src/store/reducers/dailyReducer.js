@@ -122,6 +122,13 @@ const dailyReducer = (state = initState, action) => {
     case "ADD_RECORD_INPUT_ERR":
       return state;
 
+    case "REMOVE_PROPS_RECORD_TOTAL_NUTRITION":
+      console.log("進到移除reducer");
+      return {
+        ...state,
+        recordTotalNutrition: undefined
+      };
+
     default:
       return state;
   }

@@ -10,6 +10,7 @@ import { checkFirestoreNutritionRecord } from "../../store/actions/dailyAction";
 import { sentLastImgToReduxStore } from "../../store/actions/authAction";
 import { sentDescriptionToReduxStore } from "../../store/actions/authAction";
 import { removeIMGandDescription } from "../../store/actions/authAction";
+//import { removePropsRecordTotalNutrition } from "../../store/actions/dailyAction";
 import "../../css/status.css";
 
 class MatchStatus extends React.Component {
@@ -26,6 +27,8 @@ class MatchStatus extends React.Component {
   componentDidMount = () => {
     if (!this.props.recordTotalNutrition) {
       // count end date
+
+      console.log("走一");
       let today = new Date();
       let year = today.getFullYear();
       let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
@@ -78,22 +81,84 @@ class MatchStatus extends React.Component {
         this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
       }
       // this.setState({ imgSrc: this.props.userInfo.MatchCharacterIMG });
+    } else if (
+      this.props.recordTotalNutrition &&
+      this.props.userInfo &&
+      this.props.recordTotalName &&
+      this.state.changeIMG == false &&
+      this.props.description == undefined
+    ) {
+      console.log("走二");
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
+      let day = today.getDate();
+
+      let yearString = year.toString();
+
+      let monthString = "";
+      if (month < 10) {
+        monthString = "0" + month.toString();
+      } else {
+        monthString = month.toString();
+      }
+
+      let dayString = "";
+      if (day < 10) {
+        dayString = "0" + day.toString();
+      } else {
+        dayString = day.toString();
+      }
+
+      // count 7 days ago
+      let weekAgoDate = new Date();
+      weekAgoDate.setDate(weekAgoDate.getDate() - 6);
+      let weekAgoYear = weekAgoDate.getFullYear();
+      let weekAgoMonth = weekAgoDate.getMonth() + 1;
+      let weekAgoDay = weekAgoDate.getDate();
+
+      let weekAgoYearString = weekAgoYear.toString();
+      let weekAgoMonthString = "";
+
+      if (weekAgoMonth < 10) {
+        weekAgoMonthString = "0" + weekAgoMonth.toString();
+      } else {
+        weekAgoMonthString = weekAgoMonth.toString();
+      }
+
+      let weekAgoDayString = "";
+      if (weekAgoDay < 10) {
+        weekAgoDayString = "0" + weekAgoDay.toString();
+      } else {
+        weekAgoDayString = weekAgoDay.toString();
+      }
+
+      let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
+      let endDate = yearString + monthString + dayString; // default : today
+
+      let userUID = this.props.auth.uid;
+      if (userUID) {
+        this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
+      }
     }
   };
 
   componentWillUnmount = () => {
     this.props.removeIMGandDescription();
+    //this.props.removePropsRecordTotalNutrition();
+    this.setState({ changeIMG: false });
   };
 
   componentDidUpdate = () => {
     let pass7daysRecord = [];
+    console.log("進到 update");
     if (
       this.props.recordTotalNutrition &&
       this.props.userInfo &&
       this.props.recordTotalName &&
       this.state.changeIMG == false &&
-      this.props.description == undefined &&
-      this.props.userInfo.MatchCharacterIMG == undefined
+      this.props.description == undefined
+      // && this.props.userInfo.MatchCharacterIMG == undefined
     ) {
       let historyRecord = this.props.recordTotalNutrition;
       let recordDays = Object.keys(historyRecord).map(function(key) {
@@ -191,7 +256,7 @@ class MatchStatus extends React.Component {
         addUPVitaminC + addUPVitaminE + addUPMineralZn;
 
       let VitaminCEZNshouldTake = 1298 * result.length;
-
+      console.log("準備換圖");
       let LastIMG;
       // no records last 4 days
       if (pass7daysEating < 5) {
@@ -204,7 +269,7 @@ class MatchStatus extends React.Component {
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGCarbohydrate;
         this.props.sentLastImgToReduxStore(LastIMG);
-      } else if (alhohol.length >= 3) {
+      } else if (alhohol.length >= 3 && addUPFat < addUPCalorie * 0.35) {
         let state = {
           changeIMG: true
         };
@@ -214,7 +279,7 @@ class MatchStatus extends React.Component {
         );
         LastIMG = this.props.userInfo.MatchCharacterIMGAlcohol;
         this.props.sentLastImgToReduxStore(LastIMG);
-      } else if (addUPFat > addUPCalorie * 0.35) {
+      } else if (alhohol.length < 3 && addUPFat > addUPCalorie * 0.35) {
         let state = {
           changeIMG: true
         };
@@ -381,6 +446,9 @@ const mapDispatchToProps = dispatch => {
     removeIMGandDescription: () => {
       dispatch(removeIMGandDescription());
     }
+    // removePropsRecordTotalNutrition: () => {
+    //   dispatch(removePropsRecordTotalNutrition());
+    // }
   };
 };
 

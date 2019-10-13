@@ -65,6 +65,7 @@ const authReducer = (state = initState, action) => {
       };
 
     case "REMOVE_IMG_AND_DESCRIPTION":
+      console.log("進到reducer");
       return {
         ...state,
         LastIMG: undefined,
