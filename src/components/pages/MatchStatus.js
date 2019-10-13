@@ -19,40 +19,9 @@ class MatchStatus extends React.Component {
       matchAge: "",
       imgSrc: "",
       changeIMG: false,
-      description: "我無話可說"
+      description: ""
     };
   }
-
-  // componentDidMount = () => {
-  //   // let countDays = Number(this.props.userInfo.signUpDate);
-  //   // let componentShowUpDay = new Date();
-  //   // let year = componentShowUpDay.getFullYear();
-  //   // let month = componentShowUpDay.getMonth() + 1; // if no plus one, the result would be August when expected September
-  //   // let day = componentShowUpDay.getDate();
-
-  //   // let yearString = year.toString();
-
-  //   // let monthString = "";
-  //   // if (month < 10) {
-  //   //   monthString = "0" + month.toString();
-  //   // } else {
-  //   //   monthString = month.toString();
-  //   // }
-
-  //   // let dayString = "";
-  //   // if (day < 10) {
-  //   //   dayString = "0" + day.toString();
-  //   // } else {
-  //   //   dayString = day.toString();
-  //   // }
-
-  //   // let componentShowUpDate = Number(yearString + monthString + dayString); // default : componentShowUpDay
-  //   // this.setState({ matchAge: componentShowUpDate - countDays });
-  //   // console.log(componentShowUpDate, countDays);
-  //   let test = this.props.auth.createdAt;
-  //   let test2 = new Date();
-  //   console.log("於啥時出生", test2);
-  // };
 
   componentDidMount = () => {
     if (!this.props.recordTotalNutrition) {
@@ -308,24 +277,23 @@ class MatchStatus extends React.Component {
           <Header />
           <div className="matchstatus-main">
             <div className="match-status">
-              <span className="match-name">
-                {" "}
-                {this.props.userInfo.MatchName}
+              <span className="match-info">
+                <span className="match-name">
+                  {" "}
+                  {this.props.userInfo.MatchName}
+                </span>
+                <span className="match-age">
+                  年紀：{" "}
+                  {Math.floor(
+                    Math.abs(new Date() - this.props.auth.createdAt) /
+                      1000 /
+                      86400
+                  )}{" "}
+                  天
+                </span>
               </span>
-              {/* <span className="match-backpack">
-                <img src={Backpack} />
-                <span>點擊背包！</span>
-              </span> */}
               <span className="divide-line"></span>
-              <span>
-                年紀：{" "}
-                {Math.floor(
-                  Math.abs(new Date() - this.props.auth.createdAt) /
-                    1000 /
-                    86400
-                )}{" "}
-                天
-              </span>
+
               <p> 想對主人說： </p>
               <span className="weekly-suggestion">
                 {this.props.description}
@@ -343,24 +311,23 @@ class MatchStatus extends React.Component {
           <Header />
           <div className="matchstatus-main">
             <div className="match-status">
-              <span className="match-name">
-                {" "}
-                {this.props.userInfo.MatchName}
+              <span className="match-info">
+                <span className="match-name">
+                  {" "}
+                  {this.props.userInfo.MatchName}
+                </span>
+                <span className="match-age">
+                  年紀：{" "}
+                  {Math.floor(
+                    Math.abs(new Date() - this.props.auth.createdAt) /
+                      1000 /
+                      86400
+                  )}{" "}
+                  天
+                </span>
               </span>
-              {/* <span className="match-backpack">
-              <img src={Backpack} />
-              <span>點擊背包！</span>
-            </span> */}
               <span className="divide-line"></span>
-              <span>
-                年紀：{" "}
-                {Math.floor(
-                  Math.abs(new Date() - this.props.auth.createdAt) /
-                    1000 /
-                    86400
-                )}{" "}
-                天
-              </span>
+
               <p>
                 {" "}
                 想對主人說：

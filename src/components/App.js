@@ -37,7 +37,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Info} />
+          <Route exact path="/" component={AddDatabase} />
 
           {/* Home */}
 
@@ -57,7 +57,7 @@ class App extends React.Component {
 }
 
 function demoAsyncCall() {
-  return new Promise(resolve => setTimeout(() => resolve(), 100));
+  return new Promise(resolve => setTimeout(() => resolve(), 1000000));
 }
 
 export default App;

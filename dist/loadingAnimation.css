@@ -34,11 +34,72 @@
 
 @keyframes marquee {
   from {
-    left: 30%;
-    /* top: 50%; */
+    left: 20%;
   }
   to {
-    left: 70%;
-    /* top: 50%; */
+    left: 50%;
+  }
+}
+
+@media (max-width: 1200px) {
+  @keyframes marquee {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 50%;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  @keyframes marquee {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 40%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  @keyframes marquee {
+    from {
+      left: 0%;
+    }
+    to {
+      left: 25%;
+    }
+  }
+
+  .marquee div {
+    animation: marquee 5s linear infinite;
+  }
+}
+
+@media (max-width: 600px) {
+  @keyframes marquee {
+    from {
+      left: -20%;
+    }
+    to {
+      left: 25%;
+    }
+  }
+
+  .marquee div {
+    animation: marquee 3s linear infinite;
+  }
+}
+
+@media (max-width: 400px) {
+  @keyframes marquee {
+    from {
+      left: -80%;
+    }
+    to {
+      left: 10%;
+    }
   }
 }

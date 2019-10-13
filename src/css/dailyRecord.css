@@ -336,17 +336,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  margin-top: calc(50vh - 250px / 2);
-  margin-left: calc(50vw - 550px / 2);
-  height: 250px;
   background-color: white;
-  border: 7px solid #f9e10a;
+  position: relative;
+  width: 400px;
+  height: 250px;
   border-radius: 5px;
-  width: 500px;
+  padding: 20px;
+  margin-top: calc(50vh - 250px / 2);
+  margin-left: calc(50vw - 400px / 2);
+  border: 7px solid #f9e10a;
   box-shadow: 0px 0px 0px 15px #f7ed97;
-  margin: 60px auto 0 auto;
-  padding: 30px 50px;
 }
 
 .eating-match {
@@ -472,7 +471,7 @@
     margin-right: 10px;
   }
   .sentRecordSuccessDetail {
-    margin-left: calc(50vw - 410px / 2);
+    margin-left: calc(50vw - 350px / 2);
     width: 300px;
   }
   .sentRecordSuccessDetail p {
@@ -493,7 +492,7 @@
     width: 300px;
   }
   .sentRecordSuccessDetail {
-    margin-left: calc(50vw - 310px / 2);
+    margin-left: calc(50vw - 250px / 2);
     width: 200px;
   }
 }
@@ -548,10 +547,10 @@
     padding: 10px 0;
   }
   .sentRecordSuccessDetail {
-    margin-left: calc(50vw - 210px / 2);
+    margin-left: calc(50vw - 150px / 2);
     width: 100px;
     height: 150px;
-    margin-top: calc(50vw - 250px / 2);
+    margin-top: calc(50vh - 150px / 2);
   }
   .eating-match {
     width: 100px;

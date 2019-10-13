@@ -74,13 +74,13 @@
   background-color: white;
   position: relative;
   width: 500px;
-  height: 445;
+  height: 250px;
   border-radius: 5px;
   padding: 20px;
-  margin-top: calc(50vh - 445px / 2);
+  margin-top: calc(50vh - 300px / 2);
   margin-left: calc(50vw - 500px / 2);
-  border: 5px solid #f9e10a;
-  box-shadow: 0px 0px 0px 10px #f7ed97;
+  border: 7px solid #f9e10a;
+  box-shadow: 0px 0px 0px 15px #f7ed97;
 }
 
 .list-match {
@@ -91,6 +91,16 @@
 @media (max-width: 865px) {
   .custom-form input {
     width: 300px;
+  }
+}
+
+@media (max-width: 820px) {
+  .sentContributionSuccessfulDetail {
+    margin-left: calc(50vw - 350px / 2);
+    width: 300px;
+  }
+  .sentContributionSuccessfulDetail p {
+    font-size: 15px;
   }
 }
 
@@ -110,5 +120,15 @@
   }
   .sentToDataBase {
     width: 200px;
+  }
+}
+
+@media (max-width: 500px) {
+  .sentContributionSuccessfulDetail {
+    margin-left: calc(50vw - 250px / 2);
+    width: 200px;
+  }
+  .list-match {
+    width: 150px;
   }
 }

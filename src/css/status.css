@@ -17,19 +17,25 @@
 }
 
 .match-status span {
-  margin: 10px 0;
+  margin: 10px 0px;
 }
 
-.match-name {
+.match-name.match-name {
   font-weight: bold;
-  color: #f7ed97;
+  color: #f9e10a;
   font-size: 30px;
+  display: inline-block;
+  margin-right: 20px;
 }
 
 .divide-line {
   width: 100%;
-  border-bottom: 3px solid grey;
+  border-bottom: 3px solid #f9e10a;
   padding: 0;
+}
+
+.match-age {
+  display: inline;
 }
 
 /* .match-mood img,
@@ -51,7 +57,7 @@
 /* picture */
 
 .backgroud {
-  border: 10px solid #f7ed97;
+  border: 7px solid #f9e10a;
   border-radius: 5px;
   width: 500px;
   height: 340px;
