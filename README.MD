@@ -39,8 +39,8 @@ With Healthy Match, you can record everything you eat in daily breakfast, lunch 
 
 You can find 2,000+ nutrition facts and information in Healthy Match ,which were imported from FDA.
 
-   <!-- ![](https://i.imgur.com/H1drDi1.gif) -->
-   <img src="https://i.imgur.com/H1drDi1.gif" width="800">
+   <!-- ![](https://i.imgur.com/k9HbnUn.gif) -->
+   <img src="https://i.imgur.com/k9HbnUn.gif" width="800">
 
 **3. "Auto-Complete Food Search" Makes Recording More Easier!**
 
@@ -66,9 +66,6 @@ Want to see previous record before last 7 days? No problem! Just click on the ca
    <!-- ![](https://i.imgur.com/MnmW0Nw.png) -->
    <img src="https://i.imgur.com/MnmW0Nw.png" width="800">
 
-   <!-- ![](https://i.imgur.com/lvxbOjv.png) -->
-   <img src="https://i.imgur.com/lvxbOjv.png" width="800">
-
    <!-- ![](https://i.imgur.com/mxLikWf.gif) -->
    <img src="https://i.imgur.com/mxLikWf.gif" width="800">
 
@@ -76,31 +73,31 @@ Want to see previous record before last 7 days? No problem! Just click on the ca
 
 Didn't find what you eat in search results? You can add your frequent eaten food and its nutrition facts into database by yourself! After adding, you can immediately find the food in search result!
 
+  <!-- ![](https://i.imgur.com/Xwcef44.png)  -->
+  <img src="https://i.imgur.com/Xwcef44.png" width="800">
+
 Also, in order to prevent from improper food adding, everytime users add food facts into database, developer would get an email with information of user and new nutrition.
 
    <!-- ![](https://i.imgur.com/fHKKiP0.png)-->
    <img src="https://i.imgur.com/fHKKiP0.png" width="800">
 
-   <!-- ![](https://i.imgur.com/WR2Qk8v.png)  -->
-   <img src="https://i.imgur.com/WR2Qk8v.png" width="800">
-
 **7. The Match Will Change Status According To Your Eating Habits!**
 
 You are what you eat, and your "Match" are what you eat too! If you consume too much protein, your Match will become musclar, if you drink too much alcohol, Match will become so drunk!
 
-   <!-- ![](https://i.imgur.com/TulYX0u.png) -->
-  <img src="https://i.imgur.com/TulYX0u.png" width="800">
-
-   <!-- ![](https://i.imgur.com/ov5qvqJ.png) -->
+  <!-- ![](https://i.imgur.com/ov5qvqJ.png) -->
   <img src="https://i.imgur.com/ov5qvqJ.png" width="800">
 
 **8. Always Care About Your Health With Reminder!**
 
 After recording your meals, Healthy Match will give you some feedback about your weekly diet, keep you always have balanced meal plan!
 
+  <!-- ![](https://i.imgur.com/PpiCFlE.png) -->
+  <img src="https://i.imgur.com/PpiCFlE.png" width="800">
+
 **9. 404 page**
 
 Accidentally type the URL wrong? Healthy Match will give you a hint with 404 page ❤
 
-   <!-- ![](https://i.imgur.com/5eVky14.png) -->
-   <img src="https://i.imgur.com/5eVky14.png" width="800">
+  <!-- ![](https://i.imgur.com/5eVky14.png) -->
+  <img src="https://i.imgur.com/5eVky14.png" width="800">
