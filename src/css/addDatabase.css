@@ -43,16 +43,44 @@
 
 .sentToDataBase {
   display: inline-block;
-  border-radius: 8px;
-  background: #f7ed97;
+  border-radius: 50px;
+  background: #f9e10a;
   border: none;
   color: black;
   text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  width: 300px;
+  font-size: 16px;
+  padding: 15px;
+  width: 200px;
+  transition: all 0.5s;
   cursor: pointer;
-  margin: 30px 10px;
+  margin: 20px 10px 10px 0px;
+  letter-spacing: 5px;
+}
+
+.sentToDataBase span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+  letter-spacing: 1px;
+}
+
+.sentToDataBase span:after {
+  content: "\00bb ";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.sentToDataBase:hover span {
+  padding-right: 25px;
+}
+
+.sentToDataBase:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 /* sent contribution successful  */

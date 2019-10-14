@@ -216,7 +216,7 @@ class CustomForm extends React.Component {
             ></input>
           </form>
           <button className="sentToDataBase" onClick={this.handleSubmit}>
-            送出營養素！
+            <span>送出營養素！</span>
           </button>
         </div>
         {openContributionSuccessfulBox ? (
