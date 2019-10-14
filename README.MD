@@ -40,7 +40,7 @@ With Healthy Match, you can record everything you eat in daily breakfast, lunch 
 You can find 2,000+ nutrition facts and information in Healthy Match ,which were imported from FDA.
 
    <!-- ![](https://i.imgur.com/k9HbnUn.gif) -->
-   <img src="https://i.imgur.com/k9HbnUn.gif" width="800">
+   <img src="https://i.imgur.com/tOgaasc.gif" width="800">
 
 **3. "Auto-Complete Food Search" Makes Recording More Easier!**
 

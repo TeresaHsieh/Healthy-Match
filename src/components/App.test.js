@@ -1,23 +1,47 @@
 import React from "react";
-import Info from "../components/pages/Info";
+import App from "../components/App";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import renderer from "react-test-renderer";
+import Info from "../components/pages/Info";
+import NotFound from "../components/pages/NotFound";
+import { createStore, applyMiddleware, compose } from "redux";
+import rootReducer from "../store/reducers/rootReducer";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { exportAllDeclaration } from "@babel/types";
 
-test("Info changes the state when enter with no info", () => {
-  const component = renderer.create(
-    <Info page="http://www.facebook.com">Facebook</Info>
-  );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+test("Test Info", () => {
+  let store = createStore(rootReducer);
+  const notFoundWithRudex = renderer
+    .create(
+      <Provider store={store}>
+        <BrowserRouter>
+          <NotFound />
+        </BrowserRouter>
+      </Provider>
+    )
+    .toJSON();
+  expect(notFoundWithRudex).toMatchSnapshot();
 
-  // manually trigger the callback
-  tree.props.onMouseEnter();
-  // re-rendering
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  //   const infoWithRudex = renderer
+  //     .create(
+  //       <Provider store={store}>
+  //         <BrowserRouter>
+  //           <Info />
+  //         </BrowserRouter>
+  //       </Provider>
+  //     )
+  //     .toJSON();
+  //   expect(infoWithRudex).toMatchSnapshot();
 
-  // manually trigger the callback
-  tree.props.onMouseLeave();
-  // re-rendering
-  tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  //   const notFoundWithRudex = renderer
+  //     .create(
+  //       <Provider store={store}>
+  //         <BrowserRouter>
+  //           <NotFound />
+  //         </BrowserRouter>
+  //       </Provider>
+  //     )
+  //     .toJSON();
+  //   expect(notFoundWithRudex).toMatchSnapshot();
 });
