@@ -413,7 +413,7 @@ class MatchStatus extends React.Component {
         let state = {
           changeIMG: true
         };
-        state.description = `歡迎回來看我～～～今天新增飲食記錄了嗎 ⁎⁍̴̛ᴗ⁍̴̛⁎`;
+        state.description = `歡迎回來看我～～～目前飲食都很均衡呢～要繼續保持唷 ⁎⁍̴̛ᴗ⁍̴̛⁎`;
         this.setState(state, () =>
           this.props.sentDescriptionToReduxStore(this.state.description)
         );
