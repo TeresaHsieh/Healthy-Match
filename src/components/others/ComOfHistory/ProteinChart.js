@@ -111,7 +111,6 @@ class ProteinChart extends React.Component {
       let averageArray = [];
       for (let t = 0; t < times; t++) {
         averageArray.push(this.props.userInfo.Weight);
-        console.log(averageArray);
       }
 
       let theDays = [];

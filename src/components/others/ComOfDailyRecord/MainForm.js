@@ -39,7 +39,6 @@ class MainForm extends React.Component {
 
   // change input, change data (state)
   inputNameChange = e => {
-    console.log(e.target.id);
     let adjustIndex = Number(e.target.id);
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
     let obj = {};
@@ -48,7 +47,7 @@ class MainForm extends React.Component {
     if (foodName.trim() !== "") {
       // when no state in Redux store, add first data
       if (this.props.recordName === undefined) {
-        console.log("first");
+        //first
         obj = [{ foodName: foodName }];
         this.props.updateDailyRecordName(obj);
       } else {
@@ -57,11 +56,11 @@ class MainForm extends React.Component {
           foodName !== this.props.recordName[adjustIndex] &&
           this.props.recordName[adjustIndex] !== undefined
         ) {
-          console.log("更新");
+          //更新
           obj = { foodName: foodName };
           this.props.adjustRecordInputName(adjustIndex, obj); // 寫更新的方法
         } else if (this.props.recordName[adjustIndex] === undefined) {
-          console.log("新增一筆");
+          //新增一筆
           obj = [{ foodName: foodName }];
           this.props.addRecordInputName(obj);
         }
@@ -70,7 +69,6 @@ class MainForm extends React.Component {
   };
 
   inputServeChange = e => {
-    console.log(e.target.id);
     if (!isNaN(e.target.value)) {
       let adjustIndex = Number(e.target.id);
       let meal = window.location.pathname.split("/")[2]; // checking by url subpath
@@ -86,11 +84,11 @@ class MainForm extends React.Component {
             foodServe !== this.props.recordServe[adjustIndex] &&
             this.props.recordServe[adjustIndex] !== undefined
           ) {
-            console.log("更新");
+            //更新
             obj = { foodServe: foodServe };
             this.props.adjustRecordInputServe(adjustIndex, obj); // 寫更新的方法
           } else if (this.props.recordServe[adjustIndex] === undefined) {
-            console.log("新增一筆");
+            //新增一筆
             obj = [{ foodServe: foodServe }];
             this.props.addRecordInputServe(obj);
           }
@@ -102,7 +100,6 @@ class MainForm extends React.Component {
   };
 
   deleteRecord = e => {
-    console.log(e.target.id);
     this.props.deleteRecord(e.target.id);
   };
 
@@ -233,7 +230,6 @@ class MainForm extends React.Component {
   };
 
   searchKeywords = e => {
-    console.log("searching keywords");
     this.props.searchKeywords(e.target.value);
     this.setState({
       onChangeId: e.target.id
@@ -280,13 +276,11 @@ class MainForm extends React.Component {
   hideSuggestion = e => {
     if (this.areaOutsideDiv.current.contains(e.target)) {
       // Clicked in box
-      console.log("Clicked in box");
       this.setState({
         showSuggestion: false
       });
     } else {
       // Clicked outside the box
-      console.log("Clicked outside the box");
       this.setState({
         showSuggestion: false
       });
@@ -302,15 +296,6 @@ class MainForm extends React.Component {
 
     let obj = { foodName: keywordsName };
     this.props.adjustRecordInputName(arrayObjectindex, obj); // 寫更新的方法
-    // this.setState({
-    //   showSuggestion: false
-    // });
-    console.log(
-      e.currentTarget.parentNode.parentNode.parentNode.parentNode.childNodes[1]
-        .id,
-      e.currentTarget.innerText
-    );
-    // this.props.changeInputByKeywords(arrayObjectindex, keywordsName);
   };
 
   render() {
@@ -469,21 +454,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(MainForm);
-
-// const Test = () => {
-//   let handleClickAway = () => {
-//     console.log("OPEN!");
-//   };
-
-//   return (
-//     <ClickAwayListener onClickAway={handleClickAway}>
-//       <MenuList>
-//         <MenuItem className="eachSuggestion">a</MenuItem>
-//         <MenuItem className="eachSuggestion">b</MenuItem>
-//         <MenuItem className="eachSuggestion">c</MenuItem>
-//         <MenuItem className="eachSuggestion">d</MenuItem>
-//         <MenuItem className="eachSuggestion">e</MenuItem>
-//       </MenuList>
-//     </ClickAwayListener>
-//   );
-// };

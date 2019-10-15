@@ -112,7 +112,7 @@ export const checkUserInfo = userUID => {
           UserInfo = doc.data();
         } else {
           // doc.data() will be undefined in this case
-          console.log("No such document!");
+          //console.log("No such document!");
         }
       })
       .then(() => {
@@ -168,7 +168,7 @@ export const getContributionDetails = (userUID, contributionFoodName) => {
           contributionDetail = doc.data();
         } else {
           // doc.data() will be undefined in this case
-          console.log("No such document!");
+          //console.log("No such document!");
         }
       })
       .then(() => {
@@ -178,7 +178,6 @@ export const getContributionDetails = (userUID, contributionFoodName) => {
 };
 
 export const removeIMGandDescription = () => {
-  console.log("進到action");
   return {
     type: "REMOVE_IMG_AND_DESCRIPTION"
   };

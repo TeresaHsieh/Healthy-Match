@@ -141,7 +141,6 @@ class FatChart extends React.Component {
       let averageArray = [];
       calorieArray.forEach(eachCalorie => {
         averageArray.push(eachCalorie * 0.25 * 0.11); // kcal/g(transfer kcal to g)
-        console.log(averageArray);
       });
 
       const data = {
@@ -270,15 +269,6 @@ class FatChart extends React.Component {
         </div>
       );
     }
-
-    // const setGradientColor = (canvas, color) => {
-    //   const ctx = canvas.getContext("2d");
-    //   console.log(ctx);
-    //   const gradient = ctx.createLinearGradient(0, 0, 600, 250);
-    //   gradient.addColorStop(0, color);
-    //   gradient.addColorStop(0.95, "rgba(245, 135, 73,0.75)");
-    //   return gradient;
-    // };
   }
 }
 

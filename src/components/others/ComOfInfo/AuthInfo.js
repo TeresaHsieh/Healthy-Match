@@ -21,16 +21,13 @@ class AuthInfo extends React.Component {
 
   componentDidMount = () => {
     // this.props.checkUserInfo(this.props.auth.uid);
-    console.log("did mount", this.props.userInfo);
     if (this.props.userInfo.Photo) {
       this.setState(this.props.userInfo);
     }
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("成功吧！", this.props.userInfo);
     if (!prevState.Photo) {
-      console.log("set", this.props.userInfo);
       this.setState(this.props.userInfo);
     }
   };
@@ -52,7 +49,7 @@ class AuthInfo extends React.Component {
       },
       error => {
         // error function
-        console.log(error);
+        //console.log(error);
       },
       () => {
         // complete function

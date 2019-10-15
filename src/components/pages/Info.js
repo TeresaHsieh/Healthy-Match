@@ -38,10 +38,6 @@ class Info extends React.Component {
     }
   };
 
-  handleInfoChange = () => {
-    console.log("調整資料");
-  };
-
   closeFirstSignUpBox = () => {
     this.setState({ openFirstSignUpBox: false });
   };

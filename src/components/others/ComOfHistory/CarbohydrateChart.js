@@ -137,11 +137,9 @@ class CarbohydrateChart extends React.Component {
         calorie = result[d].key["修正熱量(kcal)"];
         calorieArray.push(calorie);
       }
-      console.log("超重", this.props.userInfo.Weight);
       let averageArray = [];
       calorieArray.forEach(eachCalorie => {
         averageArray.push(eachCalorie * 0.55 * 0.25); // kcal/g(transfer kcal to g)
-        console.log(averageArray);
       });
 
       const data = {
@@ -207,8 +205,6 @@ class CarbohydrateChart extends React.Component {
       for (let i = 0; i < detailArray.length; i++) {
         resultArray.push(detailArray[i].detail);
       }
-
-      console.log("wfowifoweijfwef", resultArray);
 
       const option = {
         responsive: true,

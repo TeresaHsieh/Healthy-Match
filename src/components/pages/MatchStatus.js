@@ -87,7 +87,6 @@ class MatchStatus extends React.Component {
       this.state.changeIMG == false &&
       this.props.description == undefined
     ) {
-      console.log("走二");
       let today = new Date();
       let year = today.getFullYear();
       let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September

@@ -23,7 +23,6 @@ class BasicInfo extends React.Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("成功吧！", this.props.userInfo);
     if (
       !prevState.Name &&
       !prevState.Age &&
@@ -36,16 +35,12 @@ class BasicInfo extends React.Component {
 
   // 按編輯按鈕
   handleInfoChange = () => {
-    this.setState({ disabled: false }, () => {
-      // console.log(this.state.disabled);
-    });
+    this.setState({ disabled: false }, () => {});
   };
 
   // 按勾勾
   checkInfoChange = () => {
-    this.setState({ disabled: true }, () => {
-      // console.log(this.state.disabled);
-    });
+    this.setState({ disabled: true }, () => {});
     let userUID = this.props.auth.uid;
     let Name = this.state.Name;
     let Age = this.state.Age;

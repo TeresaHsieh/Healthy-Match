@@ -302,7 +302,7 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
             });
         } else {
           // doc.data() will be undefined in this case
-          console.log("No previous document!");
+          // console.log("No previous document!");
           firestore
             .collection("member")
             .doc(userUid)
@@ -354,7 +354,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
             });
         } else {
           // doc.data() will be undefined in this case
-          console.log("No previous document!");
           firestore
             .collection("member")
             .doc(userUid)
@@ -406,7 +405,6 @@ export const sendDataToFirebase = (stateName, stateServe, userUID) => {
             });
         } else {
           // doc.data() will be undefined in this case
-          console.log("No previous document!");
           firestore
             .collection("member")
             .doc(userUid)
@@ -519,7 +517,6 @@ export const personalNutritionContribution = (useruid, newNutrition) => {
 };
 
 export const removePropsRecordTotalNutrition = () => {
-  console.log("移除進到action");
   return {
     type: "REMOVE_PROPS_RECORD_TOTAL_NUTRITION"
   };

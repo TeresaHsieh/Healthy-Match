@@ -4,7 +4,7 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case "LOGIN_ERROR":
-      console.log(action.err.message);
+      // console.log(action.err.message);
       return {
         ...state,
         authError: "Login Failed",
@@ -27,7 +27,7 @@ const authReducer = (state = initState, action) => {
       };
 
     case "SIGNUP_ERROR":
-      console.log(action.err.message);
+      // console.log(action.err.message);
       return {
         ...state,
         authError: action.err.message,
@@ -65,7 +65,6 @@ const authReducer = (state = initState, action) => {
       };
 
     case "REMOVE_IMG_AND_DESCRIPTION":
-      console.log("進到reducer");
       return {
         ...state,
         LastIMG: undefined,

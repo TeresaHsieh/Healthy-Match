@@ -154,7 +154,6 @@ class MineralChart extends React.Component {
       let averageArray = [];
       for (let t = 0; t < times; t++) {
         averageArray.push(mineral);
-        console.log(averageArray);
       }
 
       let theDays = [];

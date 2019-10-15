@@ -109,7 +109,6 @@ class VitaminChart extends React.Component {
       let averageArray = [];
       for (let t = 0; t < times; t++) {
         averageArray.push(vitamin);
-        console.log(averageArray);
       }
 
       let theDays = [];
