@@ -1,9 +1,7 @@
 import React from "react";
-import App from "./App";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import renderer from "react-test-renderer";
-import Info from "./pages/Info";
-import NotFound from "./pages/NotFound";
+import NotFound from "../components/pages/NotFound";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "../store/reducers/rootReducer";
 import { Provider } from "react-redux";

@@ -36,6 +36,7 @@ class Info extends React.Component {
     ) {
       this.setState({ openFirstSignUpBox: true });
     }
+    console.log(this.props.auth);
   };
 
   closeFirstSignUpBox = () => {
@@ -45,6 +46,8 @@ class Info extends React.Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="./member" />;
+    // <Redirect to="./member" />;
+    // <h1>{`${JSON.stringify(this.props)}`}</h1>;
 
     const openFirstSignUpBox = this.state.openFirstSignUpBox;
 
