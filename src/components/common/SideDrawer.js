@@ -1,6 +1,9 @@
+// All imports
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+
+// App Components and Actions
 import "../../css/common.css";
 
 const SideDrawer = props => {
@@ -8,7 +11,7 @@ const SideDrawer = props => {
   const links = auth.uid ? (
     <NavLink to="/log-out"> 登出 </NavLink>
   ) : (
-    <NavLink to="/member"> 註冊/登入 </NavLink>
+    <NavLink to="/member"> 註冊 / 登入 </NavLink>
   );
 
   return (

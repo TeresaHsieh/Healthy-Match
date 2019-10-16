@@ -4,7 +4,13 @@ const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
 const credential = require("./credential");
 const smtpTransport = require("nodemailer-smtp-transport");
+//const serviceAccount = require("./firebaseAdminSDK.json");
 admin.initializeApp(functions.config().firebase);
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://healthy-match.firebaseio.com"
+// });
 
 exports.sendNutritionConfirmLetter = functions.firestore
   .document("member/{memberId}")
