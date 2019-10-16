@@ -1,10 +1,12 @@
+// All imports
 import React from "react";
+
+// App Components and Actions
 import "../../../css/dailyRecord.css";
 import halffist from "../../../imgs/halffist.png";
 import halfpalm from "../../../imgs/halfpalm.png";
 import leftwholepalm from "../../../imgs/leftwholepalm.png";
 import onefinger from "../../../imgs/onefinger.png";
-
 import wholepalm from "../../../imgs/wholepalm.png";
 
 class NutritionChart extends React.Component {
@@ -33,7 +35,7 @@ class NutritionChart extends React.Component {
                 <span>100g 約為一個手心</span>
                 <span>100g 約為兩個手心</span>
                 <span>100g 約為一個指頭</span>
-                <span>100g 約為一個手心</span>
+                <span>100g 約為半個手心</span>
                 <span>100g 約為兩個手心</span>
                 <span>100g 約為兩個手心</span>
               </div>

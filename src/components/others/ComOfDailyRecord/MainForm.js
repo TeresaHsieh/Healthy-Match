@@ -1,6 +1,6 @@
+// All imports
 import React, { createRef, useRef } from "react";
 import { connect } from "react-redux";
-import AppendInput from "../ComOfDailyRecord/AppendInput";
 
 // App Components and Actions
 import { addRecordInputName } from "../../../store/actions/dailyAction";
@@ -12,14 +12,10 @@ import { adjustRecordInputName } from "../../../store/actions/dailyAction";
 import { adjustRecordInputServe } from "../../../store/actions/dailyAction";
 import { deleteRecord } from "../../../store/actions/dailyAction";
 import { changeInputByKeywords } from "../../../store/actions/dailyAction";
-
 import { searchKeywords } from "../../../store/actions/dailyAction";
 import { clearValues } from "../../../store/actions/dailyAction";
-
-import Delete from "../../../imgs/delete.png";
 import Add from "../../../imgs/add.png";
 import Food from "../../../imgs/salad.png";
-
 import EatingMatch from "../../../imgs/eating-match.png";
 
 class MainForm extends React.Component {
@@ -37,7 +33,6 @@ class MainForm extends React.Component {
     this.areaOutsideDiv = React.createRef();
   }
 
-  // change input, change data (state)
   inputNameChange = e => {
     let adjustIndex = Number(e.target.id);
     let meal = window.location.pathname.split("/")[2]; // checking by url subpath
@@ -56,11 +51,11 @@ class MainForm extends React.Component {
           foodName !== this.props.recordName[adjustIndex] &&
           this.props.recordName[adjustIndex] !== undefined
         ) {
-          //更新
+          //update
           obj = { foodName: foodName };
-          this.props.adjustRecordInputName(adjustIndex, obj); // 寫更新的方法
+          this.props.adjustRecordInputName(adjustIndex, obj);
         } else if (this.props.recordName[adjustIndex] === undefined) {
-          //新增一筆
+          //add
           obj = [{ foodName: foodName }];
           this.props.addRecordInputName(obj);
         }
@@ -84,11 +79,11 @@ class MainForm extends React.Component {
             foodServe !== this.props.recordServe[adjustIndex] &&
             this.props.recordServe[adjustIndex] !== undefined
           ) {
-            //更新
+            //update
             obj = { foodServe: foodServe };
-            this.props.adjustRecordInputServe(adjustIndex, obj); // 寫更新的方法
+            this.props.adjustRecordInputServe(adjustIndex, obj);
           } else if (this.props.recordServe[adjustIndex] === undefined) {
-            //新增一筆
+            //add
             obj = [{ foodServe: foodServe }];
             this.props.addRecordInputServe(obj);
           }
@@ -133,13 +128,6 @@ class MainForm extends React.Component {
 
     if (showSuggestion && this.props.keywords !== undefined) {
       suggestion = (
-        // <ClickAwayListener onClickAway={this.handleClickAway}>
-        //   <MenuList>
-        //     {this.props.keywords.map(food => (
-        //       <MenuItem className="eachSuggestion">{food}</MenuItem>
-        //     ))}
-        //   </MenuList>
-        // </ClickAwayListener>
         <div className="turnOffDiv">
           <ul ref={node => (this.areaOutsideDiv = node)}>
             {this.props.keywords.map(food => (
@@ -187,12 +175,6 @@ class MainForm extends React.Component {
             min="0"
             ref={this.otherServeInput}
           ></input>
-          {/* <img
-            src={`/${Delete}`}
-            className="delete-button"
-            id={i}
-            onClick={this.deleteRecord}
-          ></img> */}
         </form>
       );
     }
@@ -207,9 +189,6 @@ class MainForm extends React.Component {
     let stateServe = this.props.recordServe;
 
     this.props.sendDataToFirebase(stateName, stateServe, userUID);
-
-    // after sending data, empty all the input and cut down the append inputs
-
     this.setState({
       addInputComponent: 0,
       openRecordSuccessfulBox: true
@@ -218,9 +197,7 @@ class MainForm extends React.Component {
     this.props.clearValues(emptyValue);
     this.nameInput.current.value = "";
     this.serveInput.current.value = "";
-    // () => {
 
-    // };
     setTimeout(
       function() {
         this.setState({ openRecordSuccessfulBox: false });
@@ -238,11 +215,9 @@ class MainForm extends React.Component {
 
   showKeywords = e => {
     if (e.target.value.length !== 0) {
-      // if (this.props.keywords.length !== 0) {
       this.setState({
         showSuggestion: true
       });
-      //}
     } else {
       this.setState({
         showSuggestion: false
@@ -312,20 +287,12 @@ class MainForm extends React.Component {
                 onClick={e => {
                   this.setInput(e);
                 }}
-                // onClick={this.state.onChangeId == i ? {} : { display: "none" }}
               >
                 {food}
               </li>
             ))}
           </ul>
         </div>
-        // <ClickAwayListener onClickAway={this.handleClickAway}>
-        //   <MenuList>
-        //     {this.props.keywords.map(food => (
-        //       <MenuItem className="eachSuggestion">{food}</MenuItem>
-        //     ))}
-        //   </MenuList>
-        // </ClickAwayListener>
       );
     }
 
@@ -340,7 +307,6 @@ class MainForm extends React.Component {
             onBlur={this.inputNameChange}
             onChange={this.searchKeywords}
             onKeyUp={this.showKeywords}
-            // value={this.state.originalInput}
             ref={this.nameInput}
             id="0"
           ></input>
@@ -350,23 +316,15 @@ class MainForm extends React.Component {
           >
             {suggestion}
           </div>
-
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
             onBlur={this.inputServeChange}
-            // value={this.state.originalInput}
             id="0"
             type="number"
             min="0"
             ref={this.serveInput}
           ></input>
-          {/* <img
-            src={`/${Delete}`}
-            className="delete-button"
-            onClick={this.deleteRecord}
-            id="0"
-          ></img> */}
         </form>
         {this.getAppendedComponents()}
         <div className="add-input">
@@ -379,8 +337,6 @@ class MainForm extends React.Component {
             新增輸入欄位
           </p>
         </div>
-        {/* <button className="add-input" onClick={this.appendInput}> */}
-        {/* </button> */}
         <button className="add-record" onClick={this.sendDataToFirebase}>
           <span>送出紀錄</span>
         </button>
