@@ -4,7 +4,6 @@ import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // App Components and CSS
-import LogOut from "../others/ComOfMember/LogOut";
 import logo from "../../imgs/logo.png";
 import Hamburger from "../common/Hamburger";
 
@@ -22,11 +21,15 @@ class Header extends React.Component {
   };
 
   checkForHeaderStyle = () => {
-    if (document.body.offsetWidth < Number(1125)) {
+    if (document.body.offsetWidth < 1125) {
       this.setState({ screenMobile: true });
     } else {
       this.setState({ screenMobile: false });
     }
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener("resize", this.checkForHeaderStyle);
   };
 
   render() {

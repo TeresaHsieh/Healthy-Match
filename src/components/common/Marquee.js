@@ -1,12 +1,13 @@
+// All imports
 import React from "react";
-import "../../css/dailyRecord.css";
 
-// Components
+// App Components and CSS
 import carrot from "../../imgs/carrot.png";
 import fish from "../../imgs/fish.png";
 import fruit from "../../imgs/fruit.png";
 import meat from "../../imgs/meat.png";
 import vetgetable from "../../imgs/vetgetable.png";
+import "../../css/dailyRecord.css";
 
 const Marquee = () => (
   <div className="marquee">

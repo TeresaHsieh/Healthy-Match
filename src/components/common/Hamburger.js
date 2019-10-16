@@ -1,9 +1,10 @@
+// All imports
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
+// App Components, Actions and CSS
 import "../../css/common.css";
-import SideDrawer from "../common/SideDrawer";
 
 class Hamburger extends React.Component {
   constructor() {
@@ -14,15 +15,11 @@ class Hamburger extends React.Component {
   }
 
   openSideDrawer = () => {
-    this.setState({ openHamburger: true }, () => {
-      //callback
-    });
+    this.setState({ openHamburger: true });
   };
 
   closeSideDrawer = () => {
-    this.setState({ openHamburger: false }, () => {
-      //callback
-    });
+    this.setState({ openHamburger: false });
   };
 
   render() {
@@ -30,7 +27,7 @@ class Hamburger extends React.Component {
     const links = auth.uid ? (
       <NavLink to="/log-out"> 登出 </NavLink>
     ) : (
-      <NavLink to="/member"> 註冊/登入 </NavLink>
+      <NavLink to="/member"> 註冊 / 登入 </NavLink>
     );
     const openHamburger = this.state.openHamburger;
 
@@ -56,7 +53,6 @@ class Hamburger extends React.Component {
               <NavLink to="/add-data"> 添加營養 </NavLink>
               <NavLink to="/match-status"> 麻吉樂園 </NavLink>
               <NavLink to="/info"> 會員資料 </NavLink>
-
               {links}
             </div>
           </header>
