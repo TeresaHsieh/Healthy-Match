@@ -5,8 +5,8 @@ const nodemailer = require("nodemailer");
 const credential = require("./credential");
 const smtpTransport = require("nodemailer-smtp-transport");
 //const serviceAccount = require("./firebaseAdminSDK.json");
-admin.initializeApp(functions.config().firebase);
-
+//admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 // admin.initializeApp({
 //   credential: admin.credential.cert(serviceAccount),
 //   databaseURL: "https://healthy-match.firebaseio.com"
