@@ -4,13 +4,16 @@ const admin = require("firebase-admin");
 const nodemailer = require("nodemailer");
 const credential = require("./credential");
 const smtpTransport = require("nodemailer-smtp-transport");
-//const serviceAccount = require("./firebaseAdminSDK.json");
-//admin.initializeApp(functions.config().firebase);
-admin.initializeApp();
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://healthy-match.firebaseio.com"
-// });
+const serviceAccount = require("./firebaseAdminSDK.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://healthy-match.firebaseio.com",
+  authDomain: "healthy-match.firebaseapp.com",
+  projectId: "healthy-match",
+  storageBucket: "healthy-match.appspot.com",
+  messagingSenderId: "560759415450",
+  appId: "1:560759415450:web:9fc855be631767dc"
+});
 
 exports.sendNutritionConfirmLetter = functions.firestore
   .document("member/{memberId}")
