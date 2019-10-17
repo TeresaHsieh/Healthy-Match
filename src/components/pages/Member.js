@@ -11,6 +11,13 @@ import basketMatch from "../../imgs/basket-match.png";
 import "../../css/member.css";
 
 class Member extends React.Component {
+  componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "member",
+      page_path: "/member"
+    });
+  };
+
   render() {
     return (
       <div>

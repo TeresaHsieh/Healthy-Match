@@ -29,6 +29,11 @@ class History extends React.Component {
   }
 
   componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "history",
+      page_path: "/history"
+    });
+
     // count end date
     let today = new Date();
     let year = today.getFullYear();

@@ -25,6 +25,11 @@ class MatchStatus extends React.Component {
   }
 
   componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "matchstatus",
+      page_path: "/match-status"
+    });
+
     if (!this.props.recordTotalNutrition) {
       // count end date
 

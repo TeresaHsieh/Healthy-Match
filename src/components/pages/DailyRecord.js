@@ -21,6 +21,13 @@ class DailyRecord extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "dailyrecordbreak",
+      page_path: "/daily-record-break"
+    });
+  };
+
   openInfoTips = () => {
     this.setState({ openInfo: true });
   };

@@ -13,6 +13,14 @@ class Home extends React.Component {
     let path = "./daily-record";
     this.props.history.push(path);
   };
+
+  componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "home",
+      page_path: "/home"
+    });
+  };
+
   render() {
     return (
       <div>

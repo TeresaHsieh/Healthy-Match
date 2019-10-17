@@ -26,6 +26,11 @@ class Info extends React.Component {
   }
 
   componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "info",
+      page_path: "/info"
+    });
+
     // this.props.checkUserInfo(this.props.auth.uid);
     if (
       // !this.props.userInfo.Name &&

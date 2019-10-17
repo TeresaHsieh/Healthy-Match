@@ -16,6 +16,13 @@ class CustomForm extends React.Component {
     this.state = { openContributionSuccessfulBox: false };
   }
 
+  componentDidMount = () => {
+    gtag("config", "G-ZE61GMZD8R", {
+      page_title: "adddata",
+      page_path: "/add-data"
+    });
+  };
+
   handleChange = e => {
     if (isNaN(e.target.value)) {
       this.setState({
