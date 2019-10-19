@@ -188,7 +188,6 @@ export const checkFirestoreNutritionRecord = (startDate, endDate, userUID) => {
       });
   };
 };
-//==========================
 
 // record --- action creator and action
 export const updateDailyRecordName = newRecord => {

@@ -316,6 +316,7 @@ class MainForm extends React.Component {
           >
             {suggestion}
           </div>
+
           <input
             placeholder="輸入食物份量（100g 為一份）"
             className="food-serve"
@@ -369,7 +370,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     addRecordInputName: nextInput => {
       dispatch(addRecordInputName(nextInput));
     },

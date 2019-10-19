@@ -138,7 +138,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     checkUserInfo: userUID => {
       dispatch(checkUserInfo(userUID));
     },

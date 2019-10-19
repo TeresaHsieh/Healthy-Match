@@ -20,7 +20,6 @@ class AuthInfo extends React.Component {
   }
 
   componentDidMount = () => {
-    // this.props.checkUserInfo(this.props.auth.uid);
     if (this.props.userInfo.Photo) {
       this.setState(this.props.userInfo);
     }
@@ -70,9 +69,6 @@ class AuthInfo extends React.Component {
     );
   };
   render() {
-    // if (!this.state.Photo) {
-    //   return <div> Loading (｡･ω･｡)ﾉ </div>;
-    // }
     return (
       <div className="userPhotoAndID">
         <div className="userPic">
@@ -112,7 +108,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     checkUserInfo: userUID => {
       dispatch(checkUserInfo(userUID));
     },

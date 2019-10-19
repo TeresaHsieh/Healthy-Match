@@ -31,9 +31,7 @@ class Info extends React.Component {
       page_path: "/info"
     });
 
-    // this.props.checkUserInfo(this.props.auth.uid);
     if (
-      // !this.props.userInfo.Name &&
       !this.props.userInfo.Age &&
       !this.props.userInfo.Weight &&
       !this.props.userInfo.Height &&
@@ -51,8 +49,6 @@ class Info extends React.Component {
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="./member" />;
-    // <Redirect to="./member" />;
-    // <h1>{`${JSON.stringify(this.props)}`}</h1>;
 
     const openFirstSignUpBox = this.state.openFirstSignUpBox;
 

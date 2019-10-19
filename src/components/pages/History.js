@@ -119,8 +119,6 @@ class History extends React.Component {
     const { startDate } = this.props;
     const { endDate } = this.props;
 
-    // startDate.splice();
-
     return (
       <div>
         <Header />
@@ -200,7 +198,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     makeSelectedDatesToProps: (startDate, endDate) => {
       dispatch(makeSelectedDatesToProps(startDate, endDate));
     },

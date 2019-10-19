@@ -183,10 +183,6 @@ class Calendar extends React.Component {
     this.props.changePropsEndDate(endDate);
   };
 
-  componentWillUnmount = () => {
-    // this.props.getSelectDateRange();
-  };
-
   resetDate() {
     this.setState({
       date: moment()
@@ -257,7 +253,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     makeSelectedDatesToProps: (startDate, endDate) => {
       dispatch(makeSelectedDatesToProps(startDate, endDate));
     },

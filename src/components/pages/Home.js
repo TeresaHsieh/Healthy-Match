@@ -9,7 +9,6 @@ import Marquee from "../common/Marquee";
 
 class Home extends React.Component {
   startToUse = () => {
-    // <Redirect to="./daily-record" />;
     let path = "./daily-record";
     this.props.history.push(path);
   };

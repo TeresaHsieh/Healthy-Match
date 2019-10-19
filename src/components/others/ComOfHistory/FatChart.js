@@ -17,61 +17,7 @@ class FatChart extends React.Component {
     this.props.removeUsingFilterFunction();
   };
 
-  // componentDidMount = () => {
-  //   // count end date
-  //   let today = new Date();
-  //   let year = today.getFullYear();
-  //   let month = today.getMonth() + 1; // if no plus one, the result would be August when expected September
-  //   let day = today.getDate();
-
-  //   let yearString = year.toString();
-
-  //   let monthString = "";
-  //   if (month < 10) {
-  //     monthString = "0" + month.toString();
-  //   } else {
-  //     monthString = month.toString();
-  //   }
-
-  //   let dayString = "";
-  //   if (day < 10) {
-  //     dayString = "0" + day.toString();
-  //   } else {
-  //     dayString = day.toString();
-  //   }
-
-  //   // count 7 days ago
-  //   let weekAgoDate = new Date();
-  //   weekAgoDate.setDate(weekAgoDate.getDate() - 6);
-  //   let weekAgoYear = weekAgoDate.getFullYear();
-  //   let weekAgoMonth = weekAgoDate.getMonth() + 1;
-  //   let weekAgoDay = weekAgoDate.getDate();
-
-  //   let weekAgoYearString = weekAgoYear.toString();
-  //   let weekAgoMonthString = "";
-
-  //   if (weekAgoMonth < 10) {
-  //     weekAgoMonthString = "0" + weekAgoMonth.toString();
-  //   } else {
-  //     weekAgoMonthString = weekAgoMonth.toString();
-  //   }
-
-  //   let weekAgoDayString = "";
-  //   if (weekAgoDay < 10) {
-  //     weekAgoDayString = "0" + weekAgoDay.toString();
-  //   } else {
-  //     weekAgoDayString = weekAgoDay.toString();
-  //   }
-
-  //   let startDate = weekAgoYearString + weekAgoMonthString + weekAgoDayString; // default : 7 days before today
-  //   let endDate = yearString + monthString + dayString; // default : today
-
-  //   let userUID = this.props.auth.uid;
-  //   this.props.checkFirestoreNutritionRecord(startDate, endDate, userUID);
-  // };
-
   render() {
-    //const getChartDataProtein = canvas => {
     if (
       this.props.recordTotalNutrition == undefined &&
       this.props.recordTotalName == undefined &&
@@ -111,17 +57,6 @@ class FatChart extends React.Component {
           theDays.push(theDaysResult[t][0].toString());
         }
       } else {
-        // let startDay = Number(this.props.startDate);
-        // let endDay = Number(this.props.endDate);
-        // theDays.push(
-        //   startDay.toString(),
-        //   (startDay + 1).toString(),
-        //   (startDay + 2).toString(),
-        //   (startDay + 3).toString(),
-        //   (startDay + 4).toString(),
-        //   (startDay + 5).toString(),
-        //   endDay.toString()
-        // );
         let daysInProps = this.props.recordTotalNutrition;
         let theDaysResult = Object.keys(daysInProps).map(function(key) {
           return [Number(key), daysInProps[key]];
@@ -212,7 +147,6 @@ class FatChart extends React.Component {
         title: {
           display: true,
           position: "top",
-          // text: "脂肪攝取紀錄",
           fontSize: 12,
           fontColor: "grey"
         },
@@ -288,7 +222,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     checkFirestoreNutritionRecord: (startDate, endDate, userUID) => {
       dispatch(checkFirestoreNutritionRecord(startDate, endDate, userUID));
     },

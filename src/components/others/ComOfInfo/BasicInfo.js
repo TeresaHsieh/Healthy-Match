@@ -33,12 +33,10 @@ class BasicInfo extends React.Component {
     }
   };
 
-  // 按編輯按鈕
   handleInfoChange = () => {
     this.setState({ disabled: false }, () => {});
   };
 
-  // 按勾勾
   checkInfoChange = () => {
     this.setState({ disabled: true }, () => {});
     let userUID = this.props.auth.uid;
@@ -59,14 +57,12 @@ class BasicInfo extends React.Component {
     this.props.updateInfoToFirestore(userUID, wholeState);
   };
 
-  // onchange 時
   updateInfo = e => {
     let infoName = e.target.name;
     let infoData = e.target.value;
     this.setState({ [infoName]: infoData });
   };
 
-  // 按叉叉
   cancelInfoChange = () => {
     this.setState({ disabled: true }, () => {});
     this.setState(this.props.userInfo);
@@ -298,7 +294,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // create a method
     checkUserInfo: userUID => {
       dispatch(checkUserInfo(userUID));
     },
