@@ -1,3 +1,4 @@
+// All imports
 import React from "react";
 import "../../css/home.css";
 import { connect } from "react-redux";
