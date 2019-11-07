@@ -146,7 +146,6 @@ class MatchStatus extends React.Component {
 
   componentWillUnmount = () => {
     this.props.removeIMGandDescription();
-    this.setState({ changeIMG: false });
   };
 
   componentDidUpdate = () => {

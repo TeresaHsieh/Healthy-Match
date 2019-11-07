@@ -16,17 +16,10 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
-    "quotes": [
-      "error",
-      "double"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ]
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "function": ["error", "always"]
   }
 }
